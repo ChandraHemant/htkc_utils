@@ -460,7 +460,7 @@ Route<T> buildPageRoute<T>(
 }
 
 
-Stack buildBodyStack(
+Stack customAppBar(
     BuildContext context, {
       double topPadding = kToolbarHeight,
       required Widget child,
@@ -576,3 +576,39 @@ Stack buildBodyStack(
   );
 }
 
+RoundedRectangleBorder roundedRectangleShape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(8),
+);
+
+//ignore: must_be_immutable
+class CustomAlertDialog extends StatefulWidget {
+  Widget child;
+  Function? function;
+  CustomAlertDialog({super.key, required this.child, this.function});
+  @override
+  CustomAlertDialogState createState() => CustomAlertDialogState();
+}
+
+class CustomAlertDialogState extends State<CustomAlertDialog> {
+  @override
+  void initState() {
+    widget.function;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return openAlertDialog();
+  }
+
+  openAlertDialog() {
+    return StatefulBuilder(builder: (context, setState) {
+      return AlertDialog(
+        shape: roundedRectangleShape,
+        content: SingleChildScrollView(
+          child: widget.child,
+        ),
+      );
+    });
+  }
+}
