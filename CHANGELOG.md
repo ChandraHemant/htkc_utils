@@ -1,3 +1,3 @@
-## 0.0.1
+## 1.0.0
 
 * HTKC Utils provides a collection of utility functions, classes, and widgets that can be used in any Flutter project.
