@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:htkc_utils/htkc_alert_dialog.dart';
+import 'package:htkc_utils/htkc_app_bar.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 void main() async {
@@ -6,7 +8,7 @@ void main() async {
 }
 
 class HTKCExample extends StatefulWidget {
-  const HTKCExample({super.key});
+  const HTKCExample({Key? key}) : super(key: key);
 
   @override
   State<HTKCExample> createState() => _HTKCExampleState();
@@ -16,14 +18,13 @@ class _HTKCExampleState extends State<HTKCExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: customAppBar(
-        context,
+      body: HCustomAppBar(
         title: 'HTKC Example',
         bgColor: Colors.white,
         action: true,
         actionTitle: '+ New',
         isDialog: true,
-        actionWidget: CustomAlertDialog(child: const Center(child: Text('Action Widget Clicked'))),
+        actionWidget: const HCustomAlertDialog(child: Center(child: Text('Action Widget Clicked'))),
        child: Card(
          clipBehavior: Clip.antiAlias,
          child: Wrap(

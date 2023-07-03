@@ -1,137 +1,60 @@
 import 'package:flutter/material.dart';
 
-/// Styles
+class AppTextStyle {
+  const AppTextStyle._();
 
-double textBoldSizeGlobal = 16;
-double textPrimarySizeGlobal = 16;
-double textSecondarySizeGlobal = 14;
+  static final TextStyle semiBoldStyle = _textStyle.copyWith(
+    fontSize: Dimens.fontSize16,
+    fontWeight: FontWeight.w600,
+  );
 
-String? fontFamilyBoldGlobal;
-String? fontFamilyPrimaryGlobal;
-String? fontFamilySecondaryGlobal;
+  static final TextStyle mediumStyle = _textStyle.copyWith(
+    fontSize: Dimens.fontSize16,
+    fontWeight: FontWeight.w500,
+  );
 
-FontWeight fontWeightBoldGlobal = FontWeight.bold;
-FontWeight fontWeightPrimaryGlobal = FontWeight.normal;
-FontWeight fontWeightSecondaryGlobal = FontWeight.normal;
+  static final TextStyle boldStyle = _textStyle.copyWith(
+    fontSize: Dimens.fontSize22,
+    fontWeight: FontWeight.w700,
+  );
 
-const textPrimaryColor = Color(0xFF2E3033);
-const textSecondaryColor = Color(0xFF757575);
+  static final TextStyle regularStyle = _textStyle.copyWith(
+    fontSize: Dimens.fontSize18,
+    fontWeight: FontWeight.w400,
+  );
 
-// Bold Text Style
-TextStyle boldTextStyle({
-  int? size,
-  Color? color,
-  FontWeight? weight,
-  String? fontFamily,
-  double? letterSpacing,
-  FontStyle? fontStyle,
-  double? wordSpacing,
-  TextDecoration? decoration,
-  TextDecorationStyle? textDecorationStyle,
-  TextBaseline? textBaseline,
-  Color? decorationColor,
-  Color? backgroundColor,
-  double? height,
-}) {
-  return TextStyle(
-    fontSize: size != null ? size.toDouble() : textBoldSizeGlobal,
-    color: color ?? textPrimaryColor,
-    fontWeight: weight ?? fontWeightBoldGlobal,
-    fontFamily: fontFamily ?? fontFamilyBoldGlobal,
-    letterSpacing: letterSpacing,
-    fontStyle: fontStyle,
-    decoration: decoration,
-    decorationStyle: textDecorationStyle,
-    decorationColor: decorationColor,
-    wordSpacing: wordSpacing,
-    textBaseline: textBaseline,
-    backgroundColor: backgroundColor,
-    height: height,
+  static final TextStyle buttonTextStyle = _textStyle.copyWith(
+    fontSize: Dimens.fontSize16,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle _textStyle = TextStyle(
+    fontFamily: 'SFProDisplay',
+    color: Colors.grey,
+    fontSize: Dimens.fontSize14,
   );
 }
 
-// Primary Text Style
-TextStyle primaryTextStyle({
-  int? size,
-  Color? color,
-  FontWeight? weight,
-  String? fontFamily,
-  double? letterSpacing,
-  FontStyle? fontStyle,
-  double? wordSpacing,
-  TextDecoration? decoration,
-  TextDecorationStyle? textDecorationStyle,
-  TextBaseline? textBaseline,
-  Color? decorationColor,
-  Color? backgroundColor,
-  double? height,
-}) {
-  return TextStyle(
-    fontSize: size != null ? size.toDouble() : textPrimarySizeGlobal,
-    color: color ?? textPrimaryColor,
-    fontWeight: weight ?? fontWeightPrimaryGlobal,
-    fontFamily: fontFamily ?? fontFamilyPrimaryGlobal,
-    letterSpacing: letterSpacing,
-    fontStyle: fontStyle,
-    decoration: decoration,
-    decorationStyle: textDecorationStyle,
-    decorationColor: decorationColor,
-    wordSpacing: wordSpacing,
-    textBaseline: textBaseline,
-    backgroundColor: backgroundColor,
-    height: height,
-  );
-}
+class Dimens {
+  const Dimens._();
 
-// Secondary Text Style
-TextStyle secondaryTextStyle({
-  int? size,
-  Color? color,
-  FontWeight? weight,
-  String? fontFamily,
-  double? letterSpacing,
-  FontStyle? fontStyle,
-  double? wordSpacing,
-  TextDecoration? decoration,
-  TextDecorationStyle? textDecorationStyle,
-  TextBaseline? textBaseline,
-  Color? decorationColor,
-  Color? backgroundColor,
-  double? height,
-}) {
-  return TextStyle(
-    fontSize: size != null ? size.toDouble() : textSecondarySizeGlobal,
-    color: color ?? textSecondaryColor,
-    fontWeight: weight ?? fontWeightSecondaryGlobal,
-    fontFamily: fontFamily ?? fontFamilySecondaryGlobal,
-    letterSpacing: letterSpacing,
-    fontStyle: fontStyle,
-    decoration: decoration,
-    decorationStyle: textDecorationStyle,
-    decorationColor: decorationColor,
-    wordSpacing: wordSpacing,
-    textBaseline: textBaseline,
-    backgroundColor: backgroundColor,
-    height: height,
-  );
-}
+  static const double fontSize9 = 9;
+  static const double fontSize10 = 10;
+  static const double fontSize12 = 12;
+  static const double fontSize13 = 13;
+  static const double fontSize14 = 14;
+  static const double fontSize15 = 15;
+  static const double fontSize16 = 16;
+  static const double fontSize18 = 18;
+  static const double fontSize17 = 17;
+  static const double fontSize20 = 20;
+  static const double fontSize22 = 22;
+  static const double fontSize24 = 24;
+  static const double fontSize26 = 26;
+  static const double fontSize28 = 28;
+  static const double fontSize30 = 30;
+  static const double fontSize32 = 32;
 
-// Create Rich Text
-@Deprecated('Use RichTextWidget instead')
-RichText createRichText({
-  required List<TextSpan> list,
-  TextOverflow overflow = TextOverflow.clip,
-  int? maxLines,
-  TextAlign textAlign = TextAlign.left,
-  TextDirection? textDirection,
-  StrutStyle? strutStyle,
-}) {
-  return RichText(
-    text: TextSpan(children: list),
-    overflow: overflow,
-    maxLines: maxLines,
-    textAlign: textAlign,
-    textDirection: textDirection,
-    strutStyle: strutStyle,
-  );
+  // ui
+  static const double buttonHeight = 44;
 }
