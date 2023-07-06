@@ -10,7 +10,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart' as http;
 
 String dirPath = "/storage/emulated/0/Documents";
-String backBtn = "assets/icons/back_button.png";
 double defaultRadius = 8.0;
 
 const Color homeBgColor = Color(0xFFf1f1f1);

@@ -70,7 +70,7 @@ class HCustomAppButton extends StatelessWidget {
     text,
     maxLines: 1,
     style: textStyle ??
-        AppTextStyle.semiBoldStyle.copyWith(
+        HAppTextStyle.semiBoldStyle.copyWith(
           fontSize: Dimens.fontSize17,
           color: textColor ?? Colors.blue,
         ),

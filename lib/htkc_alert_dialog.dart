@@ -3,7 +3,7 @@ import 'package:htkc_utils/htkc_utils.dart';
 
 class HCustomAlertDialog extends StatefulWidget {
   final Widget child;
-  final Function? function;
+  final Function()? function;
 
   const HCustomAlertDialog({Key? key, required this.child, this.function}) : super(key: key);
   @override

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:htkc_utils/htkc_utils.dart';
+import 'package:htkc_utils/utils/htkc_image_res.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class HCustomAppBar extends StatefulWidget {
@@ -92,7 +93,7 @@ class _HCustomAppBarState extends State<HCustomAppBar> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Image.asset(
-                      backBtn,
+                      HImagesRes.backButton,
                       color: widget.color,
                     ),
                   ))

@@ -1,10 +1,16 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:htkc_utils/htkc_utils.dart';
+import 'package:htkc_utils/models/gallery_response.dart';
+import 'package:htkc_utils/utils/alert/htkc_alert.dart';
+import 'package:htkc_utils/utils/htkc_image_res.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+
 class HImageSliderWidget extends StatefulWidget {
-  final List<String> imageUrls;
+  final List<GalleryResponse> imageUrls;
   final BorderRadius imageBorderRadius;
   final double imageHeight;
   final double imageWidth;
@@ -41,7 +47,7 @@ class _HImageSliderWidgetState extends State<HImageSliderWidget> {
   void initState() {
     super.initState();
     _pages = widget.imageUrls.map((slider) {
-      return _buildImagePageItem(slider);
+      return _buildImagePageItem(slider.galImage.first.url, slider.galName);
     }).toList();
 
     if (widget.from != "fullscreen") {
@@ -128,25 +134,98 @@ class _HImageSliderWidgetState extends State<HImageSliderWidget> {
     );
   }
 
-  Widget _buildImagePageItem(String sliderImage) {
+  Widget _buildImagePageItem(String sliderImage, String imageName) {
     return ClipRRect(
-      borderRadius: widget.imageBorderRadius,
-      child: GestureDetector(
-          onTap: () {},
-          child: Image.asset(sliderImage,
-            fit: widget.from == "fullscreen" ? BoxFit.contain : BoxFit.fill,
-          )),
+        borderRadius: widget.imageBorderRadius,
+        child: GestureDetector(
+          onTap: () {
+            HAlert(
+              context: context,
+              content: Stack(
+                children: [
+                  Positioned(
+                    right: 4,
+                    top: 4,
+                    child: Neumorphic(
+                      style: const NeumorphicStyle(
+                        color: Colors.green,
+                        depth: 8,
+                        boxShape: NeumorphicBoxShape.stadium(),
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          saveNetworkImage(name: imageName+'.jpg', url: sliderImage, context: context);
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(top: 4.0, bottom: 4,left: 16,right: 16),
+                          child: Text('Save',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ).previewImage();
+          },
+          child: Stack(
+            children: [
+              CachedNetworkImage(
+                imageUrl: sliderImage,
+                placeholder: (context, url) =>
+                    Image.asset(HImagesRes.loading1),
+                fit: BoxFit.cover,
+                width: 350,
+              ),
+              Positioned(
+                bottom: 10,
+                child: Container(
+                  height: 50,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.black,
+                          Colors.black,
+                        ],
+                      )
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: [Colors.black,Colors.transparent,],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          stops: [0.0, 1.0],
+                          tileMode: TileMode.clamp),
+                    ),
+                    width:350,
+                    height: 40,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0,top: 8,bottom: 4),
+                      child: Text(imageName, style: boldTextStyle(color: white, size: 15),),
+                    )
+                ),
+              ),
+            ],
+          ),
+        )
     );
   }
 }
 
 class DotsIndicator extends AnimatedWidget {
-  const DotsIndicator({Key? key,
+  const DotsIndicator({
+    Key? key,
     required this.controller,
     this.itemCount,
     this.onPageSelected,
-    this.color = blueColor,
-    //this.color: Colors.white,
+    this.color = blueViolet,
   }) : super(listenable: controller, key: key);
 
   final PageController controller;
