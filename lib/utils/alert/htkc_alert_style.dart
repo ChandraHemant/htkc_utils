@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 /// Alert types
-enum HAlertType { error, success, info, warning, none }
+enum HcAlertType { error, success, info, warning, none }
 
 /// Alert animation types
-enum HAnimationType { fromRight, fromLeft, fromTop, fromBottom, grow, shrink }
+enum HcAnimationType { fromRight, fromLeft, fromTop, fromBottom, grow, shrink }
 
 /// Alert style class for reusable customization of dialogs.
-class HAlertStyle {
-  final HAnimationType animationType;
+class HcAlertStyle {
+  final HcAnimationType animationType;
   final Duration animationDuration;
   final ShapeBorder? alertBorder;
   final bool isCloseButton;
@@ -28,8 +28,8 @@ class HAlertStyle {
   /// The [titleStyle] parameter sets alert title text style.
   /// The [descStyle] parameter sets alert desc text style.
   /// The [buttonAreaPadding] parameter sets button area padding.
-  const HAlertStyle({
-    this.animationType = HAnimationType.grow,
+  const HcAlertStyle({
+    this.animationType = HcAnimationType.grow,
     this.animationDuration = const Duration(milliseconds: 200),
     this.alertBorder,
     this.isCloseButton = true,

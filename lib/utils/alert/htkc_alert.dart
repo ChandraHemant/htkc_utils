@@ -5,21 +5,21 @@ import 'package:htkc_utils/utils/alert/htkc_dialog_button.dart';
 import 'package:htkc_utils/utils/htkc_image_res.dart';
 
 
-class HAlert {
+class HcAlert {
   final BuildContext context;
-  final HAlertType? type;
-  final HAlertStyle style;
+  final HcAlertType type;
+  final HcAlertStyle style;
   final Image? image;
   final String? title;
   final String? desc;
   final Widget? content;
-  final List<HDialogButton>? buttons;
+  final List<HcDialogButton>? buttons;
 
   /// [context], [title] are required.
-  HAlert({
+  HcAlert({
     required this.context,
-    this.type,
-    this.style = const HAlertStyle(),
+    this.type = HcAlertType.none,
+    this.style = const HcAlertStyle(),
     this.image,
     this.title,
     this.desc,
@@ -191,7 +191,7 @@ class HAlert {
     } else {
       expandedButtons.add(
         Expanded(
-          child: HDialogButton(
+          child: HcDialogButton(
               child: const Text(
                 "CANCEL",
                 style: TextStyle(color: Colors.white, fontSize: 20),
@@ -210,32 +210,32 @@ class HAlert {
 // Returns alert image for icon
   Widget _getImage() {
     Widget response = image ?? Container();
-    switch (type!) {
-      case HAlertType.success:
+    switch (type) {
+      case HcAlertType.success:
         response = CachedNetworkImage(
-          imageUrl: HImagesRes.subject,
+          imageUrl: HcImagesRes.subject,
           // package: 'rflutter_alert',
         );
         break;
-      case HAlertType.error:
+      case HcAlertType.error:
         response = CachedNetworkImage(
-          imageUrl:  HImagesRes.subject,
+          imageUrl:  HcImagesRes.subject,
           // package: 'rflutter_alert',
         );
         break;
-      case HAlertType.info:
+      case HcAlertType.info:
         response = CachedNetworkImage(
-          imageUrl:  HImagesRes.subject,
+          imageUrl:  HcImagesRes.subject,
           // package: 'flutter_alert',
         );
         break;
-      case HAlertType.warning:
+      case HcAlertType.warning:
         response = CachedNetworkImage(
-          imageUrl:  HImagesRes.subject,
+          imageUrl:  HcImagesRes.subject,
           // package: 'flutter_alert',
         );
         break;
-      case HAlertType.none:
+      case HcAlertType.none:
         response = Container();
         break;
     }
@@ -244,15 +244,15 @@ class HAlert {
 
 // Shows alert with selected animation
   _showAnimation(animation, secondaryAnimation, child) {
-    if (style.animationType == HAnimationType.fromRight) {
+    if (style.animationType == HcAnimationType.fromRight) {
       return AnimationTransition.fromRight(animation, secondaryAnimation, child);
-    } else if (style.animationType == HAnimationType.fromLeft) {
+    } else if (style.animationType == HcAnimationType.fromLeft) {
       return AnimationTransition.fromLeft(animation, secondaryAnimation, child);
-    } else if (style.animationType == HAnimationType.fromBottom) {
+    } else if (style.animationType == HcAnimationType.fromBottom) {
       return AnimationTransition.fromBottom(animation, secondaryAnimation, child);
-    } else if (style.animationType == HAnimationType.grow) {
+    } else if (style.animationType == HcAnimationType.grow) {
       return AnimationTransition.grow(animation, secondaryAnimation, child);
-    } else if (style.animationType == HAnimationType.shrink) {
+    } else if (style.animationType == HcAnimationType.shrink) {
       return AnimationTransition.shrink(animation, secondaryAnimation, child);
     } else {
       return AnimationTransition.fromTop(animation, secondaryAnimation, child);

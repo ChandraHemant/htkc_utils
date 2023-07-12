@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-class HCustomAlertDialog extends StatefulWidget {
+class HcCustomAlertDialog extends StatefulWidget {
   final Widget child;
   final Function()? function;
 
-  const HCustomAlertDialog({Key? key, required this.child, this.function}) : super(key: key);
+  const HcCustomAlertDialog({Key? key, required this.child, this.function}) : super(key: key);
   @override
-  HCustomAlertDialogState createState() => HCustomAlertDialogState();
+  HcCustomAlertDialogState createState() => HcCustomAlertDialogState();
 }
 
-class HCustomAlertDialogState extends State<HCustomAlertDialog> {
+class HcCustomAlertDialogState extends State<HcCustomAlertDialog> {
   @override
   void initState() {
     widget.function;
@@ -19,13 +19,13 @@ class HCustomAlertDialogState extends State<HCustomAlertDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return openAlertDialog();
+    return hcOpenAlertDialog();
   }
 
-  openAlertDialog() {
+  hcOpenAlertDialog() {
     return StatefulBuilder(builder: (context, setState) {
       return AlertDialog(
-        shape: roundedRectangleShape,
+        shape: hcRoundedRectangleShape,
         content: SingleChildScrollView(
           child: widget.child,
         ),

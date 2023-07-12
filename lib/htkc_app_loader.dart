@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class HAppStackLoader extends StatelessWidget {
+class HcAppStackLoader extends StatelessWidget {
   final bool visible;
   final Widget child;
 
-  const HAppStackLoader({Key? key, required this.visible, required this.child}) : super(key: key);
+  const HcAppStackLoader({Key? key, required this.visible, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class HAppStackLoader extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         child,
-        hProgress().center().visible(visible.validate()),
+        hcProgress().center().visible(visible.validate()),
       ],
     );
   }

@@ -4,7 +4,7 @@ import 'package:htkc_utils/htkc_utils.dart';
 import 'package:htkc_utils/utils/htkc_image_res.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class HCustomAppBar extends StatefulWidget {
+class HcCustomAppBar extends StatefulWidget {
   final double topPadding;
   final Widget child;
   final String? title;
@@ -22,25 +22,25 @@ class HCustomAppBar extends StatefulWidget {
   final Widget? actionWidget;
   final IconData? titleSuffix;
   final GestureTapCallback? onTap;
-  const HCustomAppBar({Key? key, this.onTap, this.titleSuffix, this.actionWidget, this.actionTitle, this.isTitleSuffix = false, this.isCenter = false, this.isBackFunction = false, this.isBack = true, this.isDialog = false, this.action = false, this.topPadding = kToolbarHeight, this.titleFontWeight = FontWeight.normal, this.color = Colors.white, this.sColor = secondColor, this.bgColor = homeBgColor, required this.child, this.title}) : super(key: key);
+  const HcCustomAppBar({Key? key, this.onTap, this.titleSuffix, this.actionWidget, this.actionTitle, this.isTitleSuffix = false, this.isCenter = false, this.isBackFunction = false, this.isBack = true, this.isDialog = false, this.action = false, this.topPadding = kToolbarHeight, this.titleFontWeight = FontWeight.normal, this.color = Colors.white, this.sColor = hcSecondColor, this.bgColor = hcHomeBgColor, required this.child, this.title}) : super(key: key);
 
 
   @override
-  State<HCustomAppBar> createState() => _HCustomAppBarState();
+  State<HcCustomAppBar> createState() => _HcCustomAppBarState();
 }
 
-class _HCustomAppBarState extends State<HCustomAppBar> {
+class _HcCustomAppBarState extends State<HcCustomAppBar> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size hcSize = MediaQuery.of(context).size;
     return Stack(
       children: [
         Container(
           constraints: const BoxConstraints.expand(),
           decoration: BoxDecoration(
-            gradient: gradient(),
+            gradient: hcGradient(),
           ),
-          padding: EdgeInsets.only(top: Platform.isAndroid ? widget.topPadding + 40: widget.topPadding + size.height*0.06),
+          padding: EdgeInsets.only(top: Platform.isAndroid ? widget.topPadding + 40: widget.topPadding + hcSize.height*0.06),
           child: Container(
             padding: const EdgeInsets.only(top: 5),
             decoration: BoxDecoration(
@@ -85,7 +85,7 @@ class _HCustomAppBarState extends State<HCustomAppBar> {
               leading: widget.isBack ? GestureDetector(
                   onTap: () {
                     if(widget.isBackFunction){
-                      onBackPress(context);
+                      hcOnBackPressed(context);
                     }else {
                       Navigator.of(context).pop();
                     }
@@ -93,7 +93,7 @@ class _HCustomAppBarState extends State<HCustomAppBar> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Image.asset(
-                      HImagesRes.backButton,
+                      HcImagesRes.backButton,
                       color: widget.color,
                     ),
                   ))

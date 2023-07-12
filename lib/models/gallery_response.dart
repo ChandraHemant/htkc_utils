@@ -1,14 +1,14 @@
 import 'dart:convert';
 
-List<GalleryResponse> galleryDataJson(String str) =>
-    List<GalleryResponse>.from(
-        json.decode(str).map((x) => GalleryResponse.fromJson(x)));
+List<HcGalleryResponse> hcGalleryDataJson(String str) =>
+    List<HcGalleryResponse>.from(
+        json.decode(str).map((x) => HcGalleryResponse.fromJson(x)));
 
-String galleryDataToJson(List<GalleryResponse> data) =>
+String hcGalleryDataToJson(List<HcGalleryResponse> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class GalleryResponse {
-  GalleryResponse({
+class HcGalleryResponse {
+  HcGalleryResponse({
     required this.galId,
     required this.galName,
     required this.galImage,
@@ -16,12 +16,12 @@ class GalleryResponse {
 
   int galId;
   String galName;
-  List<GalImage> galImage;
+  List<HcGalImage> galImage;
 
-  factory GalleryResponse.fromJson(Map<String, dynamic> json) => GalleryResponse(
+  factory HcGalleryResponse.fromJson(Map<String, dynamic> json) => HcGalleryResponse(
     galId: json["gal_id"],
     galName: json["gal_name"],
-    galImage: List<GalImage>.from(json["gal_image"].map((x) => GalImage.fromJson(x))),
+    galImage: List<HcGalImage>.from(json["gal_image"].map((x) => HcGalImage.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -31,14 +31,14 @@ class GalleryResponse {
   };
 }
 
-class GalImage {
-  GalImage({
+class HcGalImage {
+  HcGalImage({
     required this.url,
   });
 
   String url;
 
-  factory GalImage.fromJson(Map<String, dynamic> json) => GalImage(
+  factory HcGalImage.fromJson(Map<String, dynamic> json) => HcGalImage(
     url: json["url"],
   );
 

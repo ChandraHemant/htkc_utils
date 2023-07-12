@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HAppTextStyle {
-  const HAppTextStyle._();
+class HcAppTextStyle {
+  const HcAppTextStyle._();
 
   static final TextStyle semiBoldStyle = _textStyle.copyWith(
     fontSize: Dimens.fontSize16,

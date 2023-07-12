@@ -18,13 +18,13 @@ class _HTKCExampleState extends State<HTKCExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HCustomAppBar(
+      body: HcCustomAppBar(
         title: 'HTKC Example',
         bgColor: Colors.white,
         action: true,
         actionTitle: '+ New',
         isDialog: true,
-        actionWidget: const HCustomAlertDialog(child: Center(child: Text('Action Widget Clicked'))),
+        actionWidget: const HcCustomAlertDialog(child: Center(child: Text('Action Widget Clicked'))),
        child: Card(
          clipBehavior: Clip.antiAlias,
          child: Wrap(

@@ -35,7 +35,7 @@ void main() async {
 }
 
 class HTKCExample extends StatefulWidget {
-  const HTKCExample({super.key});
+  const HTKCExample({Key? key}) : super(key: key);
 
   @override
   State<HTKCExample> createState() => _HTKCExampleState();
@@ -45,14 +45,13 @@ class _HTKCExampleState extends State<HTKCExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: customAppBar(
-          context,
+        body: HcCustomAppBar(
           title: 'HTKC Example',
           bgColor: Colors.white,
           action: true,
           actionTitle: '+ New',
           isDialog: true,
-          actionWidget: CustomAlertDialog(child: const Center(child: Text('Action Widget Clicked'))),
+          actionWidget: const HcCustomAlertDialog(child: Center(child: Text('Action Widget Clicked'))),
           child: Card(
             clipBehavior: Clip.antiAlias,
             child: Wrap(
@@ -62,23 +61,23 @@ class _HTKCExampleState extends State<HTKCExample> {
               children: <Widget>[
                 Chip(
                   avatar: CircleAvatar(
-                      backgroundColor: Colors.blue.shade900, child: Text('HI')),
-                  label: Text('Hello'),
+                      backgroundColor: Colors.blue.shade900, child: Text('AH')),
+                  label: Text('Hamilton'),
                 ),
                 Chip(
                   avatar: CircleAvatar(
-                      backgroundColor: Colors.blue.shade900, child: Text('BYE')),
-                  label: Text('Good Night'),
+                      backgroundColor: Colors.blue.shade900, child: Text('ML')),
+                  label: Text('Lafayette'),
                 ),
                 Chip(
                   avatar: CircleAvatar(
-                      backgroundColor: Colors.blue.shade900, child: Text('GM')),
-                  label: Text('Good Morning'),
+                      backgroundColor: Colors.blue.shade900, child: Text('HM')),
+                  label: Text('Mulligan'),
                 ),
                 Chip(
                   avatar: CircleAvatar(
-                      backgroundColor: Colors.blue.shade900, child: Text('GE')),
-                  label: Text('Good Evening'),
+                      backgroundColor: Colors.blue.shade900, child: Text('JL')),
+                  label: Text('Laurens'),
                 ),
               ],
             ),
@@ -86,5 +85,6 @@ class _HTKCExampleState extends State<HTKCExample> {
         ));
   }
 }
+
 
 ```

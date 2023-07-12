@@ -9,26 +9,26 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart' as http;
 
-String dirPath = "/storage/emulated/0/Documents";
-double defaultRadius = 8.0;
+String hcDirPath = "/storage/emulated/0/Documents";
+double hcDefaultRadius = 8.0;
 
-const Color homeBgColor = Color(0xFFf1f1f1);
-const Color primaryColor = Color(0xFF29abe2);
-const Color secondColor = Color(0xFF2697FF);
+const Color hcHomeBgColor = Color(0xFFf1f1f1);
+const Color hcPrimaryColor = Color(0xFF29abe2);
+const Color hcSecondColor = Color(0xFF2697FF);
 
 // String Extensions
-extension StringCasingExtension on String {
+extension HcStringCasingExtension on String {
   /// Word Capitalized
-  String toCapitalized() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
+  String hcToCapitalized() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
 
   /// Title Capitalized
-  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
+  String hcToTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.hcToCapitalized()).join(' ');
 
   /// Convert Time Format
-  String formatTime(int timeNum) => timeNum < 10 ? "0$timeNum" : timeNum.toString();
+  String hcFormatTime(int timeNum) => timeNum < 10 ? "0$timeNum" : timeNum.toString();
 
   /// Time Difference
-  String timeDifference(String startTime, String endTime) {
+  String hcTimeDifference(String startTime, String endTime) {
     var format = DateFormat("HH:mm");
     DateTime now = DateTime.now();
     var sTime = format.parse(startTime);
@@ -43,7 +43,7 @@ extension StringCasingExtension on String {
   }
 
   /// Calculate Age
-  String calculateAge(String birthDateString) {
+  String hcCalculateAge(String birthDateString) {
     String datePattern = "dd-MM-yyyy";
     DateTime today = DateFormat(datePattern).parse(DateTime.now().toString());
     DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
@@ -54,7 +54,7 @@ extension StringCasingExtension on String {
 }
 
 /// Validate Text Input Field
-bool validateTextInputField(BuildContext context, TextEditingController controller, String fieldName, {FocusNode? focusNode}) {
+bool hcValidateTextInputField(BuildContext context, TextEditingController controller, String fieldName, {FocusNode? focusNode}) {
   if (controller.text.isEmpty) {
     if (focusNode != null) {
       focusNode.requestFocus();
@@ -70,7 +70,7 @@ bool validateTextInputField(BuildContext context, TextEditingController controll
 }
 
 /// Validate Text Field or Dropdown Value
-bool validateTextField(BuildContext context, var controller, String fieldName, {FocusNode? focusNode}) {
+bool hcValidateTextField(BuildContext context, var controller, String fieldName, {FocusNode? focusNode}) {
   if (controller.isEmpty) {
     if (focusNode != null) {
       focusNode.requestFocus();
@@ -86,7 +86,7 @@ bool validateTextField(BuildContext context, var controller, String fieldName, {
 }
 
 /// Lies Between Times
-bool liesBetweenTimes(String sTime, String eTime) {
+bool hcLiesBetweenTimes(String sTime, String eTime) {
   DateTime now = DateTime.now();
   var format = DateFormat("HH:mm");
   var startTime = format.parse(sTime);
@@ -100,7 +100,7 @@ bool liesBetweenTimes(String sTime, String eTime) {
 }
 
 /// Check Age if age is greater than 18 year or not
-bool isAdult(String birthDateString) {
+bool hcCheckMature(String birthDateString) {
   String datePattern = "dd-MM-yyyy";
   DateTime today = DateTime.now();
   DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
@@ -114,19 +114,19 @@ bool isAdult(String birthDateString) {
 }
 
 // Indexed Map Extensions
-extension IndexedIterable<E> on Iterable<E> {
+extension HcIndexedIterable<E> on Iterable<E> {
   /// Indexed Map
-  Iterable<T> indexedMap<T>(T Function(E element, int index) f) {
+  Iterable<T> hcIndexedMap<T>(T Function(E element, int index) f) {
     var index = 0;
     return map((e) => f(e, index++));
   }
 }
 
 // File Extensions
-extension FileSaveUtils on void {
+extension HcFileSaveUtils on void {
 
   /// Save PDF Documents
-  savePdfDocuments(
+  hcSavePdfDocuments(
     {
       required String name,
       required Uint8List fileBytes,
@@ -135,7 +135,7 @@ extension FileSaveUtils on void {
     }
   ) async {
     Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String path = Platform.isAndroid?dirPath:"${appDocDirectory.path}/$customDirectoryName";
+    String path = Platform.isAndroid?hcDirPath:"${appDocDirectory.path}/$customDirectoryName";
     try {
       bool checkPermission = await Permission.accessMediaLocation.isGranted;
       if (checkPermission) {
@@ -173,7 +173,7 @@ extension FileSaveUtils on void {
   }
 
   /// Save Network Image
-  saveNetworkImage(
+  hcSaveNetworkImage(
     {
       required String name,
       required String url,
@@ -182,7 +182,7 @@ extension FileSaveUtils on void {
     }
   ) async {
     Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String path = Platform.isAndroid?dirPath:"${appDocDirectory.path}/$customDirectoryName";
+    String path = Platform.isAndroid?hcDirPath:"${appDocDirectory.path}/$customDirectoryName";
 
     try {
       var response = await http.get(Uri.parse(url));
@@ -224,7 +224,7 @@ extension FileSaveUtils on void {
 }
 
 /// returns gradient
-Gradient gradient([Color secondGradientColor = secondColor, Color firstGradientColor = primaryColor, AlignmentGeometry begin = Alignment.topCenter, AlignmentGeometry end = Alignment.bottomCenter]) {
+Gradient hcGradient([Color secondGradientColor = hcSecondColor, Color firstGradientColor = hcPrimaryColor, AlignmentGeometry begin = Alignment.topCenter, AlignmentGeometry end = Alignment.bottomCenter]) {
   return LinearGradient(
     colors: [
       secondGradientColor,
@@ -237,10 +237,10 @@ Gradient gradient([Color secondGradientColor = secondColor, Color firstGradientC
 }
 
 // Widget Extensions
-extension WidgetExtension on Widget? {
+extension HcWidgetExtension on Widget? {
 
   /// Circular Progressbar
-  Widget hProgress({Color color = Colors.blue, }) {
+  Widget hcProgress({Color color = Colors.blue, }) {
     return Container(
       alignment: Alignment.center,
       child: Card(
@@ -266,16 +266,16 @@ extension WidgetExtension on Widget? {
 
 }
 
-onBackPress(BuildContext context) {
+hcOnBackPressed(BuildContext context) {
   /// Cancel Button
-  Widget cancelButton(BuildContext context, {Color color = primaryColor}) => TextButton(
+  Widget cancelButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
       onPressed: () {
         Navigator.pop(context);
       },
       child: Text('Cancel', style: boldTextStyle()));
 
   /// Continue Button
-  Widget continueButton(BuildContext context, {Color color = primaryColor}) => TextButton(
+  Widget continueButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
       onPressed: () {
         Navigator.pop(context);
         Navigator.pop(context);
@@ -308,6 +308,6 @@ onBackPress(BuildContext context) {
   );
 }
 
-RoundedRectangleBorder roundedRectangleShape = RoundedRectangleBorder(
+RoundedRectangleBorder hcRoundedRectangleShape = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(8),
 );

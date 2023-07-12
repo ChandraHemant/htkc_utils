@@ -1,4 +1,4 @@
-class HImagesRes {
+class HcImagesRes {
   ///Loading Gifs
   static String loading = "assets/app/loading.gif";
   static String loading1 = "assets/app/loading1.gif";

@@ -1,8 +1,8 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:htkc_utils/htkc_text_style.dart';
+import 'package:htkc_utils/utils/htkc_text_style.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class HCustomAppButton extends StatelessWidget {
+class HcCustomAppButton extends StatelessWidget {
   final Function()? onPressed;
   final String text;
   final Color? textColor;
@@ -11,7 +11,7 @@ class HCustomAppButton extends StatelessWidget {
   final Color buttonColor;
   final TextStyle? textStyle;
 
-  const HCustomAppButton({
+  const HcCustomAppButton({
     Key? key,
     required this.onPressed,
     required this.text,
@@ -70,7 +70,7 @@ class HCustomAppButton extends StatelessWidget {
     text,
     maxLines: 1,
     style: textStyle ??
-        HAppTextStyle.semiBoldStyle.copyWith(
+        HcAppTextStyle.semiBoldStyle.copyWith(
           fontSize: Dimens.fontSize17,
           color: textColor ?? Colors.blue,
         ),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// Used for defining alert buttons.
 ///
 /// [child] and [onPressed] parameters are required.
-class HDialogButton extends StatelessWidget {
+class HcDialogButton extends StatelessWidget {
   final Widget child;
   final double? width;
   final double height;
@@ -14,7 +14,7 @@ class HDialogButton extends StatelessWidget {
   final GestureTapCallback onPressed;
 
   /// DialogButton constructor
-  const HDialogButton({
+  const HcDialogButton({
     Key? key,
     required this.child,
     this.width,
