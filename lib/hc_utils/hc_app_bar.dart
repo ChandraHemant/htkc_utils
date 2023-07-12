@@ -1,7 +1,6 @@
 import 'dart:io';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:htkc_utils/emergent_utils/emergent_light_source.dart';
 import 'package:htkc_utils/htkc_utils.dart';
-import 'package:htkc_utils/utils/htkc_image_res.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class HcCustomAppBar extends StatefulWidget {
@@ -67,10 +66,10 @@ class _HcCustomAppBarState extends State<HcCustomAppBar> {
                           color: widget.color, fontWeight: widget.titleFontWeight)),
                   GestureDetector(
                       onTap: widget.onTap,
-                      child: Neumorphic(
-                          style: NeumorphicStyle(
-                              shape: NeumorphicShape.concave,
-                              boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(25)),
+                      child: Emergent(
+                          style: EmergentStyle(
+                              shape: EmergentShape.concave,
+                              boxShape: EmergentBoxShape.roundRect(BorderRadius.circular(25)),
                               depth: 3,
                               lightSource: LightSource.topLeft,
                               color: widget.sColor
@@ -103,8 +102,8 @@ class _HcCustomAppBarState extends State<HcCustomAppBar> {
                 widget.action
                     ? Padding(
                   padding: const EdgeInsets.all(6.0),
-                  child: Neumorphic(
-                    style: NeumorphicStyle(
+                  child: Emergent(
+                    style: EmergentStyle(
                         depth: -5, color: widget.sColor),
                     child: TextButton(
                       onPressed: () {

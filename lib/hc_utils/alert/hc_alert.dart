@@ -1,8 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:htkc_utils/utils/alert/htkc_alert_style.dart';
-import 'package:htkc_utils/utils/alert/htkc_dialog_button.dart';
-import 'package:htkc_utils/utils/htkc_image_res.dart';
+import 'package:htkc_utils/htkc_utils.dart';
 
 
 class HcAlert {

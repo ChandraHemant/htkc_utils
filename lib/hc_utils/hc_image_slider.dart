@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:htkc_utils/htkc_utils.dart';
-import 'package:htkc_utils/utils/alert/htkc_alert.dart';
-import 'package:htkc_utils/utils/htkc_image_res.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 
@@ -155,11 +152,11 @@ class _HcImageSliderWidgetState extends State<HcImageSliderWidget> {
                   Positioned(
                     right: 4,
                     top: 4,
-                    child: Neumorphic(
-                      style: const NeumorphicStyle(
+                    child: Emergent(
+                      style: const EmergentStyle(
                         color: Colors.green,
                         depth: 8,
-                        boxShape: NeumorphicBoxShape.stadium(),
+                        boxShape: EmergentBoxShape.stadium(),
                       ),
                       child: GestureDetector(
                         onTap: () {

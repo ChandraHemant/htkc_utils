@@ -1,5 +1,6 @@
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:htkc_utils/utils/htkc_text_style.dart';
+import 'package:htkc_utils/emergent_utils/emergent_light_source.dart';
+import 'package:htkc_utils/hc_utils/hc_text_style.dart';
+import 'package:htkc_utils/htkc_utils.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class HcCustomAppButton extends StatelessWidget {
@@ -24,21 +25,21 @@ class HcCustomAppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NeumorphicButton(
+    return EmergentButton(
       onPressed: onPressed,
       padding: const EdgeInsets.all(16),
       margin: text == "Skip"
           ? const EdgeInsets.symmetric(vertical: 10, horizontal: 20)
           : EdgeInsets.zero,
-      style: NeumorphicStyle(
+      style: EmergentStyle(
         color: buttonColor,
         depth: 5,
         intensity: .7,
         surfaceIntensity: .03,
         shadowLightColor: Colors.white.withOpacity(0.8),
-        shape: NeumorphicShape.concave,
+        shape: EmergentShape.concave,
         lightSource: LightSource.topLeft,
-        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+        boxShape: EmergentBoxShape.roundRect(BorderRadius.circular(10)),
       ),
       child: Container(
         alignment: Alignment.center,
