@@ -1,3 +1,7 @@
+## 1.1.8
+
+* Added alert images
+
 ## 1.1.7
 
 * Downgrade external library version

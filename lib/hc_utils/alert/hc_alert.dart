@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 
@@ -209,28 +208,16 @@ class HcAlert {
     Widget response = image ?? Container();
     switch (type) {
       case HcAlertType.success:
-        response = CachedNetworkImage(
-          imageUrl: HcImagesRes.subject,
-          // package: 'rflutter_alert',
-        );
+        response = Image.asset(HcImagesRes.success);
         break;
       case HcAlertType.error:
-        response = CachedNetworkImage(
-          imageUrl:  HcImagesRes.subject,
-          // package: 'rflutter_alert',
-        );
+        response = Image.asset(HcImagesRes.error);
         break;
       case HcAlertType.info:
-        response = CachedNetworkImage(
-          imageUrl:  HcImagesRes.subject,
-          // package: 'flutter_alert',
-        );
+        response = Image.asset(HcImagesRes.info);
         break;
       case HcAlertType.warning:
-        response = CachedNetworkImage(
-          imageUrl:  HcImagesRes.subject,
-          // package: 'flutter_alert',
-        );
+        response = Image.asset(HcImagesRes.warning);
         break;
       case HcAlertType.none:
         response = Container();

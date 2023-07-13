@@ -17,10 +17,11 @@ class HcCustomAppBar extends StatefulWidget {
   final bool isCenter;
   final bool isTitleSuffix;
   final String? actionTitle;
+  final String? backButtonImage;
   final Widget? actionWidget;
   final IconData? titleSuffix;
   final GestureTapCallback? onTap;
-  const HcCustomAppBar({Key? key, this.onTap, this.titleSuffix, this.actionWidget, this.actionTitle, this.isTitleSuffix = false, this.isCenter = false, this.isBackFunction = false, this.isBack = true, this.isDialog = false, this.action = false, this.topPadding = kToolbarHeight, this.titleFontWeight = FontWeight.normal, this.color = Colors.white, this.sColor = hcSecondColor, this.bgColor = hcHomeBgColor, required this.child, this.title}) : super(key: key);
+  const HcCustomAppBar({Key? key, this.backButtonImage, this.onTap, this.titleSuffix, this.actionWidget, this.actionTitle, this.isTitleSuffix = false, this.isCenter = false, this.isBackFunction = false, this.isBack = true, this.isDialog = false, this.action = false, this.topPadding = kToolbarHeight, this.titleFontWeight = FontWeight.normal, this.color = Colors.white, this.sColor = hcSecondColor, this.bgColor = hcHomeBgColor, required this.child, this.title}) : super(key: key);
 
 
   @override
@@ -91,7 +92,7 @@ class _HcCustomAppBarState extends State<HcCustomAppBar> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Image.asset(
-                      HcImagesRes.backButton,
+                      widget.backButtonImage!,
                       color: widget.color,
                     ),
                   ))

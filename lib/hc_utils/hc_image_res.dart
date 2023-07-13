@@ -6,7 +6,9 @@ class HcImagesRes {
   static String running1 = "assets/app/running1.gif";
 
   /// Icons
-  static String backButton = "assets/icons/back_button.png";
-  static String subject = "assets/app/icons/bookshelf.png";
+  static String info = "assets/icons/info.png";
+  static String error = "assets/icons/error.png";
+  static String success = "assets/icons/success.png";
+  static String warning = "assets/icons/warning.png";
 
 }
