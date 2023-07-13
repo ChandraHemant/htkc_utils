@@ -189,21 +189,59 @@ class _MyAppState extends State<MyApp> {
 ```
 
 
+## Drag And Drop
+
+**Age Calculator**
+
+```dart
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:age/age.dart';
+
+void main() {
+  DateTime birthday = DateTime(1990, 1, 20);
+  DateTime today = DateTime.now(); //2020/1/24
+
+  AgeDuration age;
+
+  // Find out your age
+  age = Age.dateDifference(
+      fromDate: birthday, toDate: today, includeToDate: false);
+
+  print('Your age is $age'); // Your age is Years: 30, Months: 0, Days: 4
+
+  // Find out when your next birthday will be.
+  DateTime tempDate = DateTime(today.year, birthday.month, birthday.day);
+  DateTime nextBirthdayDate = tempDate.isBefore(today)
+      ? Age.add(date: tempDate, duration: AgeDuration(years: 1))
+      : tempDate;
+  AgeDuration nextBirthdayDuration =
+  Age.dateDifference(fromDate: today, toDate: nextBirthdayDate);
+
+  print('You next birthday will be on $nextBirthdayDate or in $nextBirthdayDuration');
+  // You next birthday will be on 2021-01-20 00:00:00.000 or in Years: 0, Months: 11, Days: 27
+}
+
+
+
+```
+
+
 ## Emergent Text
 
 **Text only handle positive depth**
 
 ```dart
 child: EmergentText(
-"I love flutter",
-style: EmergentStyle(
-depth: 4,  //customize depth here
-color: Colors.white, //customize color here
-),
-textStyle: EmergentTextStyle(
-fontSize: 18, //customize size here
-// AND others usual text style properties (fontFamily, fontWeight, ...)
-),
+    "I love flutter",
+    style: EmergentStyle(
+        depth: 4,  //customize depth here
+        color: Colors.white, //customize color here
+    ),
+    textStyle: EmergentTextStyle(
+    fontSize: 18, //customize size here
+    // AND others usual text style properties (fontFamily, fontWeight, ...)
+    ),
 ),
 ```
 
@@ -212,8 +250,8 @@ fontSize: 18, //customize size here
 
 ```dart
 child: EmergentIcon(
-Icons.add_circle,
-size: 80,
+    Icons.add_circle,
+    size: 80,
 ),
 ```
 
@@ -250,10 +288,10 @@ And use `EmergentBoxShape.path`
 
 ```dart
 Emergent(
-style: EmergentStyle(
-boxShape: EmergentBoxShape.path(MyShapePathProvider()),
-),
-...
+    style: EmergentStyle(
+    boxShape: EmergentBoxShape.path(MyShapePathProvider()),
+    ),
+    ...
 ),
 ```
 
@@ -261,10 +299,10 @@ You can import the Flutter logo as a custom shape using
 
 ```dart
 Emergent(
-style: EmergentStyle(
-shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
-),
-...
+    style: EmergentStyle(
+    shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
+    ),
+    ...
 ),
 ```
 
@@ -276,13 +314,13 @@ you can add a border on Emergent widgets
 
 ```dart
 Emergent(
-style: EmergentStyle(
-border: EmergentBorder(
-color: Color(0x33000000),
-width: 0.8,
-)
-),
-...
+    style: EmergentStyle(
+        border: EmergentBorder(
+            color: Color(0x33000000),
+            width: 0.8,
+        )
+    ),
+    ...
 )
 ```
 
@@ -290,9 +328,9 @@ You can enable/disable it (eg: listening an Accessibility Provider) with `isEnab
 
 ```dart
 border: EmergentBorder(
-isEnabled: true,
-color: Color(0x33000000),
-width: 0.8,
+    isEnabled: true,
+    color: Color(0x33000000),
+    width: 0.8,
 )
 ```
 
@@ -303,22 +341,22 @@ Note that `borderColor` and `borderWidth` default values has been added to `Emer
 
 ```dart
 EmergentTheme(
-themeMode: ThemeMode.light, //or dark / system
-darkTheme: EmergentThemeData(
-baseColor: Color(0xff333333),
-accentColor: Colors.green,
-lightSource: LightSource.topLeft,
-depth: 4,
-intensity: 0.3,
-),
-theme: EmergentThemeData(
-baseColor: Color(0xffDDDDDD),
-accentColor: Colors.cyan,
-lightSource: LightSource.topLeft,
-depth: 6,
-intensity: 0.5,
-),
-child: ...
+    themeMode: ThemeMode.light, //or dark / system
+    darkTheme: EmergentThemeData(
+        baseColor: Color(0xff333333),
+        accentColor: Colors.green,
+        lightSource: LightSource.topLeft,
+        depth: 4,
+        intensity: 0.3,
+    ),
+    theme: EmergentThemeData(
+        baseColor: Color(0xffDDDDDD),
+        accentColor: Colors.cyan,
+        lightSource: LightSource.topLeft,
+        depth: 6,
+        intensity: 0.5,
+    ),
+    child: ...
 )
 ```
 

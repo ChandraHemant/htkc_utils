@@ -1,3 +1,19 @@
+## 1.1.7
+
+* Downgrade external library version
+
+## 1.1.5
+
+* Fix function access issue
+
+## 1.1.4
+
+* Fix some library issue
+
+## 1.1.3
+
+* Add Age Calculator
+
 ## 1.1.2
 
 * Add Sticky header

@@ -22,33 +22,158 @@ extension HcStringCasingExtension on String {
   /// Title Capitalized
   String hcToTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.hcToCapitalized()).join(' ');
 
-  /// Convert Time Format
-  String hcFormatTime(int timeNum) => timeNum < 10 ? "0$timeNum" : timeNum.toString();
+}
 
-  /// Time Difference
-  String hcTimeDifference(String startTime, String endTime) {
-    var format = DateFormat("HH:mm");
-    DateTime now = DateTime.now();
-    var sTime = format.parse(startTime);
-    var eTime = format.parse(endTime);
-    sTime = DateTime(now.year, now.month, now.day, sTime.hour, sTime.minute);
-    eTime = DateTime(now.year, now.month, now.day, eTime.hour, eTime.minute);
-    if (sTime.isAfter(eTime)) {
-      return "${sTime.difference(eTime).inMinutes}";
-    } else {
-      return "${eTime.difference(sTime).inMinutes}";
+// Indexed Map Extensions
+extension HcIndexedIterable<E> on Iterable<E> {
+  /// Indexed Map
+  Iterable<T> hcIndexedMap<T>(T Function(E element, int index) f) {
+    var index = 0;
+    return map((e) => f(e, index++));
+  }
+}
+
+// File Extensions
+extension HcFileSaveUtils on void {
+
+  /// Save PDF Documents
+  hcSavePdfDocuments(
+      {
+        required String name,
+        required Uint8List fileBytes,
+        String customDirectoryName = "Documents",
+        BuildContext? context
+      }
+      ) async {
+    Directory appDocDirectory = await getApplicationDocumentsDirectory();
+    String path = Platform.isAndroid?hcDirPath:"${appDocDirectory.path}/$customDirectoryName";
+    try {
+      bool checkPermission = await Permission.accessMediaLocation.isGranted;
+      if (checkPermission) {
+        File pdfDoc = File("$path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name");
+        await pdfDoc.writeAsBytes(fileBytes);
+        ScaffoldMessenger.of(context!).showSnackBar(
+            SnackBar(
+              content: Text("File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name""File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"),
+            )
+        );
+      } else {
+        ScaffoldMessenger.of(context!).showSnackBar(
+            const SnackBar(
+              content: Text("Storage permission denied !, please try again!"),
+            )
+        );
+        var status = await Permission.accessMediaLocation.status;
+        if(!status.isGranted){
+          await Permission.accessMediaLocation.request();
+        }
+      }
+    } on FileSystemException catch (e) {
+      ScaffoldMessenger.of(context!).showSnackBar(
+          SnackBar(
+            content: Text("ERROR: ${e.message} $path/$name"),
+          )
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context!).showSnackBar(
+          SnackBar(
+            content: Text("ERROR: $e"),
+          )
+      );
     }
   }
 
-  /// Calculate Age
-  String hcCalculateAge(String birthDateString) {
-    String datePattern = "dd-MM-yyyy";
-    DateTime today = DateFormat(datePattern).parse(DateTime.now().toString());
-    DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
-    String year = (today.year - birthDate.year).toString();
-    String month = (today.month - birthDate.month).abs().toString();
-    return '$year year, $month months';
+  /// Save Network Image
+  hcSaveNetworkImage(
+      {
+        required String name,
+        required String url,
+        String customDirectoryName = "Documents",
+        BuildContext? context
+      }
+      ) async {
+    Directory appDocDirectory = await getApplicationDocumentsDirectory();
+    String path = Platform.isAndroid?hcDirPath:"${appDocDirectory.path}/$customDirectoryName";
+
+    try {
+      var response = await http.get(Uri.parse(url));
+      final bytes = response.bodyBytes;
+      bool checkPermission = await Permission.mediaLibrary.isGranted;
+      if (checkPermission) {
+        File file = File("$path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name");
+        await file.writeAsBytes(bytes);
+        ScaffoldMessenger.of(context!).showSnackBar(
+            SnackBar(
+              content: Text("File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"),
+            )
+        );
+      } else {
+        ScaffoldMessenger.of(context!).showSnackBar(
+            const SnackBar(
+              content: Text("Storage permission denied !, please try again!"),
+            )
+        );
+        var status = await Permission.mediaLibrary.status;
+        if(!status.isGranted){
+          await Permission.mediaLibrary.request();
+        }
+      }
+    } on FileSystemException catch (e) {
+      ScaffoldMessenger.of(context!).showSnackBar(
+          SnackBar(
+            content: Text("ERROR: ${e.message} $path/$name"),
+          )
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context!).showSnackBar(
+          SnackBar(
+            content: Text("ERROR: $e"),
+          )
+      );
+    }
   }
+}
+
+// Widget Extensions
+extension HcWidgetExtension on Widget? {
+
+  /// Circular Progressbar
+  Widget hcProgress({Color color = Colors.blue, }) {
+    return Container(
+      alignment: Alignment.center,
+      child: Card(
+        semanticContainer: true,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        elevation: 4,
+        margin: const EdgeInsets.all(4),
+        shape: RoundedRectangleBorder(borderRadius: radius(50)),
+        child: Container(
+          width: 45,
+          height: 45,
+          padding: const EdgeInsets.all(8.0),
+          child: Theme(
+            data: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: color)),
+            child: const CircularProgressIndicator(
+              strokeWidth: 3,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Convert Time Format
+String hcFormatTime(int timeNum) => timeNum < 10 ? "0$timeNum" : timeNum.toString();
+
+/// Calculate Age
+String hcCalculateAge(String birthDateString) {
+  String datePattern = "dd-MM-yyyy";
+  DateTime today = DateFormat(datePattern).parse(DateTime.now().toString());
+  DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
+  String year = (today.year - birthDate.year).toString();
+  String month = (today.month - birthDate.month).abs().toString();
+  return '$year year, $month months';
 }
 
 /// Validate Text Input Field
@@ -111,116 +236,24 @@ bool hcCheckMature(String birthDateString) {
   return adultDate.isBefore(today);
 }
 
-// Indexed Map Extensions
-extension HcIndexedIterable<E> on Iterable<E> {
-  /// Indexed Map
-  Iterable<T> hcIndexedMap<T>(T Function(E element, int index) f) {
-    var index = 0;
-    return map((e) => f(e, index++));
+/// Time Difference
+String hcTimeDifference(String startTime, String endTime) {
+  var format = DateFormat("HH:mm");
+  DateTime now = DateTime.now();
+  var sTime = format.parse(startTime);
+  var eTime = format.parse(endTime);
+  sTime = DateTime(now.year, now.month, now.day, sTime.hour, sTime.minute);
+  eTime = DateTime(now.year, now.month, now.day, eTime.hour, eTime.minute);
+  if (sTime.isAfter(eTime)) {
+    return "${sTime
+        .difference(eTime)
+        .inMinutes}";
+  } else {
+    return "${eTime
+        .difference(sTime)
+        .inMinutes}";
   }
 }
-
-// File Extensions
-extension HcFileSaveUtils on void {
-
-  /// Save PDF Documents
-  hcSavePdfDocuments(
-    {
-      required String name,
-      required Uint8List fileBytes,
-      String customDirectoryName = "Documents",
-      BuildContext? context
-    }
-  ) async {
-    Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String path = Platform.isAndroid?hcDirPath:"${appDocDirectory.path}/$customDirectoryName";
-    try {
-      bool checkPermission = await Permission.accessMediaLocation.isGranted;
-      if (checkPermission) {
-        File pdfDoc = File("$path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name");
-        await pdfDoc.writeAsBytes(fileBytes);
-        ScaffoldMessenger.of(context!).showSnackBar(
-            SnackBar(
-              content: Text("File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name""File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"),
-            )
-        );
-      } else {
-        ScaffoldMessenger.of(context!).showSnackBar(
-            const SnackBar(
-              content: Text("Storage permission denied !, please try again!"),
-            )
-        );
-        var status = await Permission.accessMediaLocation.status;
-        if(!status.isGranted){
-          await Permission.accessMediaLocation.request();
-        }
-      }
-    } on FileSystemException catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-          SnackBar(
-            content: Text("ERROR: ${e.message} $path/$name"),
-          )
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-          SnackBar(
-            content: Text("ERROR: $e"),
-          )
-      );
-    }
-  }
-
-  /// Save Network Image
-  hcSaveNetworkImage(
-    {
-      required String name,
-      required String url,
-      String customDirectoryName = "Documents",
-      BuildContext? context
-    }
-  ) async {
-    Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String path = Platform.isAndroid?hcDirPath:"${appDocDirectory.path}/$customDirectoryName";
-
-    try {
-      var response = await http.get(Uri.parse(url));
-      final bytes = response.bodyBytes;
-      bool checkPermission = await Permission.mediaLibrary.isGranted;
-      if (checkPermission) {
-        File file = File("$path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name");
-        await file.writeAsBytes(bytes);
-        ScaffoldMessenger.of(context!).showSnackBar(
-            SnackBar(
-              content: Text("File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"),
-            )
-        );
-      } else {
-        ScaffoldMessenger.of(context!).showSnackBar(
-            const SnackBar(
-              content: Text("Storage permission denied !, please try again!"),
-            )
-        );
-        var status = await Permission.mediaLibrary.status;
-        if(!status.isGranted){
-          await Permission.mediaLibrary.request();
-        }
-      }
-    } on FileSystemException catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-          SnackBar(
-            content: Text("ERROR: ${e.message} $path/$name"),
-          )
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-          SnackBar(
-            content: Text("ERROR: $e"),
-          )
-      );
-    }
-  }
-}
-
 /// returns gradient
 Gradient hcGradient([Color secondGradientColor = hcSecondColor, Color firstGradientColor = hcPrimaryColor, AlignmentGeometry begin = Alignment.topCenter, AlignmentGeometry end = Alignment.bottomCenter]) {
   return LinearGradient(
@@ -234,35 +267,6 @@ Gradient hcGradient([Color secondGradientColor = hcSecondColor, Color firstGradi
   );
 }
 
-// Widget Extensions
-extension HcWidgetExtension on Widget? {
-
-  /// Circular Progressbar
-  Widget hcProgress({Color color = Colors.blue, }) {
-    return Container(
-      alignment: Alignment.center,
-      child: Card(
-        semanticContainer: true,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        elevation: 4,
-        margin: const EdgeInsets.all(4),
-        shape: RoundedRectangleBorder(borderRadius: radius(50)),
-        child: Container(
-          width: 45,
-          height: 45,
-          padding: const EdgeInsets.all(8.0),
-          child: Theme(
-            data: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: color)),
-            child: const CircularProgressIndicator(
-              strokeWidth: 3,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-}
 
 hcOnBackPressed(BuildContext context) {
   /// Cancel Button
