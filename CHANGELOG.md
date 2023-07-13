@@ -1,3 +1,9 @@
+## 1.1.2
+
+* Add Sticky header
+* Introduced DragItem widget
+* Add horizontal grid view
+
 ## 1.1.1
 
 * Added new Emergent Design Feature

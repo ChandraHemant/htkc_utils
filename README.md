@@ -14,7 +14,7 @@ Create your project and follow below instructions.
 
 ## Usage
 
-[Example] (https://github.com/ChandraHemant/htkc_utils/blob/main/example/example_app.dart)
+[Example] (https://github.com/ChandraHemant/htkc_utils/blob/main/example/)
 
 To use this package : *add dependency to your [pubspec.yaml] file
 
@@ -88,22 +88,123 @@ class _HTKCExampleState extends State<HTKCExample> {
 
 ```
 
+## Drag And Drop
+
+**Drag and drop grid view**
+
+```dart
+import 'package:drag_and_drop_gridview/devdrag.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<String> _imageUris = [
+    "https://images.pexels.com/photos/4466054/pexels-photo-4466054.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/4561739/pexels-photo-4561739.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/4507967/pexels-photo-4507967.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/4321194/pexels-photo-4321194.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/1053924/pexels-photo-1053924.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/1624438/pexels-photo-1624438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/1144687/pexels-photo-1144687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/2589010/pexels-photo-2589010.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  ];
+
+  int variableSet = 0;
+  ScrollController? _scrollController;
+  double? width;
+  double? height;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Drag And drop Plugin'),
+        ),
+        body: Center(
+          child: DragAndDropGridView(
+            controller: _scrollController,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 3 / 4.5,
+            ),
+            padding: EdgeInsets.all(20),
+            itemBuilder: (context, index) => Card(
+              elevation: 2,
+              child: LayoutBuilder(
+                builder: (context, costrains) {
+                  if (variableSet == 0) {
+                    height = costrains.maxHeight;
+                    width = costrains.maxWidth;
+                    variableSet++;
+                  }
+                  return GridTile(
+                    child: Image.network(
+                      _imageUris[index],
+                      fit: BoxFit.cover,
+                      height: height,
+                      width: width,
+                    ),
+                  );
+                },
+              ),
+            ),
+            itemCount: _imageUris.length,
+            onWillAccept: (oldIndex, newIndex) {
+              // Implement you own logic
+
+              // Example reject the reorder if the moving item's value is something specific
+              if (_imageUris[newIndex] == "something") {
+                return false;
+              }
+              return true; // If you want to accept the child return true or else return false
+            },
+            onReorder: (oldIndex, newIndex) {
+              final temp = _imageUris[oldIndex];
+              _imageUris[oldIndex] = _imageUris[newIndex];
+              _imageUris[newIndex] = temp;
+
+              setState(() {});
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+
 ## Emergent Text
 
 **Text only handle positive depth**
 
 ```dart
 child: EmergentText(
-        "I love flutter",
-        style: EmergentStyle(
-          depth: 4,  //customize depth here
-          color: Colors.white, //customize color here
-        ),
-        textStyle: EmergentTextStyle(
-          fontSize: 18, //customize size here
-          // AND others usual text style properties (fontFamily, fontWeight, ...)
-        ),
-    ),
+"I love flutter",
+style: EmergentStyle(
+depth: 4,  //customize depth here
+color: Colors.white, //customize color here
+),
+textStyle: EmergentTextStyle(
+fontSize: 18, //customize size here
+// AND others usual text style properties (fontFamily, fontWeight, ...)
+),
+),
 ```
 
 
@@ -111,9 +212,9 @@ child: EmergentText(
 
 ```dart
 child: EmergentIcon(
-        Icons.add_circle,
-        size: 80,
-    ),
+Icons.add_circle,
+size: 80,
+),
 ```
 
 How to display **SVG** icons ?
@@ -149,10 +250,10 @@ And use `EmergentBoxShape.path`
 
 ```dart
 Emergent(
-  style: EmergentStyle(
-     boxShape: EmergentBoxShape.path(MyShapePathProvider()),
-  ),
-  ...
+style: EmergentStyle(
+boxShape: EmergentBoxShape.path(MyShapePathProvider()),
+),
+...
 ),
 ```
 
@@ -160,10 +261,10 @@ You can import the Flutter logo as a custom shape using
 
 ```dart
 Emergent(
-  style: EmergentStyle(
-    shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
-  ),
-  ...
+style: EmergentStyle(
+shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
+),
+...
 ),
 ```
 
@@ -175,13 +276,13 @@ you can add a border on Emergent widgets
 
 ```dart
 Emergent(
-      style: EmergentStyle(
-        border: EmergentBorder(
-          color: Color(0x33000000),
-          width: 0.8,
-        )
-      ),
-      ...
+style: EmergentStyle(
+border: EmergentBorder(
+color: Color(0x33000000),
+width: 0.8,
+)
+),
+...
 )
 ```
 
@@ -189,9 +290,9 @@ You can enable/disable it (eg: listening an Accessibility Provider) with `isEnab
 
 ```dart
 border: EmergentBorder(
-    isEnabled: true,
-    color: Color(0x33000000),
-    width: 0.8,
+isEnabled: true,
+color: Color(0x33000000),
+width: 0.8,
 )
 ```
 
@@ -202,22 +303,22 @@ Note that `borderColor` and `borderWidth` default values has been added to `Emer
 
 ```dart
 EmergentTheme(
-    themeMode: ThemeMode.light, //or dark / system
-    darkTheme: EmergentThemeData(
-        baseColor: Color(0xff333333),
-        accentColor: Colors.green,
-        lightSource: LightSource.topLeft,
-        depth: 4,
-        intensity: 0.3,
-    ),
-    theme: EmergentThemeData(
-        baseColor: Color(0xffDDDDDD),
-        accentColor: Colors.cyan,
-        lightSource: LightSource.topLeft,
-        depth: 6,
-        intensity: 0.5,
-    ),
-    child: ...
+themeMode: ThemeMode.light, //or dark / system
+darkTheme: EmergentThemeData(
+baseColor: Color(0xff333333),
+accentColor: Colors.green,
+lightSource: LightSource.topLeft,
+depth: 4,
+intensity: 0.3,
+),
+theme: EmergentThemeData(
+baseColor: Color(0xffDDDDDD),
+accentColor: Colors.cyan,
+lightSource: LightSource.topLeft,
+depth: 6,
+intensity: 0.5,
+),
+child: ...
 )
 ```
 
@@ -238,7 +339,7 @@ EmergentTheme.of(context).themeMode = ThemeMode.dark;
 Know if using dark
 ```dart
 if(EmergentTheme.of(context).isUsingDark){
-  
+
 }
 ```
 

@@ -1,4 +1,3 @@
-import 'package:htkc_utils/emergent_utils/emergent_light_source.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 import 'package:htkc_utils/emergent_utils/widget/animation/emergent_animated_scale.dart'
     as animation_scale;

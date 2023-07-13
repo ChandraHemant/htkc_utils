@@ -34,6 +34,7 @@ export 'emergent_utils/widget/emergent_switch.dart';
 export 'emergent_utils/widget/emergent_text.dart';
 export 'emergent_utils/widget/emergent_toggle.dart';
 export 'emergent_utils/widget/emergent_floating_action_button.dart';
+export 'emergent_utils/emergent_light_source.dart';
 
 export 'hc_utils/hc_image_res.dart';
 export 'hc_utils/alert/hc_dialog_button.dart';

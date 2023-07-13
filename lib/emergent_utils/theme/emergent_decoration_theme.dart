@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:htkc_utils/emergent_utils/emergent_light_source.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 const double _defaultDepth = 4;

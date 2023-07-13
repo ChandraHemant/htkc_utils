@@ -1,6 +1,6 @@
 import 'package:htkc_utils/htkc_utils.dart';
 
-class EmergentFlutterLogoPathProvider extends EmergentPathProvider {
+class EmergentLogoPathProvider extends EmergentPathProvider {
   @override
   bool shouldReclip(EmergentPathProvider oldClipper) {
     return true;
