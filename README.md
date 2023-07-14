@@ -20,9 +20,9 @@ To use this package : *add dependency to your [pubspec.yaml] file
 
 ```yaml
    dependencies:
-       flutter:
-         sdk: flutter
-       htkc_utils: 
+     flutter:
+       sdk: flutter
+     htkc_utils: 
 ```
 ## Add to your dart file
 
@@ -93,8 +93,7 @@ class _HTKCExampleState extends State<HTKCExample> {
 **Drag and drop grid view**
 
 ```dart
-import 'package:drag_and_drop_gridview/devdrag.dart';
-import 'package:flutter/material.dart';
+import 'package:htkc_utils/htkc_utils.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
@@ -189,23 +188,21 @@ class _MyAppState extends State<MyApp> {
 ```
 
 
-## Drag And Drop
+## Age Calculate
 
 **Age Calculator**
 
 ```dart
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:age/age.dart';
+import 'package:htkc_utils/htkc_utils.dart';
 
 void main() {
   DateTime birthday = DateTime(1990, 1, 20);
   DateTime today = DateTime.now(); //2020/1/24
 
-  AgeDuration age;
+  HHcAgeDuration age;
 
   // Find out your age
-  age = Age.dateDifference(
+  age = HcAge.dateDifference(
       fromDate: birthday, toDate: today, includeToDate: false);
 
   print('Your age is $age'); // Your age is Years: 30, Months: 0, Days: 4
@@ -213,17 +210,84 @@ void main() {
   // Find out when your next birthday will be.
   DateTime tempDate = DateTime(today.year, birthday.month, birthday.day);
   DateTime nextBirthdayDate = tempDate.isBefore(today)
-      ? Age.add(date: tempDate, duration: AgeDuration(years: 1))
+      ? HcAge.add(date: tempDate, duration: HcAgeDuration(years: 1))
       : tempDate;
-  AgeDuration nextBirthdayDuration =
-  Age.dateDifference(fromDate: today, toDate: nextBirthdayDate);
+  HcAgeDuration nextBirthdayDuration =
+  HcAge.dateDifference(fromDate: today, toDate: nextBirthdayDate);
 
   print('You next birthday will be on $nextBirthdayDate or in $nextBirthdayDuration');
-  // You next birthday will be on 2021-01-20 00:00:00.000 or in Years: 0, Months: 11, Days: 27
+  // You next birthday will be on 2023-01-20 00:00:00.000 or in Years: 0, Months: 11, Days: 27
+}
+```
+
+
+## OTP Text Field
+
+**OTP Field**
+
+```dart
+import 'package:htkc_utils/htkc_utils.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Awesome Credit Card Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Awesome Credit Card Demo'),
+    );
+  }
 }
 
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
 
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
+class _MyHomePageState extends State<MyHomePage> {
+  OtpFieldController otpController = OtpFieldController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.cleaning_services),
+        onPressed: () {
+          print("Floating button was pressed.");
+          otpController.clear();
+          // otpController.set(['2', '3', '5', '5', '7']);
+          // otpController.setValue('3', 0);
+          // otpController.setFocus(1);
+        },
+      ),
+      body: Center(
+        child: HcOTPTextField(
+            controller: otpController,
+            length: 5,
+            width: MediaQuery.of(context).size.width,
+            textFieldAlignment: MainAxisAlignment.spaceAround,
+            fieldWidth: 45,
+            fieldStyle: FieldStyle.box,
+            outlineBorderRadius: 15,
+            style: TextStyle(fontSize: 17),
+            onChanged: (pin) {
+              print("Changed: " + pin);
+            },
+            onCompleted: (pin) {
+              print("Completed: " + pin);
+            }),
+      ),
+    );
+  }
+}
 ```
 
 
@@ -239,8 +303,8 @@ child: EmergentText(
         color: Colors.white, //customize color here
     ),
     textStyle: EmergentTextStyle(
-    fontSize: 18, //customize size here
-    // AND others usual text style properties (fontFamily, fontWeight, ...)
+      fontSize: 18, //customize size here
+      // AND others usual text style properties (fontFamily, fontWeight, ...)
     ),
 ),
 ```
@@ -289,7 +353,7 @@ And use `EmergentBoxShape.path`
 ```dart
 Emergent(
     style: EmergentStyle(
-    boxShape: EmergentBoxShape.path(MyShapePathProvider()),
+      boxShape: EmergentBoxShape.path(MyShapePathProvider()),
     ),
     ...
 ),
@@ -300,7 +364,7 @@ You can import the Flutter logo as a custom shape using
 ```dart
 Emergent(
     style: EmergentStyle(
-    shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
+      shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
     ),
     ...
 ),
@@ -315,10 +379,10 @@ you can add a border on Emergent widgets
 ```dart
 Emergent(
     style: EmergentStyle(
-        border: EmergentBorder(
-            color: Color(0x33000000),
-            width: 0.8,
-        )
+      border: EmergentBorder(
+        color: Color(0x33000000),
+        width: 0.8,
+      )
     ),
     ...
 )

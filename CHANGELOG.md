@@ -1,3 +1,15 @@
+## 1.2.2
+
+* Added share functionality
+
+## 1.2.1
+
+* Remove QR Code Scan
+
+## 1.1.9
+
+* Added otp text field
+
 ## 1.1.8
 
 * Added alert images

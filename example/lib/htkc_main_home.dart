@@ -1,3 +1,4 @@
+import 'package:example/htkc_share.dart';
 import 'package:example/playground/htkc_emergent_playground.dart';
 import 'package:example/playground/htkc_text_playground.dart';
 import 'package:example/samples/htkc_sample_home.dart';
@@ -109,6 +110,15 @@ class FullSampleHomePage extends StatelessWidget {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
                           return EmergentAccessibility();
+                        }));
+                      }),
+                  SizedBox(height: 24),
+                  _buildButton(
+                      text: "Share",
+                      onClick: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return HtkcSharePage();
                         }));
                       }),
                   SizedBox(height: 12),
