@@ -1,3 +1,16 @@
+## 1.2.5
+
+* Fix context extensions bug
+
+## 1.2.4
+
+* Added context extensions
+
+## 1.2.3
+
+* Added dimensions
+
+
 ## 1.2.2
 
 * Added share functionality

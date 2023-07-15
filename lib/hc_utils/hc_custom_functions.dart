@@ -14,6 +14,9 @@ const Color hcHomeBgColor = Color(0xFFf1f1f1);
 const Color hcPrimaryColor = Color(0xFF29abe2);
 const Color hcSecondColor = Color(0xFF2697FF);
 
+double hcTabletBreakpointGlobal = 600.0;
+double hcDesktopBreakpointGlobal = 720.0;
+
 // String Extensions
 extension HcStringCasingExtension on String {
   /// Word Capitalized
