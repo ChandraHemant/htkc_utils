@@ -63,3 +63,19 @@ export 'package:htkc_utils/hc_utils/otp/hc_otp_field_style.dart';
 export 'package:htkc_utils/hc_utils/share/hc_share.dart';
 
 export 'package:flutter/material.dart';
+
+import 'package:htkc_utils/image_compression_utils/basic_utils/hc_compressor_stub.dart'
+if (dart.library.io) 'src/hc_compressor_io.dart'
+if (dart.library.html) 'src/hc_compressor_html.dart';
+import 'package:htkc_utils/image_compression_utils/basic_utils/hc_interface.dart';
+
+export 'package:cross_file/cross_file.dart' show XFile;
+export 'package:image_compression/image_compression.dart' show ImageFile;
+
+export 'package:htkc_utils/image_compression_utils/basic_utils/hc_configurations.dart';
+export 'package:htkc_utils/image_compression_utils/basic_utils/hc_extension.dart'
+    show HcXFileExtension;
+
+
+/// Global singleton instance for image compressor
+final HcImageCompressionInterface compressor = getCompressor();

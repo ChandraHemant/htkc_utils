@@ -1,3 +1,11 @@
+## 1.2.7
+
+* Add image compression
+
+## 1.2.6
+
+* Remove some package
+
 ## 1.2.5
 
 * Fix context extensions bug
@@ -9,7 +17,6 @@
 ## 1.2.3
 
 * Added dimensions
-
 
 ## 1.2.2
 

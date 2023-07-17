@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,13 +9,33 @@ import 'package:http/http.dart' as http;
 
 String hcDirPath = "/storage/emulated/0/Documents";
 double hcDefaultRadius = 8.0;
+//region Global variables - This variables can be changed.
+Color textPrimaryColorGlobal = textPrimaryColor;
+Color textSecondaryColorGlobal = textSecondaryColor;
+double textBoldSizeGlobal = 16;
+double textPrimarySizeGlobal = 16;
+double textSecondarySizeGlobal = 14;
+String? fontFamilyBoldGlobal;
+String? fontFamilyPrimaryGlobal;
+String? fontFamilySecondaryGlobal;
+FontWeight fontWeightBoldGlobal = FontWeight.bold;
+FontWeight fontWeightPrimaryGlobal = FontWeight.normal;
+FontWeight fontWeightSecondaryGlobal = FontWeight.normal;
 
+const textPrimaryColor = Color(0xFF2E3033);
+const textSecondaryColor = Color(0xFF757575);
 const Color hcHomeBgColor = Color(0xFFf1f1f1);
 const Color hcPrimaryColor = Color(0xFF29abe2);
 const Color hcSecondColor = Color(0xFF2697FF);
 
 double hcTabletBreakpointGlobal = 600.0;
 double hcDesktopBreakpointGlobal = 720.0;
+
+/// Enum for page route
+enum PageRouteAnimation { fade, scale, rotate, slide, slideBottomTop }
+
+PageRouteAnimation? pageRouteAnimationGlobal;
+Duration pageRouteTransitionDurationGlobal = 400.milliseconds;
 
 // String Extensions
 extension HcStringCasingExtension on String {
@@ -140,6 +160,25 @@ extension HcFileSaveUtils on void {
 // Widget Extensions
 extension HcWidgetExtension on Widget? {
 
+  /// Launch a new screen
+  Future<T?> hcLaunch<T>(BuildContext context,
+      {bool isNewTask = false,
+        PageRouteAnimation? pageRouteAnimation,
+        Duration? duration}) async {
+    if (isNewTask) {
+      return await Navigator.of(context).pushAndRemoveUntil(
+        buildPageRoute(
+            this!, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+            (route) => false,
+      );
+    } else {
+      return await Navigator.of(context).push(
+        buildPageRoute(
+            this!, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+      );
+    }
+  }
+
   /// Circular Progressbar
   Widget hcProgress({Color color = Colors.blue, }) {
     return Container(
@@ -149,7 +188,7 @@ extension HcWidgetExtension on Widget? {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         elevation: 4,
         margin: const EdgeInsets.all(4),
-        shape: RoundedRectangleBorder(borderRadius: radius(50)),
+        shape: RoundedRectangleBorder(borderRadius: hcRadius(50)),
         child: Container(
           width: 45,
           height: 45,
@@ -164,6 +203,94 @@ extension HcWidgetExtension on Widget? {
       ),
     );
   }
+
+
+  /// set parent widget in center
+  Widget hcCenter({double? heightFactor, double? widthFactor}) {
+    return Center(
+      heightFactor: heightFactor,
+      widthFactor: widthFactor,
+      child: this,
+    );
+  }
+
+  /// set visibility
+  Widget hcVisible(bool visible, {Widget? defaultWidget}) {
+    return visible ? this! : (defaultWidget ?? const SizedBox());
+  }
+
+}
+
+// Boolean Extensions
+extension HcBooleanExtensions on bool? {
+  /// Validate given bool is not null and returns given value if null.
+  bool hcValidate({bool value = false}) => this ?? value;
+}
+
+
+Route<T> buildPageRoute<T>(
+    Widget child,
+    PageRouteAnimation? pageRouteAnimation,
+    Duration? duration,
+    ) {
+  if (pageRouteAnimation != null) {
+    if (pageRouteAnimation == PageRouteAnimation.fade) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) {
+          return FadeTransition(opacity: anim, child: child);
+        },
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+      );
+    } else if (pageRouteAnimation == PageRouteAnimation.rotate) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) {
+          return RotationTransition(
+              turns: ReverseAnimation(anim),
+              child: child);
+        },
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+      );
+    } else if (pageRouteAnimation == PageRouteAnimation.scale) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) {
+          return ScaleTransition(scale: anim, child: child);
+        },
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+      );
+    } else if (pageRouteAnimation == PageRouteAnimation.slide) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) {
+          return SlideTransition(
+            position: Tween(
+              begin: const Offset(1.0, 0.0),
+              end: const Offset(0.0, 0.0),
+            ).animate(anim),
+            child: child,
+          );
+        },
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+      );
+    } else if (pageRouteAnimation == PageRouteAnimation.slideBottomTop) {
+      return PageRouteBuilder(
+        pageBuilder: (c, a1, a2) => child,
+        transitionsBuilder: (c, anim, a2, child) {
+          return SlideTransition(
+            position: Tween(
+              begin: const Offset(0.0, 1.0),
+              end: const Offset(0.0, 0.0),
+            ).animate(anim),
+            child: child,
+          );
+        },
+        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+      );
+    }
+  }
+  return MaterialPageRoute<T>(builder: (_) => child);
 }
 
 /// Convert Time Format
@@ -277,7 +404,7 @@ hcOnBackPressed(BuildContext context) {
       onPressed: () {
         Navigator.pop(context);
       },
-      child: Text('Cancel', style: boldTextStyle()));
+      child: Text('Cancel', style: HcAppTextStyle.boldTextStyle()));
 
   /// Continue Button
   Widget continueButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
@@ -288,7 +415,7 @@ hcOnBackPressed(BuildContext context) {
         Navigator.pop(context);
         Navigator.pop(context);
       },
-      child: Text('Ok', style: boldTextStyle(color: color)));
+      child: Text('Ok', style: HcAppTextStyle.boldTextStyle(color: color)));
 
   // show the dialog
   return showDialog(
@@ -300,7 +427,7 @@ hcOnBackPressed(BuildContext context) {
         ),
         title: Text(
           'Warning!!!',
-          style: boldTextStyle(size: 18),
+          style: HcAppTextStyle.boldTextStyle(size: 18),
         ),
         content: Text('Are you sure! you want to close this?',
             style: TextStyle(fontSize: 13, color: Colors.black.withOpacity(0.7))),
@@ -316,3 +443,13 @@ hcOnBackPressed(BuildContext context) {
 RoundedRectangleBorder hcRoundedRectangleShape = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(8),
 );
+
+/// returns Radius
+BorderRadius hcRadius([double? radius]) {
+  return BorderRadius.all(hcRadiusCircular(radius ?? hcDefaultRadius));
+}
+
+/// returns Radius
+Radius hcRadiusCircular([double? radius]) {
+  return Radius.circular(radius ?? hcDefaultRadius);
+}

@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:htkc_utils/htkc_utils.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 class HcCustomAppBar extends StatefulWidget {
   final double topPadding;
@@ -110,7 +109,7 @@ class _HcCustomAppBarState extends State<HcCustomAppBar> {
                         widget.isDialog ? showDialog(
                           context: context,
                           builder: (_) => widget.actionWidget!,
-                        ) : widget.actionWidget?.launch(context);
+                        ) : widget.actionWidget?.hcLaunch(context);
                       },
                       child: Text(
                         widget.actionTitle!,

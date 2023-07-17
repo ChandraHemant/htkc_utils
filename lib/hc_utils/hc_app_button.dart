@@ -1,5 +1,4 @@
 import 'package:htkc_utils/htkc_utils.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 class HcCustomAppButton extends StatelessWidget {
   final Function()? onPressed;
@@ -48,7 +47,7 @@ class HcCustomAppButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             textWidget,
-            10.width,
+            const SizedBox(width: 10,),
             if (icon != null)
               icon!
             else if (iconData != null)

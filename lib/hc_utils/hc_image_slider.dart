@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:htkc_utils/htkc_utils.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 
 class HcImageSliderWidget extends StatefulWidget {
@@ -214,7 +213,7 @@ class _HcImageSliderWidgetState extends State<HcImageSliderWidget> {
                     height: 40,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0,top: 8,bottom: 4),
-                      child: Text(imageName, style: boldTextStyle(color: white, size: 15),),
+                      child: Text(imageName, style: HcAppTextStyle.boldTextStyle(color: Colors.white, size: 15),),
                     )
                 ),
               ),
@@ -231,7 +230,7 @@ class DotsIndicator extends AnimatedWidget {
     required this.controller,
     this.itemCount,
     this.onPageSelected,
-    this.color = blueViolet,
+    this.color = Colors.blueAccent,
   }) : super(listenable: controller, key: key);
 
   final PageController controller;

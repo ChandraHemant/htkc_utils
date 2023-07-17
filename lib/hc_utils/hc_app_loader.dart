@@ -1,5 +1,4 @@
 import 'package:htkc_utils/htkc_utils.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 class HcAppStackLoader extends StatelessWidget {
   final bool visible;
@@ -13,7 +12,7 @@ class HcAppStackLoader extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         child,
-        hcProgress().center().visible(visible.validate()),
+        hcProgress().hcCenter().hcVisible(visible.hcValidate()),
       ],
     );
   }
