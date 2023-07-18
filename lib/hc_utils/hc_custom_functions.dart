@@ -10,20 +10,20 @@ import 'package:http/http.dart' as http;
 String hcDirPath = "/storage/emulated/0/Documents";
 double hcDefaultRadius = 8.0;
 //region Global variables - This variables can be changed.
-Color textPrimaryColorGlobal = textPrimaryColor;
-Color textSecondaryColorGlobal = textSecondaryColor;
-double textBoldSizeGlobal = 16;
-double textPrimarySizeGlobal = 16;
-double textSecondarySizeGlobal = 14;
-String? fontFamilyBoldGlobal;
-String? fontFamilyPrimaryGlobal;
-String? fontFamilySecondaryGlobal;
-FontWeight fontWeightBoldGlobal = FontWeight.bold;
-FontWeight fontWeightPrimaryGlobal = FontWeight.normal;
-FontWeight fontWeightSecondaryGlobal = FontWeight.normal;
+Color hcTextPrimaryColorGlobal = hcTextPrimaryColor;
+Color hcTextSecondaryColorGlobal = hcTextSecondaryColor;
+double hcTextBoldSizeGlobal = 16;
+double hcTextPrimarySizeGlobal = 16;
+double hcTextSecondarySizeGlobal = 14;
+String? hcFontFamilyBoldGlobal;
+String? hcFontFamilyPrimaryGlobal;
+String? hcFontFamilySecondaryGlobal;
+FontWeight hcFontWeightBoldGlobal = FontWeight.bold;
+FontWeight hcFontWeightPrimaryGlobal = FontWeight.normal;
+FontWeight hcFontWeightSecondaryGlobal = FontWeight.normal;
 
-const textPrimaryColor = Color(0xFF2E3033);
-const textSecondaryColor = Color(0xFF757575);
+const hcTextPrimaryColor = Color(0xFF2E3033);
+const hcTextSecondaryColor = Color(0xFF757575);
 const Color hcHomeBgColor = Color(0xFFf1f1f1);
 const Color hcPrimaryColor = Color(0xFF29abe2);
 const Color hcSecondColor = Color(0xFF2697FF);
@@ -32,10 +32,10 @@ double hcTabletBreakpointGlobal = 600.0;
 double hcDesktopBreakpointGlobal = 720.0;
 
 /// Enum for page route
-enum PageRouteAnimation { fade, scale, rotate, slide, slideBottomTop }
+enum HcPageRouteAnimation { fade, scale, rotate, slide, slideBottomTop }
 
-PageRouteAnimation? pageRouteAnimationGlobal;
-Duration pageRouteTransitionDurationGlobal = 400.milliseconds;
+HcPageRouteAnimation? hcPageRouteAnimationGlobal;
+Duration hcPageRouteTransitionDurationGlobal = 400.milliseconds;
 
 // String Extensions
 extension HcStringCasingExtension on String {
@@ -163,18 +163,18 @@ extension HcWidgetExtension on Widget? {
   /// Launch a new screen
   Future<T?> hcLaunch<T>(BuildContext context,
       {bool isNewTask = false,
-        PageRouteAnimation? pageRouteAnimation,
+        HcPageRouteAnimation? hcPageRouteAnimation,
         Duration? duration}) async {
     if (isNewTask) {
       return await Navigator.of(context).pushAndRemoveUntil(
-        buildPageRoute(
-            this!, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+        hcBuildPageRoute(
+            this!, hcPageRouteAnimation ?? hcPageRouteAnimationGlobal, duration),
             (route) => false,
       );
     } else {
       return await Navigator.of(context).push(
-        buildPageRoute(
-            this!, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+        hcBuildPageRoute(
+            this!, hcPageRouteAnimation ?? hcPageRouteAnimationGlobal, duration),
       );
     }
   }
@@ -228,21 +228,21 @@ extension HcBooleanExtensions on bool? {
 }
 
 
-Route<T> buildPageRoute<T>(
+Route<T> hcBuildPageRoute<T>(
     Widget child,
-    PageRouteAnimation? pageRouteAnimation,
+    HcPageRouteAnimation? pageRouteAnimation,
     Duration? duration,
     ) {
   if (pageRouteAnimation != null) {
-    if (pageRouteAnimation == PageRouteAnimation.fade) {
+    if (pageRouteAnimation == HcPageRouteAnimation.fade) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return FadeTransition(opacity: anim, child: child);
         },
-        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+        transitionDuration: duration ?? hcPageRouteTransitionDurationGlobal,
       );
-    } else if (pageRouteAnimation == PageRouteAnimation.rotate) {
+    } else if (pageRouteAnimation == HcPageRouteAnimation.rotate) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
@@ -250,17 +250,17 @@ Route<T> buildPageRoute<T>(
               turns: ReverseAnimation(anim),
               child: child);
         },
-        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+        transitionDuration: duration ?? hcPageRouteTransitionDurationGlobal,
       );
-    } else if (pageRouteAnimation == PageRouteAnimation.scale) {
+    } else if (pageRouteAnimation == HcPageRouteAnimation.scale) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return ScaleTransition(scale: anim, child: child);
         },
-        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+        transitionDuration: duration ?? hcPageRouteTransitionDurationGlobal,
       );
-    } else if (pageRouteAnimation == PageRouteAnimation.slide) {
+    } else if (pageRouteAnimation == HcPageRouteAnimation.slide) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
@@ -272,9 +272,9 @@ Route<T> buildPageRoute<T>(
             child: child,
           );
         },
-        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+        transitionDuration: duration ?? hcPageRouteTransitionDurationGlobal,
       );
-    } else if (pageRouteAnimation == PageRouteAnimation.slideBottomTop) {
+    } else if (pageRouteAnimation == HcPageRouteAnimation.slideBottomTop) {
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
@@ -286,7 +286,7 @@ Route<T> buildPageRoute<T>(
             child: child,
           );
         },
-        transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
+        transitionDuration: duration ?? hcPageRouteTransitionDurationGlobal,
       );
     }
   }

@@ -1,3 +1,19 @@
+## 1.3.1
+
+* Revised some libraries
+
+## 1.3.0
+
+* Revised some function issue
+
+## 1.2.9
+
+* Fixed some function issue
+
+## 1.2.8
+
+* Fixed some variable issue
+
 ## 1.2.7
 
 * Add image compression

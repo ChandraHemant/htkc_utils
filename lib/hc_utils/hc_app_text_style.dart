@@ -22,10 +22,10 @@ class HcAppTextStyle {
     double? height,
   }) {
     return TextStyle(
-      fontSize: size != null ? size.toDouble() : textBoldSizeGlobal,
-      color: color ?? textPrimaryColorGlobal,
-      fontWeight: weight ?? fontWeightBoldGlobal,
-      fontFamily: fontFamily ?? fontFamilyBoldGlobal,
+      fontSize: size != null ? size.toDouble() : hcTextBoldSizeGlobal,
+      color: color ?? hcTextPrimaryColorGlobal,
+      fontWeight: weight ?? hcFontWeightBoldGlobal,
+      fontFamily: fontFamily ?? hcFontFamilyBoldGlobal,
       letterSpacing: letterSpacing,
       fontStyle: fontStyle,
       decoration: decoration,
@@ -55,10 +55,10 @@ class HcAppTextStyle {
     double? height,
   }) {
     return TextStyle(
-      fontSize: size != null ? size.toDouble() : textPrimarySizeGlobal,
-      color: color ?? textPrimaryColorGlobal,
-      fontWeight: weight ?? fontWeightPrimaryGlobal,
-      fontFamily: fontFamily ?? fontFamilyPrimaryGlobal,
+      fontSize: size != null ? size.toDouble() : hcTextPrimarySizeGlobal,
+      color: color ?? hcTextPrimaryColorGlobal,
+      fontWeight: weight ?? hcFontWeightPrimaryGlobal,
+      fontFamily: fontFamily ?? hcFontFamilyPrimaryGlobal,
       letterSpacing: letterSpacing,
       fontStyle: fontStyle,
       decoration: decoration,
@@ -88,10 +88,10 @@ class HcAppTextStyle {
     double? height,
   }) {
     return TextStyle(
-      fontSize: size != null ? size.toDouble() : textSecondarySizeGlobal,
-      color: color ?? textSecondaryColorGlobal,
-      fontWeight: weight ?? fontWeightSecondaryGlobal,
-      fontFamily: fontFamily ?? fontFamilySecondaryGlobal,
+      fontSize: size != null ? size.toDouble() : hcTextSecondarySizeGlobal,
+      color: color ?? hcTextSecondaryColorGlobal,
+      fontWeight: weight ?? hcFontWeightSecondaryGlobal,
+      fontFamily: fontFamily ?? hcFontFamilySecondaryGlobal,
       letterSpacing: letterSpacing,
       fontStyle: fontStyle,
       decoration: decoration,

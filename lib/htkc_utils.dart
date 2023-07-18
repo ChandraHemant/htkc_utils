@@ -65,8 +65,8 @@ export 'package:htkc_utils/hc_utils/share/hc_share.dart';
 export 'package:flutter/material.dart';
 
 import 'package:htkc_utils/image_compression_utils/basic_utils/hc_compressor_stub.dart'
-if (dart.library.io) 'src/hc_compressor_io.dart'
-if (dart.library.html) 'src/hc_compressor_html.dart';
+if (dart.library.io) 'image_compression_utils/basic_utils/hc_compressor_io.dart'
+if (dart.library.html) 'image_compression_utils/basic_utils/hc_compressor_html.dart';
 import 'package:htkc_utils/image_compression_utils/basic_utils/hc_interface.dart';
 
 export 'package:cross_file/cross_file.dart' show XFile;
