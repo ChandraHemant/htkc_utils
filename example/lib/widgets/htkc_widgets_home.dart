@@ -1,4 +1,4 @@
-import 'package:example/lib/htkc_top_bar.dart';
+import 'package:example/libraries/htkc_top_bar.dart';
 import 'package:example/widgets/htkc_widget_app_bar.dart';
 import 'package:example/widgets/htkc_widget_background.dart';
 import 'package:example/widgets/htkc_widget_button.dart';

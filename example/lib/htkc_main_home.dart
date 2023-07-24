@@ -1,3 +1,6 @@
+import 'package:example/accessibility/htkc_emergent_accessibility.dart';
+import 'package:example/auto_complete/htkc_advance_example.dart';
+import 'package:example/auto_complete/htkc_simple_example.dart';
 import 'package:example/htkc_share.dart';
 import 'package:example/playground/htkc_emergent_playground.dart';
 import 'package:example/playground/htkc_text_playground.dart';
@@ -6,7 +9,6 @@ import 'package:example/tips/htkc_tips_home.dart';
 import 'package:example/widgets/htkc_widgets_home.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-import 'accessibility/htkc_emergent_accessibility.dart';
 
 void main() => runApp(MyApp());
 
@@ -41,6 +43,8 @@ class FullSampleHomePage extends StatelessWidget {
       onPressed: onClick,
     );
   }
+
+  List<String> _suggestions = List.generate(1000, (index) => 'Item $index');
 
   @override
   Widget build(BuildContext context) {
@@ -122,6 +126,9 @@ class FullSampleHomePage extends StatelessWidget {
                         }));
                       }),
                   SizedBox(height: 12),
+
+                  HcSimpleExample(suggestions: _suggestions),
+                  HcAdvanceExample(suggestions: _suggestions),
                 ],
               ),
             ),

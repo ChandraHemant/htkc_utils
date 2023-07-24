@@ -1,3 +1,7 @@
+## 1.3.2
+
+* Added Auto Complete Suggestion Field
+ 
 ## 1.3.1
 
 * Revised some libraries

@@ -1,4 +1,4 @@
-import 'package:example/lib/htkc_color_selector.dart';
+import 'package:example/libraries/htkc_color_selector.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 class EmergentAccessibility extends StatefulWidget {

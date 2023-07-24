@@ -1,7 +1,7 @@
-import 'package:example/lib/htkc_top_bar.dart';
+import 'package:example/libraries/htkc_top_bar.dart';
+import 'package:example/samples/htkc_clock_second_sample.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-import 'htkc_clock_second_sample.dart';
 
 class ClockSample extends StatelessWidget {
   @override

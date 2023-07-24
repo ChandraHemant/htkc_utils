@@ -1,6 +1,6 @@
-import 'package:example/lib/htkc_code.dart';
-import 'package:example/lib/htkc_theme_configurator.dart';
-import 'package:example/lib/htkc_top_bar.dart';
+import 'package:example/libraries/htkc_code.dart';
+import 'package:example/libraries/htkc_theme_configurator.dart';
+import 'package:example/libraries/htkc_top_bar.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 class TipsRecursivePage extends StatefulWidget {
@@ -50,7 +50,7 @@ class _PageState extends State<_Page> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              _EmbossmbossWidget(),
+              EmergentWidget(),
               SizedBox(height: 30),
             ],
           ),
@@ -60,15 +60,15 @@ class _PageState extends State<_Page> {
   }
 }
 
-class _EmbossmbossWidget extends StatefulWidget {
+class EmergentWidget extends StatefulWidget {
   @override
-  createState() => _EmbossmbossWidgetState();
+  createState() => _EmergentWidgetState();
 }
 
-class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
+class _EmergentWidgetState extends State<EmergentWidget> {
   Widget _buildCode(BuildContext context) {
     return Code("""
- Widget _generateEmbosss({int number, Widget child, bool reverseEachPair = false}) {
+ Widget _generateEmergent({int number, Widget child, bool reverseEachPair = false}) {
     Widget element = child;
     for (int i = 0; i < number; ++i) {
       element = Emergent(
@@ -86,7 +86,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
 """);
   }
 
-  Widget _generateEmbosss(
+  Widget _generateEmergent(
       {int? number, Widget? child, bool reverseEachPair = false}) {
     Widget element = child!;
     for (int i = 0; i < number!; ++i) {
@@ -121,7 +121,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                           color: EmergentTheme.defaultTextColor(context)),
                     ),
                   ),
-                  _generateEmbosss(
+                  _generateEmergent(
                     number: 5,
                     child: SizedBox(
                       height: 10,
@@ -142,7 +142,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                           color: EmergentTheme.defaultTextColor(context)),
                     ),
                   ),
-                  _generateEmbosss(
+                  _generateEmergent(
                     number: 5,
                     reverseEachPair: true,
                     child: SizedBox(
@@ -168,7 +168,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                           color: EmergentTheme.defaultTextColor(context)),
                     ),
                   ),
-                  _generateEmbosss(
+                  _generateEmergent(
                     number: 4,
                     child: SizedBox(
                       height: 10,
@@ -189,7 +189,7 @@ class _EmbossmbossWidgetState extends State<_EmbossmbossWidget> {
                           color: EmergentTheme.defaultTextColor(context)),
                     ),
                   ),
-                  _generateEmbosss(
+                  _generateEmergent(
                     number: 4,
                     reverseEachPair: true,
                     child: SizedBox(

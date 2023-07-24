@@ -1,4 +1,4 @@
-import 'package:example/lib/htkc_color_selector.dart';
+import 'package:example/libraries/htkc_color_selector.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 import 'package:htkc_utils/emergent_utils/shape/path/emergent_logo_path_provider.dart';
 

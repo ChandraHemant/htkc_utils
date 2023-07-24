@@ -1,4 +1,4 @@
-import 'package:example/lib/htkc_top_bar.dart';
+import 'package:example/libraries/htkc_top_bar.dart';
 import 'package:example/samples/htkc_audio_player_sample.dart';
 import 'package:example/samples/htkc_calculator_sample.dart';
 import 'package:example/samples/htkc_clock_sample.dart';

@@ -221,6 +221,61 @@ void main() {
 ```
 
 
+## DropDown Suggestion
+
+**DropDown Suggestion Form Field**
+
+```dart
+import 'package:htkc_utils/htkc_utils.dart';
+import 'package:example/auto_complete/htkc_advance_example.dart';
+import 'package:example/auto_complete/htkc_simple_example.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Example'),
+        ),
+        body: SafeArea(
+          child: Container(
+            padding: EdgeInsets.all(10.0),
+            child: DropdownSuggestionsFormFieldExample(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DropdownSuggestionsFormFieldExample extends StatefulWidget {
+  @override
+  _DropdownSuggestionsFormFieldExampleState createState() =>
+      _DropdownSuggestionsFormFieldExampleState();
+}
+
+class _DropdownSuggestionsFormFieldExampleState
+    extends State<DropdownSuggestionsFormFieldExample> {
+  List<String> _suggestions = List.generate(1000, (index) => 'Item $index');
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        HcSimpleExample(suggestions: _suggestions),
+        HcAdvanceExample(suggestions: _suggestions),
+      ],
+    );
+  }
+}
+```
+
+
 
 ## Image Compression
 

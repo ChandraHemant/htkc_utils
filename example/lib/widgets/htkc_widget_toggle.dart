@@ -1,6 +1,6 @@
-import 'package:example/lib/htkc_code.dart';
-import 'package:example/lib/htkc_theme_configurator.dart';
-import 'package:example/lib/htkc_top_bar.dart';
+import 'package:example/libraries/htkc_code.dart';
+import 'package:example/libraries/htkc_theme_configurator.dart';
+import 'package:example/libraries/htkc_top_bar.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 class ToggleWidgetPage extends StatefulWidget {

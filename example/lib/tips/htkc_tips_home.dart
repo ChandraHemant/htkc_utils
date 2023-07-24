@@ -1,8 +1,8 @@
-import 'package:example/lib/htkc_top_bar.dart';
+import 'package:example/libraries/htkc_top_bar.dart';
+import 'package:example/tips/htkc_tips.dart';
+import 'package:example/tips/htkc_tips_border.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-import 'htkc_tips_border.dart';
-import 'htkc_tips.dart';
 
 class TipsHome extends StatelessWidget {
   Widget _buildButton({String? text, VoidCallback? onClick}) {
