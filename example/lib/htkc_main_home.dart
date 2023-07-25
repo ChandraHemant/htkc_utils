@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
 }
 
 class FullSampleHomePage extends StatelessWidget {
+
   Widget _buildButton({String? text, VoidCallback? onClick}) {
     return EmergentButton(
       margin: EdgeInsets.only(bottom: 12),

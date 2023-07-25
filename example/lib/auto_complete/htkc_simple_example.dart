@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:htkc_utils/htkc_utils.dart';
 
 class HcSimpleExample extends StatefulWidget {
@@ -30,7 +28,7 @@ class _HcSimpleExampleState extends State<HcSimpleExample> {
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0),
             child: Text(
-              'SELECTED SUGGESTION: ${_selectedSuggestion.isDefinedAndNotNull ? _selectedSuggestion : ''}',
+              'SELECTED SUGGESTION: ${_selectedSuggestion}',
               style: TextStyle(fontSize: 20.0),
             ),
           ),

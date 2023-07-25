@@ -1,3 +1,15 @@
+## 1.3.5
+
+* Added Dropdown Suggestion Field
+
+## 1.3.4
+
+* Added some dimensions
+
+## 1.3.3
+
+* Remove Auto Complete Suggestion Field
+
 ## 1.3.2
 
 * Added Auto Complete Suggestion Field

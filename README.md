@@ -221,7 +221,7 @@ void main() {
 ```
 
 
-## DropDown Suggestion
+## Dropdown Suggestion
 
 **DropDown Suggestion Form Field**
 
@@ -549,15 +549,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ```dart
 child: EmergentText(
-    "I love flutter",
-    style: EmergentStyle(
-        depth: 4,  //customize depth here
-        color: Colors.white, //customize color here
-    ),
-    textStyle: EmergentTextStyle(
-      fontSize: 18, //customize size here
-      // AND others usual text style properties (fontFamily, fontWeight, ...)
-    ),
+"I love flutter",
+style: EmergentStyle(
+depth: 4,  //customize depth here
+color: Colors.white, //customize color here
+),
+textStyle: EmergentTextStyle(
+fontSize: 18, //customize size here
+// AND others usual text style properties (fontFamily, fontWeight, ...)
+),
 ),
 ```
 
@@ -566,8 +566,8 @@ child: EmergentText(
 
 ```dart
 child: EmergentIcon(
-    Icons.add_circle,
-    size: 80,
+Icons.add_circle,
+size: 80,
 ),
 ```
 
@@ -604,10 +604,10 @@ And use `EmergentBoxShape.path`
 
 ```dart
 Emergent(
-    style: EmergentStyle(
-      boxShape: EmergentBoxShape.path(MyShapePathProvider()),
-    ),
-    ...
+style: EmergentStyle(
+boxShape: EmergentBoxShape.path(MyShapePathProvider()),
+),
+...
 ),
 ```
 
@@ -615,10 +615,10 @@ You can import the Flutter logo as a custom shape using
 
 ```dart
 Emergent(
-    style: EmergentStyle(
-      shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
-    ),
-    ...
+style: EmergentStyle(
+shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
+),
+...
 ),
 ```
 
@@ -630,13 +630,13 @@ you can add a border on Emergent widgets
 
 ```dart
 Emergent(
-    style: EmergentStyle(
-      border: EmergentBorder(
-        color: Color(0x33000000),
-        width: 0.8,
-      )
-    ),
-    ...
+style: EmergentStyle(
+border: EmergentBorder(
+color: Color(0x33000000),
+width: 0.8,
+)
+),
+...
 )
 ```
 
@@ -644,9 +644,9 @@ You can enable/disable it (eg: listening an Accessibility Provider) with `isEnab
 
 ```dart
 border: EmergentBorder(
-    isEnabled: true,
-    color: Color(0x33000000),
-    width: 0.8,
+isEnabled: true,
+color: Color(0x33000000),
+width: 0.8,
 )
 ```
 
@@ -657,22 +657,22 @@ Note that `borderColor` and `borderWidth` default values has been added to `Emer
 
 ```dart
 EmergentTheme(
-    themeMode: ThemeMode.light, //or dark / system
-    darkTheme: EmergentThemeData(
-        baseColor: Color(0xff333333),
-        accentColor: Colors.green,
-        lightSource: LightSource.topLeft,
-        depth: 4,
-        intensity: 0.3,
-    ),
-    theme: EmergentThemeData(
-        baseColor: Color(0xffDDDDDD),
-        accentColor: Colors.cyan,
-        lightSource: LightSource.topLeft,
-        depth: 6,
-        intensity: 0.5,
-    ),
-    child: ...
+themeMode: ThemeMode.light, //or dark / system
+darkTheme: EmergentThemeData(
+baseColor: Color(0xff333333),
+accentColor: Colors.green,
+lightSource: LightSource.topLeft,
+depth: 4,
+intensity: 0.3,
+),
+theme: EmergentThemeData(
+baseColor: Color(0xffDDDDDD),
+accentColor: Colors.cyan,
+lightSource: LightSource.topLeft,
+depth: 6,
+intensity: 0.5,
+),
+child: ...
 )
 ```
 

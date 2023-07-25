@@ -9,7 +9,7 @@ export 'package:flutter/material.dart'
     InitialRouteListFactory;
 export 'package:flutter/widgets.dart';
 
-export 'package:htkc_utils/auto_complete/hc_dropdown_suggestion_form_field.dart';
+export 'package:htkc_utils/dropdown/hc_dropdown_suggestion_form_field.dart';
 
 export 'package:htkc_utils/emergent_utils/emergent_colors.dart';
 export 'package:htkc_utils/emergent_utils/emergent_box_shape.dart';
