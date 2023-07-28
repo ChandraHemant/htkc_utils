@@ -88,6 +88,249 @@ class _HTKCExampleState extends State<HTKCExample> {
 
 ```
 
+## Multiselect Dropdown
+
+```dart
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<HcMultipleSelectItem> elements = List.generate(
+    15,
+        (index) => HcMultipleSelectItem.build(
+      value: index,
+      display: '$index display',
+      content: '$index content',
+    ),
+  );
+
+  List _selectedValues = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("MultiSelect DropDown"),
+      ),
+      body: HcMultipleDropDown(
+        placeholder: 'Hint Text',
+        disabled: false,
+        values: _selectedValues,
+        elements: elements,
+      ),
+    );
+  }
+}
+```
+
+## Dotted Border
+
+```dart
+HcDottedBorder(
+    color: Colors.black,
+    strokeWidth: 1,
+    child: FlutterLogo(size: 148),
+)
+```
+
+### BorderTypes
+
+This package supports the following border types at the moment
+* RectBorder
+* RRectBorder
+* CircleBorder
+* OvalBorder
+
+#### Example
+
+```dart
+return HcDottedBorder(
+  borderType: HcBorderType.rRect,
+  radius: Radius.circular(12),
+  padding: EdgeInsets.all(6),
+  child: ClipRRect(
+    borderRadius: BorderRadius.all(Radius.circular(12)),
+    child: Container(
+      height: 200,
+      width: 120,
+      color: Colors.amber,
+    ),
+  ),
+);
+```
+
+### Dash Pattern
+
+Now you can also specify the Dash Sequence by passing in an Array of Doubles
+
+#### Example
+```dart
+HcDottedBorder(
+    dashPattern: [6, 3, 2, 3], 
+    child: ...
+);
+```
+
+The above code block will render a dashed border with the following pattern:
+
+* 6 pixel wide dash
+* 3 pixel wide space
+* 2 pixel wide dash
+* 3 pixel wide space
+
+### Custom Path Border
+
+You can also specify any path as the `customPath` property when initializing the DottedBorderWidget, and it will draw it for you using the provided dash pattern.
+
+#### Example
+
+```dart
+Path customPath = Path()
+  ..moveTo(20, 20)
+  ..lineTo(50, 100)
+  ..lineTo(20, 200)
+  ..lineTo(100, 100)
+  ..lineTo(20, 20);
+
+return HcDottedBorder(
+  customPath: (size) => customPath, // PathBuilder
+  color: Colors.indigo,
+  dashPattern: [8, 4],
+  strokeWidth: 2,
+  child: Container(
+    height: 220,
+    width: 120,
+    color: Colors.green.withAlpha(20),
+  ),
+);
+```
+
+
+## Circular Chart
+
+```dart
+final GlobalKey<HcAnimatedCircularChartState> _chartKey = new GlobalKey<HcAnimatedCircularChartState>();
+```
+
+Create chart data entry objects:
+
+```dart
+List<HcCircularSegmentEntry> data = <HcCircularSegmentEntry>[
+  new HcCircularSegmentEntry(
+    <HcCircularSegmentEntry>[
+      new HcCircularSegmentEntry(500.0, Colors.red[200], rankKey: 'Q1'),
+      new HcCircularSegmentEntry(1000.0, Colors.green[200], rankKey: 'Q2'),
+      new HcCircularSegmentEntry(2000.0, Colors.blue[200], rankKey: 'Q3'),
+      new HcCircularSegmentEntry(1000.0, Colors.yellow[200], rankKey: 'Q4'),
+    ],
+    rankKey: 'Quarterly Profits',
+  ),
+];
+```
+
+Create an `HcAnimatedCircularChart`, passing it the `_chartKey` and initial `data`:
+
+```dart
+@override
+Widget build(BuildContext context) {
+  return new HcAnimatedCircularChart(
+    key: _chartKey,
+    size: const Size(300.0, 300.0),
+    initialChartData: data,
+    chartType: HcCircularChartType.pie,
+  );
+}
+```
+
+Call `updateData` to animate the chart:
+
+```dart
+void _cycleSamples() {
+  List<HcCircularStackEntry> nextData = <HcCircularStackEntry>[
+    new HcCircularStackEntry(
+      <HcCircularSegmentEntry>[
+        new HcCircularSegmentEntry(1500.0, Colors.red[200], rankKey: 'Q1'),
+        new HcCircularSegmentEntry(750.0, Colors.green[200], rankKey: 'Q2'),
+        new HcCircularSegmentEntry(2000.0, Colors.blue[200], rankKey: 'Q3'),
+        new HcCircularSegmentEntry(1000.0, Colors.yellow[200], rankKey: 'Q4'),
+      ],
+      rankKey: 'Quarterly Profits',
+    ),
+  ];
+  setState(() {
+    _chartKey.currentState.updateData(nextData);
+  });
+}
+```
+
+## Customization
+
+### Hole Label:
+
+```dart
+HcAnimatedCircularChart(
+  key: _chartKey,
+  size: _chartSize,
+  initialChartData: <HcCircularStackEntry>[
+    new HcCircularStackEntry(
+      <HcCircularSegmentEntry>[
+        new HcCircularSegmentEntry(
+          33.33,
+          Colors.blue[400],
+          rankKey: 'completed',
+        ),
+        new HcCircularSegmentEntry(
+          66.67,
+          Colors.blueGrey[600],
+          rankKey: 'remaining',
+        ),
+      ],
+      rankKey: 'progress',
+    ),
+  ],
+  chartType: HcCircularChartType.Radial,
+  percentageValues: true,
+  holeLabel: '1/3',
+  labelStyle: new TextStyle(
+    color: Colors.blueGrey[600],
+    fontWeight: FontWeight.bold,
+    fontSize: 24.0,
+  ),
+)
+```
+
+
+### Segment Edge Style:
+
+```dart
+HcAnimatedCircularChart(
+  key: _chartKey,
+  size: _chartSize,
+  initialChartData: <HcCircularStackEntry>[
+    new HcCircularStackEntry(
+      <HcCircularSegmentEntry>[
+        new HcCircularSegmentEntry(
+          33.33,
+          Colors.blue[400],
+          rankKey: 'completed',
+        ),
+        new CircularSegmentEntry(
+          66.67,
+          Colors.blueGrey[600],
+          rankKey: 'remaining',
+        ),
+      ],
+      rankKey: 'progress',
+    ),
+  ],
+  chartType: HcCircularChartType.radial,
+  edgeStyle: HcSegmentEdgeStyle.round,
+  percentageValues: true,
+)
+```
+
 ## Drag And Drop
 
 **Drag and drop grid view**
@@ -223,59 +466,442 @@ void main() {
 
 ## Dropdown Suggestion
 
-**DropDown Suggestion Form Field**
+**DropDown Suggestion Search Field**
 
+#### Single dialog
 ```dart
-import 'package:htkc_utils/htkc_utils.dart';
-import 'package:example/auto_complete/htkc_advance_example.dart';
-import 'package:example/auto_complete/htkc_simple_example.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Example'),
-        ),
-        body: SafeArea(
-          child: Container(
-            padding: EdgeInsets.all(10.0),
-            child: DropdownSuggestionsFormFieldExample(),
-          ),
-        ),
+      HcSearchableDropdown.single(
+        items: items,
+        value: selectedValue,
+        hint: "Select one",
+        searchHint: "Select one",
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+        isExpanded: true,
       ),
-    );
-  }
-}
-
-class DropdownSuggestionsFormFieldExample extends StatefulWidget {
-  @override
-  _DropdownSuggestionsFormFieldExampleState createState() =>
-      _DropdownSuggestionsFormFieldExampleState();
-}
-
-class _DropdownSuggestionsFormFieldExampleState
-    extends State<DropdownSuggestionsFormFieldExample> {
-  List<String> _suggestions = List.generate(1000, (index) => 'Item $index');
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        HcSimpleExample(suggestions: _suggestions),
-        HcAdvanceExample(suggestions: _suggestions),
-      ],
-    );
-  }
-}
+```
+#### Multi dialog
+```dart
+      HcSearchableDropdown.multiple(
+        items: items,
+        selectedItems: selectedItems,
+        hint: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text("Select any"),
+        ),
+        searchHint: "Select any",
+        onChanged: (value) {
+          setState(() {
+            selectedItems = value;
+          });
+        },
+        closeButton: (selectedItems) {
+          return (selectedItems.isNotEmpty
+              ? "Save ${selectedItems.length == 1 ? '"' + items[selectedItems.first].value.toString() + '"' : '(' + selectedItems.length.toString() + ')'}"
+              : "Save without selection");
+        },
+        isExpanded: true,
+      ),
 ```
 
+#### Single done button dialog
+```dart
+      HcSearchableDropdown.single(
+        items: items,
+        value: selectedValue,
+        hint: "Select one",
+        searchHint: "Select one",
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+        doneButton: "Done",
+        displayItem: (item, selected) {
+          return (Row(children: [
+            selected
+                ? Icon(
+                    Icons.radio_button_checked,
+                    color: Colors.grey,
+                  )
+                : Icon(
+                    Icons.radio_button_unchecked,
+                    color: Colors.grey,
+                  ),
+            SizedBox(width: 7),
+            Expanded(
+              child: item,
+            ),
+          ]));
+        },
+        isExpanded: true,
+      ),
+```
+#### Multi custom display dialog
+```dart
+      HcSearchableDropdown.multiple(
+        items: items,
+        selectedItems: selectedItems,
+        hint: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text("Select any"),
+        ),
+        searchHint: "Select any",
+        onChanged: (value) {
+          setState(() {
+            selectedItems = value;
+          });
+        },
+        displayItem: (item, selected) {
+          return (Row(children: [
+            selected
+                ? Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  )
+                : Icon(
+                    Icons.check_box_outline_blank,
+                    color: Colors.grey,
+                  ),
+            SizedBox(width: 7),
+            Expanded(
+              child: item,
+            ),
+          ]));
+        },
+        selectedValueWidgetFn: (item) {
+          return (Center(
+              child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: BorderSide(
+                      color: Colors.brown,
+                      width: 0.5,
+                    ),
+                  ),
+                  margin: EdgeInsets.all(12),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(item.toString()),
+                  ))));
+        },
+        doneButton: (selectedItemsDone, doneContext) {
+          return (RaisedButton(
+              onPressed: () {
+                Navigator.pop(doneContext);
+                setState(() {});
+              },
+              child: Text("Save")));
+        },
+        closeButton: null,
+        style: TextStyle(fontStyle: FontStyle.italic),
+        searchFn: (String keyword, items) {
+          List<int> ret = List<int>();
+          if (keyword != null && items != null && keyword.isNotEmpty) {
+            keyword.split(" ").forEach((k) {
+              int i = 0;
+              items.forEach((item) {
+                if (k.isNotEmpty &&
+                    (item.value
+                        .toString()
+                        .toLowerCase()
+                        .contains(k.toLowerCase()))) {
+                  ret.add(i);
+                }
+                i++;
+              });
+            });
+          }
+          if (keyword.isEmpty) {
+            ret = Iterable<int>.generate(items.length).toList();
+          }
+          return (ret);
+        },
+        clearIcon: Icon(Icons.clear_all),
+        icon: Icon(Icons.arrow_drop_down_circle),
+        label: "Label for multi",
+        underline: Container(
+          height: 1.0,
+          decoration: BoxDecoration(
+              border:
+                  Border(bottom: BorderSide(color: Colors.teal, width: 3.0))),
+        ),
+        iconDisabledColor: Colors.brown,
+        iconEnabledColor: Colors.indigo,
+        isExpanded: true,
+      ),
+```
 
+#### Multi select 3 dialog
+```dart
+      HcSearchableDropdown.multiple(
+        items: items,
+        selectedItems: selectedItems,
+        hint: "Select 3 items",
+        searchHint: "Select 3",
+        validator: (selectedItemsForValidator) {
+          if (selectedItemsForValidator.length != 3) {
+            return ("Must select 3");
+          }
+          return (null);
+        },
+        onChanged: (value) {
+          setState(() {
+            selectedItems = value;
+          });
+        },
+        doneButton: (selectedItemsDone, doneContext) {
+          return (RaisedButton(
+              onPressed: selectedItemsDone.length != 3
+                  ? null
+                  : () {
+                      Navigator.pop(doneContext);
+                      setState(() {});
+                    },
+              child: Text("Save")));
+        },
+        closeButton: (selectedItems) {
+          return (selectedItems.length == 3 ? "Ok" : null);
+        },
+        isExpanded: true,
+      ),
+```
+
+#### Single menu
+```dart
+      HcSearchableDropdown.single(
+        items: items,
+        value: selectedValue,
+        hint: "Select one",
+        searchHint: null,
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+        dialogBox: false,
+        isExpanded: true,
+        menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
+      ),
+```
+
+#### Multi menu
+```dart
+      HcSearchableDropdown.multiple(
+        items: items,
+        selectedItems: selectedItems,
+        hint: "Select any",
+        searchHint: "",
+        doneButton: "Close",
+        closeButton: SizedBox.shrink(),
+        onChanged: (value) {
+          setState(() {
+            selectedItems = value;
+          });
+        },
+        dialogBox: false,
+        isExpanded: true,
+        menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
+      ),
+```
+
+#### Multi menu select all/none
+```dart
+      HcSearchableDropdown.multiple(
+        items: items,
+        selectedItems: selectedItems,
+        hint: "Select any",
+        searchHint: "Select any",
+        onChanged: (value) {
+          setState(() {
+            selectedItems = value;
+          });
+        },
+        dialogBox: false,
+        closeButton: (selectedItemsClose) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedItems.clear();
+                      selectedItems.addAll(
+                          Iterable<int>.generate(items.length).toList());
+                    });
+                  },
+                  child: Text("Select all")),
+              RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedItems.clear();
+                    });
+                  },
+                  child: Text("Select none")),
+            ],
+          );
+        },
+        isExpanded: true,
+        menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
+      ),
+```
+
+#### Multi dialog select all/none without clear
+```dart
+      HcSearchableDropdown.multiple(
+        items: items,
+        selectedItems: selectedItems,
+        hint: "Select any",
+        searchHint: "Select any",
+        displayClearIcon: false,
+        onChanged: (value) {
+          setState(() {
+            selectedItems = value;
+          });
+        },
+        dialogBox: true,
+        closeButton: (selectedItemsClose) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedItems.clear();
+                      selectedItems.addAll(
+                          Iterable<int>.generate(items.length).toList());
+                    });
+                  },
+                  child: Text("Select all")),
+              RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedItems.clear();
+                    });
+                  },
+                  child: Text("Select none")),
+            ],
+          );
+        },
+        isExpanded: true,
+      ),
+```
+
+#### Single dialog custom keyboard
+```dart
+      HcSearchableDropdown.single(
+        items: Iterable<int>.generate(20).toList().map((i) {
+          return (DropdownMenuItem(
+            child: Text(i.toString()),
+            value: i.toString(),
+          ));
+        }).toList(),
+        value: selectedValue,
+        hint: "Select one number",
+        searchHint: "Select one number",
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+        dialogBox: true,
+        keyboardType: TextInputType.number,
+        isExpanded: true,
+      ),
+```
+
+#### Single dialog object
+```dart
+      HcSearchableDropdown.single(
+        items: ExampleNumber.list.map((exNum) {
+          return (DropdownMenuItem(
+              child: Text(exNum.numberString), value: exNum));
+        }).toList(),
+        value: selectedNumber,
+        hint: "Select one number",
+        searchHint: "Select one number",
+        onChanged: (value) {
+          setState(() {
+            selectedNumber = value;
+          });
+        },
+        dialogBox: true,
+        isExpanded: true,
+      ),
+```
+#### Single dialog overflow
+```dart
+      HcSearchableDropdown.single(
+        items: [
+          DropdownMenuItem(
+            child: Text(
+                "way too long text for a smartphone at least one that goes in a normal sized pair of trousers but maybe not for a gigantic screen like there is one at my cousin's home in a very remote country where I 
+wouldn't want to go right now"),
+            value:
+                "way too long text for a smartphone at least one that goes in a normal sized pair of trousers but maybe not for a gigantic screen like there is one at my cousin's home in a very remote country where I 
+wouldn't want to go right now",
+          )
+        ],
+        value: "",
+        hint: "Select one",
+        searchHint: "Select one",
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+        dialogBox: true,
+        isExpanded: true,
+      ),
+```
+#### Single dialog readOnly
+```dart
+      HcSearchableDropdown.single(
+        items: [
+          DropdownMenuItem(
+            child: Text(
+                "one item"),
+            value:
+            "one item",
+          )
+        ],
+        value: "one item",
+        hint: "Select one",
+        searchHint: "Select one",
+        disabledHint: "Disabled",
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+        dialogBox: true,
+        isExpanded: true,
+        readOnly: true,
+      ),
+```
+#### Single dialog disabled
+```dart
+      HcSearchableDropdown.single(
+        items: [
+          DropdownMenuItem(
+            child: Text(
+                "one item"),
+            value:
+            "one item",
+          )
+        ],
+        value: "one item",
+        hint: "Select one",
+        searchHint: "Select one",
+        disabledHint: "Disabled",
+        onChanged: null,
+        dialogBox: true,
+        isExpanded: true,
+      ),
+```
 
 ## Image Compression
 
@@ -472,6 +1098,18 @@ class _MainPageState extends State<MainPage> {
 ```
 
 
+## Custom Alert Dialog
+
+**Alert Dialog**
+
+
+```dart
+
+showNewDialog(
+context: context,
+builder: (context) => const ChangePswDialog());
+```
+
 ## OTP Text Field
 
 **OTP Field**
@@ -548,16 +1186,15 @@ class _MyHomePageState extends State<MyHomePage> {
 **Text only handle positive depth**
 
 ```dart
-child: EmergentText(
-"I love flutter",
-style: EmergentStyle(
-depth: 4,  //customize depth here
-color: Colors.white, //customize color here
-),
-textStyle: EmergentTextStyle(
-fontSize: 18, //customize size here
-// AND others usual text style properties (fontFamily, fontWeight, ...)
-),
+child: EmergentText('I love flutter',
+    style: EmergentStyle(
+        depth: 4,  //customize depth here
+        color: Colors.white, //customize color here
+    ),
+    textStyle: EmergentTextStyle(
+      fontSize: 18, //customize size here
+    // AND others usual text style properties (fontFamily, fontWeight, ...)
+    ),
 ),
 ```
 
@@ -566,8 +1203,8 @@ fontSize: 18, //customize size here
 
 ```dart
 child: EmergentIcon(
-Icons.add_circle,
-size: 80,
+    Icons.add_circle,
+    size: 80,
 ),
 ```
 
@@ -603,10 +1240,10 @@ class MyShapePathProvider extends EmergentPathProvider {
 And use `EmergentBoxShape.path`
 
 ```dart
-Emergent(
-style: EmergentStyle(
-boxShape: EmergentBoxShape.path(MyShapePathProvider()),
-),
+child: Emergent(
+    style: EmergentStyle(
+      boxShape: EmergentBoxShape.path(MyShapePathProvider()),
+    ),
 ...
 ),
 ```
@@ -614,11 +1251,11 @@ boxShape: EmergentBoxShape.path(MyShapePathProvider()),
 You can import the Flutter logo as a custom shape using
 
 ```dart
-Emergent(
-style: EmergentStyle(
-shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
-),
-...
+child: Emergent(
+    style: EmergentStyle(
+      shape: EmergentBoxShape.path(EmergentFlutterLogoPathProvider()),
+    ),
+    ...
 ),
 ```
 
@@ -629,14 +1266,14 @@ you can add a border on Emergent widgets
 
 
 ```dart
-Emergent(
-style: EmergentStyle(
-border: EmergentBorder(
-color: Color(0x33000000),
-width: 0.8,
-)
-),
-...
+child: Emergent(
+    style: EmergentStyle(
+        border: EmergentBorder(
+            color: Color(0x33000000),
+            width: 0.8,
+        )
+    ),
+    ...
 )
 ```
 
@@ -644,9 +1281,9 @@ You can enable/disable it (eg: listening an Accessibility Provider) with `isEnab
 
 ```dart
 border: EmergentBorder(
-isEnabled: true,
-color: Color(0x33000000),
-width: 0.8,
+    isEnabled: true,
+    color: Color(0x33000000),
+    width: 0.8,
 )
 ```
 
@@ -657,22 +1294,22 @@ Note that `borderColor` and `borderWidth` default values has been added to `Emer
 
 ```dart
 EmergentTheme(
-themeMode: ThemeMode.light, //or dark / system
-darkTheme: EmergentThemeData(
-baseColor: Color(0xff333333),
-accentColor: Colors.green,
-lightSource: LightSource.topLeft,
-depth: 4,
-intensity: 0.3,
-),
-theme: EmergentThemeData(
-baseColor: Color(0xffDDDDDD),
-accentColor: Colors.cyan,
-lightSource: LightSource.topLeft,
-depth: 6,
-intensity: 0.5,
-),
-child: ...
+    themeMode: ThemeMode.light, //or dark / system
+    darkTheme: EmergentThemeData(
+        baseColor: Color(0xff333333),
+        accentColor: Colors.green,
+        lightSource: LightSource.topLeft,
+        depth: 4,
+        intensity: 0.3,
+    ),
+    theme: EmergentThemeData(
+        baseColor: Color(0xffDDDDDD),
+        accentColor: Colors.cyan,
+        lightSource: LightSource.topLeft,
+        depth: 6,
+        intensity: 0.5,
+    ),
+    child: ...
 )
 ```
 
@@ -682,7 +1319,7 @@ To retrieve the current used theme :
 final theme = EmergentTheme.currentTheme(context);
 final baseColor = theme.baseColor;
 final accentColor = theme.accentColor;
-...
+
 ```
 
 Toggle from light to dark

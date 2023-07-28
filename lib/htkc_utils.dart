@@ -9,7 +9,15 @@ export 'package:flutter/material.dart'
     InitialRouteListFactory;
 export 'package:flutter/widgets.dart';
 
-export 'package:htkc_utils/dropdown/hc_dropdown_suggestion_form_field.dart';
+export 'package:htkc_utils/hc_utils/border/hc_dotted_border.dart';
+
+export 'package:htkc_utils/hc_utils/chart/hc_circular_chart.dart';
+export 'package:htkc_utils/hc_utils/chart/hc_animated_circular_chart.dart';
+export 'package:htkc_utils/hc_utils/chart/hc_entry.dart';
+
+export 'package:htkc_utils/hc_utils/dropdown/hc_auto_complete_search.dart';
+
+export 'package:htkc_utils/hc_utils/multiselect/hc_multiselect_dropdown.dart';
 
 export 'package:htkc_utils/emergent_utils/emergent_colors.dart';
 export 'package:htkc_utils/emergent_utils/emergent_box_shape.dart';

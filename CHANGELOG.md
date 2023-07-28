@@ -1,3 +1,24 @@
+## 1.4.0
+
+* Remove Dropdown Suggestion Field And Added DropDown Search Field
+* Added MultiSelect Dropdown
+
+## 1.3.9
+
+* Fix size issue on Dotted Border
+
+## 1.3.8
+
+* Added Dotted Border
+
+## 1.3.7
+
+* Added Circular Chart
+
+## 1.3.6
+
+* Added Custom Animated Show Dialog
+
 ## 1.3.5
 
 * Added Dropdown Suggestion Field

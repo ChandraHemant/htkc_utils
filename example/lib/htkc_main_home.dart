@@ -1,6 +1,5 @@
 import 'package:example/accessibility/htkc_emergent_accessibility.dart';
 import 'package:example/auto_complete/htkc_advance_example.dart';
-import 'package:example/auto_complete/htkc_simple_example.dart';
 import 'package:example/htkc_share.dart';
 import 'package:example/playground/htkc_emergent_playground.dart';
 import 'package:example/playground/htkc_text_playground.dart';
@@ -127,8 +126,6 @@ class FullSampleHomePage extends StatelessWidget {
                         }));
                       }),
                   SizedBox(height: 12),
-
-                  HcSimpleExample(suggestions: _suggestions),
                   HcAdvanceExample(suggestions: _suggestions),
                 ],
               ),

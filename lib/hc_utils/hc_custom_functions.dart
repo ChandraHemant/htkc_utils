@@ -453,3 +453,48 @@ BorderRadius hcRadius([double? radius]) {
 Radius hcRadiusCircular([double? radius]) {
   return Radius.circular(radius ?? hcDefaultRadius);
 }
+
+
+Future<T?> hcShowDialog<T>({
+  required BuildContext context,
+  bool barrierDismissible = true,
+  Widget? child,
+  WidgetBuilder? builder,
+}) {
+  assert(child == null || builder == null);
+  assert(debugCheckHasMaterialLocalizations(context));
+
+  final ThemeData theme = Theme.of(
+    context,
+  );
+  return showGeneralDialog(
+    context: context,
+    pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) {
+      final Widget pageChild = child ?? Builder(builder: builder!);
+      return Builder(builder: (BuildContext context) {
+        return Theme(data: theme, child: pageChild);
+      });
+    },
+    barrierDismissible: barrierDismissible,
+    barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+    barrierColor: Colors.black54,
+    transitionDuration: const Duration(milliseconds: 400),
+    transitionBuilder: _hcBuildTransition,
+  );
+}
+
+Widget _hcBuildTransition(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+    ) {
+  return ScaleTransition(
+    scale: CurvedAnimation(
+      parent: animation,
+      curve: Curves.bounceIn,
+      reverseCurve: Curves.bounceIn,
+    ),
+    child: child,
+  );
+}
