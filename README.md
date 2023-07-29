@@ -1336,7 +1336,7 @@ if(EmergentTheme.of(context).isUsingDark){
 
 # EmergentApp
 
-You can use direcly in your project a `EmergentApp`, surrounding your code
+You can use directly in your project a `EmergentApp`, surrounding your code
 
 It handle directly EmergentTheme & Navigation (and all possibilities of MaterialApp )
 
@@ -1365,4 +1365,20 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+```
+
+# System Utils
+
+You can use directly in your project a `hcSetStatusBarColor`, inside `build(BuildContext context)`,
+and `hcFinish(context)` to pop Context.
+
+```dart
+
+@override
+Widget build(BuildContext context) {
+  hcSetStatusBarColor(Colors.blue);
+  return Scaffold(
+  ...
+    onPressed: () { hcFinish(context); }
+  ...
 ```

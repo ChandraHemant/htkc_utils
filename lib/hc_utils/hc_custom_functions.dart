@@ -402,18 +402,14 @@ hcOnBackPressed(BuildContext context) {
   /// Cancel Button
   Widget cancelButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
       onPressed: () {
-        Navigator.pop(context);
+        Navigator.pop(context, false);
       },
       child: Text('Cancel', style: HcAppTextStyle.boldTextStyle()));
 
   /// Continue Button
   Widget continueButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
       onPressed: () {
-        Navigator.pop(context);
-        Navigator.pop(context);
-        Navigator.pop(context);
-        Navigator.pop(context);
-        Navigator.pop(context);
+        Navigator.pop(context, true);
       },
       child: Text('Ok', style: HcAppTextStyle.boldTextStyle(color: color)));
 

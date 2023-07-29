@@ -19,6 +19,8 @@ export 'package:htkc_utils/hc_utils/dropdown/hc_auto_complete_search.dart';
 
 export 'package:htkc_utils/hc_utils/multiselect/hc_multiselect_dropdown.dart';
 
+export 'package:htkc_utils/hc_utils/system/hc_system_utility.dart';
+
 export 'package:htkc_utils/emergent_utils/emergent_colors.dart';
 export 'package:htkc_utils/emergent_utils/emergent_box_shape.dart';
 export 'package:htkc_utils/emergent_utils/emergent_shape.dart';

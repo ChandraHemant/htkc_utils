@@ -37,7 +37,7 @@ extension HcContextExtensions on BuildContext {
   FormState? get hcFormState => Form.of(this);
 
   /// Returns Scaffold.of(context)
-  ScaffoldState get hcSscaffoldState => Scaffold.of(this);
+  ScaffoldState get hcScaffoldState => Scaffold.of(this);
 
   /// Returns Overlay.of(context)
   OverlayState? get hcOverlayState => Overlay.of(this);

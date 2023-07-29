@@ -58,11 +58,15 @@ class __PageState extends State<_Page> {
 
   @override
   Widget build(BuildContext context) {
+    hcSetStatusBarColor(Colors.blue);
     return Scaffold(
         backgroundColor: EmergentTheme.baseColor(context),
-        //appBar: EmergentAppBar(
-        //  title: Text('Playground'),
-        //),
+        appBar: EmergentAppBar(
+         title: Text('Playground'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios), onPressed: () { hcFinish(context); },
+          ),
+        ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
