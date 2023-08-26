@@ -161,7 +161,7 @@ extension HcFileSaveUtils on void {
 extension HcWidgetExtension on Widget? {
 
   /// Launch a new screen
-  Future<T?> hcLaunch<T>(BuildContext context,
+  Future<T?> hcNavigate<T>(BuildContext context,
       {bool isNewTask = false,
         HcPageRouteAnimation? hcPageRouteAnimation,
         Duration? duration}) async {
@@ -402,14 +402,14 @@ hcOnBackPressed(BuildContext context) {
   /// Cancel Button
   Widget cancelButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
       onPressed: () {
-        Navigator.pop(context, false);
+        Navigator.pop(context, true);
       },
       child: Text('Cancel', style: HcAppTextStyle.boldTextStyle()));
 
   /// Continue Button
   Widget continueButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
       onPressed: () {
-        Navigator.pop(context, true);
+        Navigator.pop(context, false);
       },
       child: Text('Ok', style: HcAppTextStyle.boldTextStyle(color: color)));
 

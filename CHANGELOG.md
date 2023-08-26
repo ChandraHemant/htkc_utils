@@ -1,11 +1,28 @@
+## 1.4.5
+
+* Change some package name
+
+## 1.4.4
+
+* Fix functionality issue
+* 
+## 1.4.3
+
+* Added some utilities
+
+## 1.4.2
+
+* Fix functionality issue on Dotted Border
+
 ## 1.4.1
 
 * Added some system utils library
 
 ## 1.4.0
 
-* Remove Dropdown Suggestion Field And Added DropDown Search Field
-* Added MultiSelect Dropdown
+* Remove Dropdown Suggestion Field.
+* Added DropDown Search Field.
+* Added MultiSelect Dropdown.
 
 ## 1.3.9
 

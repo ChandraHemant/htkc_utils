@@ -1,14 +1,14 @@
 import 'package:htkc_utils/htkc_utils.dart';
 
-class HcCustomAlertDialog extends StatefulWidget {
+class HcAlertDialog extends StatefulWidget {
   final Widget child;
 
-  const HcCustomAlertDialog({Key? key, required this.child}) : super(key: key);
+  const HcAlertDialog({Key? key, required this.child}) : super(key: key);
   @override
-  HcCustomAlertDialogState createState() => HcCustomAlertDialogState();
+  HcAlertDialogState createState() => HcAlertDialogState();
 }
 
-class HcCustomAlertDialogState extends State<HcCustomAlertDialog> {
+class HcAlertDialogState extends State<HcAlertDialog> {
   @override
   void initState() {
     super.initState();

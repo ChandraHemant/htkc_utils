@@ -1,6 +1,6 @@
 import 'package:htkc_utils/htkc_utils.dart';
 
-class HcCustomAppButton extends StatelessWidget {
+class HcAppButton extends StatelessWidget {
   final Function()? onPressed;
   final String text;
   final Color? textColor;
@@ -9,7 +9,7 @@ class HcCustomAppButton extends StatelessWidget {
   final Color buttonColor;
   final TextStyle? textStyle;
 
-  const HcCustomAppButton({
+  const HcAppButton({
     Key? key,
     required this.onPressed,
     required this.text,

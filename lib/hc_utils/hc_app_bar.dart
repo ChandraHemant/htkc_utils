@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:htkc_utils/htkc_utils.dart';
 
-class HcCustomAppBar extends StatefulWidget {
+class HcAppBar extends StatefulWidget {
   final double topPadding;
   final Widget child;
   final String? title;
@@ -20,14 +20,14 @@ class HcCustomAppBar extends StatefulWidget {
   final Widget? actionWidget;
   final IconData? titleSuffix;
   final GestureTapCallback? onTap;
-  const HcCustomAppBar({Key? key, this.backButtonImage, this.onTap, this.titleSuffix, this.actionWidget, this.actionTitle, this.isTitleSuffix = false, this.isCenter = false, this.isBackFunction = false, this.isBack = true, this.isDialog = false, this.action = false, this.topPadding = kToolbarHeight, this.titleFontWeight = FontWeight.normal, this.color = Colors.white, this.sColor = hcSecondColor, this.bgColor = hcHomeBgColor, required this.child, this.title}) : super(key: key);
+  const HcAppBar({Key? key, this.backButtonImage, this.onTap, this.titleSuffix, this.actionWidget, this.actionTitle, this.isTitleSuffix = false, this.isCenter = false, this.isBackFunction = false, this.isBack = true, this.isDialog = false, this.action = false, this.topPadding = kToolbarHeight, this.titleFontWeight = FontWeight.normal, this.color = Colors.white, this.sColor = hcSecondColor, this.bgColor = hcHomeBgColor, required this.child, this.title}) : super(key: key);
 
 
   @override
-  State<HcCustomAppBar> createState() => _HcCustomAppBarState();
+  State<HcAppBar> createState() => _HcAppBarState();
 }
 
-class _HcCustomAppBarState extends State<HcCustomAppBar> {
+class _HcAppBarState extends State<HcAppBar> {
   @override
   Widget build(BuildContext context) {
     Size hcSize = MediaQuery.of(context).size;
@@ -109,7 +109,7 @@ class _HcCustomAppBarState extends State<HcCustomAppBar> {
                         widget.isDialog ? showDialog(
                           context: context,
                           builder: (_) => widget.actionWidget!,
-                        ) : widget.actionWidget?.hcLaunch(context);
+                        ) : widget.actionWidget?.hcNavigate(context);
                       },
                       child: Text(
                         widget.actionTitle!,

@@ -58,6 +58,11 @@ export 'package:htkc_utils/hc_utils/hc_app_loader.dart';
 export 'package:htkc_utils/hc_utils/hc_dotted_rect.dart';
 export 'package:htkc_utils/hc_utils/hc_image_slider.dart';
 export 'package:htkc_utils/hc_utils/hc_context_extensions.dart';
+export 'package:htkc_utils/hc_utils/hc_ease_in_widget.dart';
+export 'package:htkc_utils/hc_utils/hc_text_field.dart';
+export 'package:htkc_utils/hc_utils/hc_decorated_tab_bar.dart';
+export 'package:htkc_utils/hc_utils/hc_slide_animation.dart';
+export 'package:htkc_utils/hc_utils/hc_relative_date_format.dart';
 
 export 'package:htkc_utils/hc_utils/alert/hc_dialog_button.dart';
 export 'package:htkc_utils/hc_utils/alert/hc_alert_style.dart';

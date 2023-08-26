@@ -4,13 +4,13 @@ import 'package:htkc_utils/htkc_utils.dart';
 
 extension HcContextExtensions on BuildContext {
   /// return screen size
-  Size hcSize() => MediaQuery.of(this).size;
+  Size hcScreenSize() => MediaQuery.of(this).size;
 
   /// return screen width
-  double hcWidth() => MediaQuery.of(this).size.width;
+  double hcScreenWidth() => MediaQuery.of(this).size.width;
 
   /// return screen height
-  double hcHeight() => MediaQuery.of(this).size.height;
+  double hcScreenHeight() => MediaQuery.of(this).size.height;
 
   /// return screen devicePixelRatio
   double hcPixelRatio() => MediaQuery.of(this).devicePixelRatio;
