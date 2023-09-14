@@ -1,7 +1,3 @@
-## 1.4.7
-
-* Add assets on pubspec.yaml file
-
 ## 1.4.6
 
 * Add flutter Chat UI Package
