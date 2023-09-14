@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -468,7 +466,7 @@ class HcDropdownSuggestionsFormFieldState<T>
 
   /// Dismiss the overlay when the back button is pressed
   Future<bool> _onWillPop() async {
-    if (_focusNode.hasFocus && _overlayEntry.isUndefinedOrNull) {
+    if (_focusNode.hasFocus) {
       _focusNode.unfocus();
       return false;
     }

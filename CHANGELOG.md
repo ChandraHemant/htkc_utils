@@ -1,3 +1,7 @@
+## 1.4.8
+
+* Change some package issue
+
 ## 1.4.7
 
 * Add assets on pubspec.yaml file
