@@ -1379,6 +1379,21 @@ Widget build(BuildContext context) {
   hcSetStatusBarColor(Colors.blue);
   return Scaffold(
   ...
-    onPressed: () { hcFinish(context); }
+  onPressed: () { hcFinish(context); }
   ...
+```
+
+# Flutter Chat UI
+
+```dart
+Chat(
+    messages: _messages,
+    onAttachmentPressed: _handleAttachmentPressed,
+    onMessageTap: _handleMessageTap,
+    onPreviewDataFetched: _handlePreviewDataFetched,
+    onSendPressed: _handleSendPressed,
+    showUserAvatars: true,
+    showUserNames: true,
+user: _user,
+),
 ```

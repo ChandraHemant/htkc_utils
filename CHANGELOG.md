@@ -1,3 +1,7 @@
+## 1.4.6
+
+* Add flutter Chat UI Package
+
 ## 1.4.5
 
 * Change some package name

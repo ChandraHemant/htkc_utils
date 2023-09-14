@@ -15,6 +15,33 @@ export 'package:htkc_utils/hc_utils/chart/hc_circular_chart.dart';
 export 'package:htkc_utils/hc_utils/chart/hc_animated_circular_chart.dart';
 export 'package:htkc_utils/hc_utils/chart/hc_entry.dart';
 
+export 'package:htkc_utils/chat_ui/chat_l10n.dart';
+export 'package:htkc_utils/chat_ui/chat_theme.dart';
+export 'package:htkc_utils/chat_ui/models/bubble_rtl_alignment.dart';
+export 'package:htkc_utils/chat_ui/models/emoji_enlargement_behavior.dart';
+export 'package:htkc_utils/chat_ui/models/input_clear_mode.dart';
+export 'package:htkc_utils/chat_ui/models/pattern_style.dart';
+export 'package:htkc_utils/chat_ui/models/send_button_visibility_mode.dart';
+export 'package:htkc_utils/chat_ui/models/typing_indicator_mode.dart';
+export 'package:htkc_utils/chat_ui/util.dart' show formatBytes, isConsistsOfEmojis;
+export 'package:htkc_utils/chat_ui/widgets/chat.dart';
+export 'package:htkc_utils/chat_ui/widgets/chat_list.dart';
+export 'package:htkc_utils/chat_ui/widgets/image_gallery.dart';
+export 'package:htkc_utils/chat_ui/widgets/input/attachment_button.dart';
+export 'package:htkc_utils/chat_ui/widgets/input/input.dart';
+export 'package:htkc_utils/chat_ui/widgets/input/input_text_field_controller.dart';
+export 'package:htkc_utils/chat_ui/widgets/input/send_button.dart';
+export 'package:htkc_utils/chat_ui/widgets/message/file_message.dart';
+export 'package:htkc_utils/chat_ui/widgets/message/image_message.dart';
+export 'package:htkc_utils/chat_ui/widgets/message/message.dart';
+export 'package:htkc_utils/chat_ui/widgets/message/message_status.dart';
+export 'package:htkc_utils/chat_ui/widgets/message/system_message.dart';
+export 'package:htkc_utils/chat_ui/widgets/message/text_message.dart';
+export 'package:htkc_utils/chat_ui/widgets/message/user_avatar.dart';
+export 'package:htkc_utils/chat_ui/widgets/message/user_name.dart';
+export 'package:htkc_utils/chat_ui/widgets/typing_indicator.dart';
+export 'package:htkc_utils/chat_ui/widgets/unread_header.dart';
+
 export 'package:htkc_utils/hc_utils/dropdown/hc_auto_complete_search.dart';
 
 export 'package:htkc_utils/hc_utils/multiselect/hc_multiselect_dropdown.dart';
