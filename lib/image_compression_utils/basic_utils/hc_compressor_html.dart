@@ -10,12 +10,14 @@ HcImageCompressionInterface getCompressor() => HcImageCompressionHtml();
 
 class HcImageCompressionHtml extends HcImageCompressionInterface {
   @override
-  Future<ic.ImageFile> compressWebpThenJpg(HcImageFileConfiguration param) async {
+  Future<ic.ImageFile> compressWebpThenJpg(
+      HcImageFileConfiguration param) async {
     return await HcDartCompressor.compressJpgDart(param);
   }
 
   @override
-  Future<ic.ImageFile> compressWebpThenPng(HcImageFileConfiguration param) async {
+  Future<ic.ImageFile> compressWebpThenPng(
+      HcImageFileConfiguration param) async {
     return await HcDartCompressor.compressJpgDart(param);
   }
 

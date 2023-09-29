@@ -256,7 +256,8 @@ class HcDropdownSuggestionsFormFieldState<T>
   HcDebounce? _onChangedDebounce;
 
   /// Stream controller for emit and receive a filtered list with suggestions.
-  final StreamController<List<T>> _streamController = StreamController<List<T>>();
+  final StreamController<List<T>> _streamController =
+      StreamController<List<T>>();
 
   /// Focus node for listen if the text field has focus or not.
   /// When the text field get focused the overlay will be created and inserted,
@@ -278,8 +279,7 @@ class HcDropdownSuggestionsFormFieldState<T>
     super.initState();
 
     /// Initialize the text editing controller with a initial value.
-    controller = TextEditingController(
-        text: widget.initialValue ?? '');
+    controller = TextEditingController(text: widget.initialValue ?? '');
     _layerLink = LayerLink();
     _onChangedDebounce =
         HcDebounce(milliseconds: widget.onChangedDebounceDuration);
@@ -343,7 +343,7 @@ class HcDropdownSuggestionsFormFieldState<T>
                     }
                   }
                   if ((snapshot.connectionState == ConnectionState.active ||
-                      snapshot.connectionState == ConnectionState.done) &&
+                          snapshot.connectionState == ConnectionState.done) &&
                       controller.text.isNotEmpty) {
                     if (widget.items != null || widget.filter != null) {
                       return _suggestionNotMatch()!;
@@ -363,16 +363,18 @@ class HcDropdownSuggestionsFormFieldState<T>
   Widget? _suggestionWaiting() {
     return widget.suggestionWaitingIsActive == false
         ? _suggestionEmptyWidget()
-        : (widget.suggestionWaiting ?? Container(
-        padding: const EdgeInsets.all(10.0),
-        child: Text(widget.suggestionWaitingMessage)));
+        : (widget.suggestionWaiting ??
+            Container(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(widget.suggestionWaitingMessage)));
   }
 
   /// Widget for displaying no match message
   Widget? _suggestionNotMatch() {
-    return widget.suggestionNotMatch ?? Container(
-        padding: const EdgeInsets.all(10.0),
-        child: Text(widget.suggestionNotMatchMessage));
+    return widget.suggestionNotMatch ??
+        Container(
+            padding: const EdgeInsets.all(10.0),
+            child: Text(widget.suggestionNotMatchMessage));
   }
 
   /// Widget used inside the listView when the stream has an error, has
@@ -395,14 +397,14 @@ class HcDropdownSuggestionsFormFieldState<T>
       shrinkWrap: true,
       itemBuilder: widget.itemBuilder != null
           ? (BuildContext context, int index) =>
-          widget.itemBuilder!(context, index, snapshot)
+              widget.itemBuilder!(context, index, snapshot)
           : (BuildContext context, int index) =>
-          itemBuilder(context, index, snapshot),
+              itemBuilder(context, index, snapshot),
       separatorBuilder: widget.separatorBuilder != null
           ? (BuildContext context, int index) =>
-          widget.separatorBuilder!(context, index)
+              widget.separatorBuilder!(context, index)
           : (BuildContext context, int index) =>
-          separatorBuilder(context, index),
+              separatorBuilder(context, index),
       itemCount: snapshot.data!.length,
     );
   }

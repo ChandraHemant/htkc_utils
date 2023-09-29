@@ -2,18 +2,14 @@ library hc_utils;
 
 export 'package:flutter/material.dart'
     show
-    TextTheme,
-    ThemeMode,
-    RouteFactory,
-    GenerateAppTitle,
-    InitialRouteListFactory;
+        TextTheme,
+        ThemeMode,
+        RouteFactory,
+        GenerateAppTitle,
+        InitialRouteListFactory;
 export 'package:flutter/widgets.dart';
 
 export 'package:htkc_utils/hc_utils/border/hc_dotted_border.dart';
-
-export 'package:htkc_utils/hc_utils/chart/hc_circular_chart.dart';
-export 'package:htkc_utils/hc_utils/chart/hc_animated_circular_chart.dart';
-export 'package:htkc_utils/hc_utils/chart/hc_entry.dart';
 
 export 'package:htkc_utils/chat_ui/chat_l10n.dart';
 export 'package:htkc_utils/chat_ui/chat_theme.dart';
@@ -23,7 +19,8 @@ export 'package:htkc_utils/chat_ui/models/input_clear_mode.dart';
 export 'package:htkc_utils/chat_ui/models/pattern_style.dart';
 export 'package:htkc_utils/chat_ui/models/send_button_visibility_mode.dart';
 export 'package:htkc_utils/chat_ui/models/typing_indicator_mode.dart';
-export 'package:htkc_utils/chat_ui/util.dart' show formatBytes, isConsistsOfEmojis;
+export 'package:htkc_utils/chat_ui/util.dart'
+    show formatBytes, isConsistsOfEmojis;
 export 'package:htkc_utils/chat_ui/widgets/chat.dart';
 export 'package:htkc_utils/chat_ui/widgets/chat_list.dart';
 export 'package:htkc_utils/chat_ui/widgets/image_gallery.dart';
@@ -109,8 +106,8 @@ export 'package:htkc_utils/hc_utils/share/hc_share.dart';
 export 'package:flutter/material.dart';
 
 import 'package:htkc_utils/image_compression_utils/basic_utils/hc_compressor_stub.dart'
-if (dart.library.io) 'image_compression_utils/basic_utils/hc_compressor_io.dart'
-if (dart.library.html) 'image_compression_utils/basic_utils/hc_compressor_html.dart';
+    if (dart.library.io) 'image_compression_utils/basic_utils/hc_compressor_io.dart'
+    if (dart.library.html) 'image_compression_utils/basic_utils/hc_compressor_html.dart';
 import 'package:htkc_utils/image_compression_utils/basic_utils/hc_interface.dart';
 
 export 'package:cross_file/cross_file.dart' show XFile;
@@ -119,7 +116,6 @@ export 'package:image_compression/image_compression.dart' show ImageFile;
 export 'package:htkc_utils/image_compression_utils/basic_utils/hc_configurations.dart';
 export 'package:htkc_utils/image_compression_utils/basic_utils/hc_extension.dart'
     show HcXFileExtension;
-
 
 /// Global singleton instance for image compressor
 final HcImageCompressionInterface compressor = getCompressor();

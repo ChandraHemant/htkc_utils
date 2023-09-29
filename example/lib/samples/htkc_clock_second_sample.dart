@@ -89,8 +89,8 @@ class _ClockPageState extends State<_Page> {
                     style: EmergentStyle(
                       depth: 20,
                       intensity: 0.4,
-                      boxShape: EmergentBoxShape.roundRect(
-                          BorderRadius.circular(8)),
+                      boxShape:
+                          EmergentBoxShape.roundRect(BorderRadius.circular(8)),
                     ),
                     child: EmergentButton(
                       padding: EdgeInsets.all(12.0),

@@ -14,19 +14,19 @@ class HcTextFormField extends StatefulWidget {
   final bool obscureText;
   final Color color;
 
-  const HcTextFormField({
-    Key? key,
-    required this.title,
-    this.suffixWidget,
-    this.controller,
-    this.onTap,
-    this.enabled = true,
-    this.keyboardType,
-    this.inputFormatters,
-    this.validator,
-    this.obscureText = false,
-    this.color = Colors.white
-  }) : super(key: key);
+  const HcTextFormField(
+      {Key? key,
+      required this.title,
+      this.suffixWidget,
+      this.controller,
+      this.onTap,
+      this.enabled = true,
+      this.keyboardType,
+      this.inputFormatters,
+      this.validator,
+      this.obscureText = false,
+      this.color = Colors.white})
+      : super(key: key);
 
   @override
   HcTextFormFieldState createState() => HcTextFormFieldState();
@@ -68,10 +68,11 @@ class HcTextFormFieldState extends State<HcTextFormField> {
           style: EmergentStyle(
             color: Colors.white,
             depth: neuStyle,
-            boxShape: EmergentBoxShape.roundRect(const BorderRadius.all(Radius.circular(10))),
+            boxShape: EmergentBoxShape.roundRect(
+                const BorderRadius.all(Radius.circular(10))),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 20,top: 6),
+            padding: const EdgeInsets.only(left: 20, top: 6),
             child: TextFormField(
               textCapitalization: TextCapitalization.words,
               focusNode: focus,
@@ -108,7 +109,8 @@ class HcTextFormFieldState extends State<HcTextFormField> {
                               shadowLightColor: Colors.white.withOpacity(0.8),
                               shape: EmergentShape.concave,
                               lightSource: LightSource.topLeft,
-                              boxShape: EmergentBoxShape.roundRect(BorderRadius.circular(30)),
+                              boxShape: EmergentBoxShape.roundRect(
+                                  BorderRadius.circular(30)),
                             ),
                             child: widget.suffixWidget!,
                           )),

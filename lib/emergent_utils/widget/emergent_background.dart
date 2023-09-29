@@ -22,7 +22,8 @@ class EmergentBackground extends StatelessWidget {
   final Color backendColor;
   final BorderRadius? borderRadius;
 
-  const EmergentBackground({super.key,
+  const EmergentBackground({
+    super.key,
     this.child,
     this.padding,
     this.margin,

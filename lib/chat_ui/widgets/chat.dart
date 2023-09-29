@@ -585,7 +585,8 @@ class ChatState extends State<Chat> {
                                 )
                               : GestureDetector(
                                   onTap: () {
-                                    FocusManager.instance.primaryFocus?.unfocus();
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
                                     widget.onBackgroundTap?.call();
                                   },
                                   child: LayoutBuilder(
@@ -615,14 +616,16 @@ class ChatState extends State<Chat> {
                                       typingIndicatorOptions:
                                           widget.typingIndicatorOptions,
                                       useTopSafeAreaInset:
-                                          widget.useTopSafeAreaInset ?? isMobile,
+                                          widget.useTopSafeAreaInset ??
+                                              isMobile,
                                     ),
                                   ),
                                 ),
                         ),
                         widget.customBottomWidget ??
                             Input(
-                              isAttachmentUploading: widget.isAttachmentUploading,
+                              isAttachmentUploading:
+                                  widget.isAttachmentUploading,
                               onAttachmentPressed: widget.onAttachmentPressed,
                               onSendPressed: widget.onSendPressed,
                               options: widget.inputOptions,

@@ -1,3 +1,11 @@
+## 1.5.0
+
+* Remove Chart Package
+
+## 1.4.9
+
+* Fix some functionality issue
+
 ## 1.4.8
 
 * Change some package issue

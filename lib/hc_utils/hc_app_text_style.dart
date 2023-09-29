@@ -3,6 +3,7 @@ import 'package:htkc_utils/htkc_utils.dart';
 
 class HcAppTextStyle {
   const HcAppTextStyle._();
+
   /// Styles
 
 // Bold Text Style

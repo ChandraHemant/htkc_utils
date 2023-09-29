@@ -20,17 +20,17 @@ Future<T?> hcLaunchNewScreen<T>(BuildContext context, String tag) async =>
 /// launchNewScreenWithNewTask(context, '/HomePage');
 /// ```
 Future<T?> hcLaunchNewScreenWithNewTask<T>(
-    BuildContext context, String tag) async =>
+        BuildContext context, String tag) async =>
     Navigator.of(context).pushNamedAndRemoveUntil(tag, (r) => false);
 
 /// Change status bar Color and Brightness
 Future<void> hcSetStatusBarColor(
-    Color statusBarColor, {
-      Color? systemNavigationBarColor,
-      Brightness? statusBarBrightness,
-      Brightness? statusBarIconBrightness,
-      int delayInMilliSeconds = 200,
-    }) async {
+  Color statusBarColor, {
+  Color? systemNavigationBarColor,
+  Brightness? statusBarBrightness,
+  Brightness? statusBarIconBrightness,
+  int delayInMilliSeconds = 200,
+}) async {
   await Future.delayed(Duration(milliseconds: delayInMilliSeconds));
 
   SystemChrome.setSystemUIOverlayStyle(
@@ -126,10 +126,10 @@ class HcScrollBehavior extends ScrollBehavior {
 
 /// Invoke Native method and get result
 Future<T?> hcInvokeNativeMethod<T>(
-    String channel,
-    String method, [
-      dynamic arguments,
-    ]) async {
+  String channel,
+  String method, [
+  dynamic arguments,
+]) async {
   var platform = MethodChannel(channel);
   return await platform.invokeMethod<T>(method, arguments);
 }
@@ -139,10 +139,10 @@ extension Hex on Color {
   /// return hex String
   String hcToHex({bool leadingHashSign = true, bool includeAlpha = false}) =>
       '${leadingHashSign ? '#' : ''}'
-          '${includeAlpha ? alpha.toRadixString(16).padLeft(2, '0') : ''}'
-          '${red.toRadixString(16).padLeft(2, '0')}'
-          '${green.toRadixString(16).padLeft(2, '0')}'
-          '${blue.toRadixString(16).padLeft(2, '0')}';
+      '${includeAlpha ? alpha.toRadixString(16).padLeft(2, '0') : ''}'
+      '${red.toRadixString(16).padLeft(2, '0')}'
+      '${green.toRadixString(16).padLeft(2, '0')}'
+      '${blue.toRadixString(16).padLeft(2, '0')}';
 
   /// Return true if given Color is dark
   bool hcIsDark() => hcGetBrightness() < 128.0;
@@ -151,8 +151,7 @@ extension Hex on Color {
   bool hcIsLight() => !hcIsDark();
 
   /// Returns Brightness of give Color
-  double hcGetBrightness() =>
-      (red * 299 + green * 587 + blue * 114) / 1000;
+  double hcGetBrightness() => (red * 299 + green * 587 + blue * 114) / 1000;
 
   /// Returns Luminance of give Color
   double hcGetLuminance() => computeLuminance();

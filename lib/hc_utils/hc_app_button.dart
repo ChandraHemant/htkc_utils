@@ -43,34 +43,36 @@ class HcAppButton extends StatelessWidget {
         child: icon == null && iconData == null
             ? textWidget
             : Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            textWidget,
-            const SizedBox(width: 10,),
-            if (icon != null)
-              icon!
-            else if (iconData != null)
-              Icon(
-                iconData,
-                color: const Color(0xFF1B7DBE),
-                size: 15,
-              )
-            else
-              const SizedBox.shrink(),
-          ],
-        ),
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  textWidget,
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  if (icon != null)
+                    icon!
+                  else if (iconData != null)
+                    Icon(
+                      iconData,
+                      color: const Color(0xFF1B7DBE),
+                      size: 15,
+                    )
+                  else
+                    const SizedBox.shrink(),
+                ],
+              ),
       ),
     );
   }
 
   Widget get textWidget => Text(
-    text,
-    maxLines: 1,
-    style: textStyle ??
-        HcAppTextStyle.semiBoldStyle.copyWith(
-          fontSize: Dimens.fontSize17,
-          color: textColor ?? Colors.blue,
-        ),
-  );
+        text,
+        maxLines: 1,
+        style: textStyle ??
+            HcAppTextStyle.semiBoldStyle.copyWith(
+              fontSize: Dimens.fontSize17,
+              color: textColor ?? Colors.blue,
+            ),
+      );
 }

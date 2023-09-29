@@ -22,9 +22,9 @@ import 'package:flutter/widgets.dart';
 class EmergentIcons {
   EmergentIcons._();
 
-  static const _kFontFam = 'EmergentIcons';
-  static const _kFontPkg = "hc_utils";
+  static const _hcFontFam = 'EmergentIcons';
+  static const _hcFontPkg = "hc_utils";
 
   static const IconData check =
-      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xe800, fontFamily: _hcFontFam, fontPackage: _hcFontPkg);
 }

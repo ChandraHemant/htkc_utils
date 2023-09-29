@@ -3,7 +3,6 @@ import 'package:htkc_utils/emergent_utils/emergent_box_shape.dart';
 import 'package:htkc_utils/emergent_utils/theme/emergent_decoration_theme.dart';
 import 'cache/emergent_hc_painter_cache.dart';
 
-
 class EmergentHcDecorationPainter extends BoxPainter {
   final EmergentHcPainterCache _cache;
 
@@ -51,8 +50,8 @@ class EmergentHcDecorationPainter extends BoxPainter {
       required EmergentStyle newStyle}) {
     bool invalidateSize = false;
     if (configuration.size != null) {
-      invalidateSize = _cache
-          .updateSize(newOffset: offset, newSize: configuration.size!);
+      invalidateSize =
+          _cache.updateSize(newOffset: offset, newSize: configuration.size!);
       if (invalidateSize) {
         _cache.updatePath(
             newPath:
@@ -61,8 +60,8 @@ class EmergentHcDecorationPainter extends BoxPainter {
     }
 
     bool invalidateLightSource = false;
-    invalidateLightSource = _cache
-        .updateLightSource(style.lightSource, style.oppositeShadowLightSource);
+    invalidateLightSource = _cache.updateLightSource(
+        style.lightSource, style.oppositeShadowLightSource);
 
     bool invalidateColor = false;
     if (style.color != null) {
@@ -81,12 +80,11 @@ class EmergentHcDecorationPainter extends BoxPainter {
     }
 
     final bool invalidateShadowColors = _cache.updateShadowColor(
-          newShadowLightColorHc:
-              style.shadowLightColorHc ?? const Color(0xFFFFFFFF),
-          newShadowDarkColorHc:
-              style.shadowDarkColorHc ?? const Color(0xFF000000),
-          newIntensity: style.intensity ?? 0.25,
-        );
+      newShadowLightColorHc:
+          style.shadowLightColorHc ?? const Color(0xFFFFFFFF),
+      newShadowDarkColorHc: style.shadowDarkColorHc ?? const Color(0xFF000000),
+      newIntensity: style.intensity ?? 0.25,
+    );
     if (invalidateShadowColors) {
       if (_cache.shadowLightColor != null) {
         _whiteShadowPaint.color = _cache.shadowLightColor!;
@@ -149,8 +147,7 @@ class EmergentHcDecorationPainter extends BoxPainter {
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    _updateCache(
-        offset: offset, configuration: configuration, newStyle: style);
+    _updateCache(offset: offset, configuration: configuration, newStyle: style);
     for (var subPath in _cache.subPaths) {
       if (drawBackground) {
         _paintBackground(canvas, subPath);

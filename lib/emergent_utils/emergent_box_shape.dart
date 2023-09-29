@@ -5,7 +5,6 @@ import 'package:htkc_utils/htkc_utils.dart';
 import 'package:htkc_utils/emergent_utils/shape/emergent_rrect_path_provider.dart';
 import 'package:htkc_utils/emergent_utils/shape/emergent_stadium_path_provider.dart';
 
-
 /// Define a Emergent container box shape
 
 class EmergentBoxShape {

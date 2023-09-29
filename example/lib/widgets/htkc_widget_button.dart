@@ -445,8 +445,8 @@ EmergentButton(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -470,8 +470,8 @@ EmergentButton(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -495,8 +495,8 @@ EmergentButton(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),

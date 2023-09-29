@@ -1,9 +1,6 @@
 import 'dart:math' as math;
-
-import 'package:flutter/material.dart';
 import 'package:htkc_utils/hc_utils/chart/hc_stack.dart';
-import 'package:htkc_utils/hc_utils/chart/hc_animated_circular_chart.dart';
-import 'package:htkc_utils/hc_utils/chart/hc_circular_chart.dart';
+import 'package:htkc_utils/htkc_utils.dart';
 
 class HcAnimatedCircularChartPainter extends CustomPainter {
   HcAnimatedCircularChartPainter(this.animation, this.labelPainter)
@@ -22,8 +19,8 @@ class HcAnimatedCircularChartPainter extends CustomPainter {
   bool shouldRepaint(HcAnimatedCircularChartPainter oldDelegate) => false;
 }
 
-class HcCircularChartPainter extends CustomPainter {
-  HcCircularChartPainter(this.chart, this.labelPainter);
+class CircularChartPainter extends CustomPainter {
+  CircularChartPainter(this.chart, this.labelPainter);
 
   final HcCircularChart chart;
   final TextPainter labelPainter;
@@ -35,10 +32,10 @@ class HcCircularChartPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(HcCircularChartPainter oldDelegate) => false;
+  bool shouldRepaint(CircularChartPainter oldDelegate) => false;
 }
 
-const double _kRadiansPerDegree = math.pi / 180;
+const double _hcRadiansPerDegree = math.pi / 180;
 
 void _paintLabel(Canvas canvas, Size size, TextPainter? labelPainter) {
   if (labelPainter != null) {
@@ -57,7 +54,7 @@ void _paintChart(Canvas canvas, Size size, HcCircularChart chart) {
     ..style = chart.chartType == HcCircularChartType.radial
         ? PaintingStyle.stroke
         : PaintingStyle.fill
-    ..strokeCap = chart.edgeStyle == HcSegmentEdgeStyle.round
+    ..strokeCap = chart.edgeStyle == SegmentEdgeStyle.round
         ? StrokeCap.round
         : StrokeCap.butt;
 
@@ -71,8 +68,8 @@ void _paintChart(Canvas canvas, Size size, HcCircularChart chart) {
           center: Offset(size.width / 2, size.height / 2),
           radius: stack.radius!,
         ),
-        stack.startAngle! * _kRadiansPerDegree,
-        segment.sweepAngle! * _kRadiansPerDegree,
+        stack.startAngle! * _hcRadiansPerDegree,
+        segment.sweepAngle! * _hcRadiansPerDegree,
         chart.chartType == HcCircularChartType.pie,
         segmentPaint,
       );

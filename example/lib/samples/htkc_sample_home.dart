@@ -9,7 +9,6 @@ import 'package:example/samples/htkc_test_sample.dart';
 import 'package:example/samples/htkc_widget_sample.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 class SamplesHome extends StatelessWidget {
   Widget _buildButton({String? text, VoidCallback? onClick}) {
     return EmergentButton(

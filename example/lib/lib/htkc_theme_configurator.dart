@@ -1,7 +1,6 @@
 import 'package:example/lib/htkc_theme_color_selector.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 class ThemeConfigurator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,8 @@ class HcSlideAnimation extends StatefulWidget {
   final AnimationController animationController;
 
   // we have created a named parameter constructor
-  const HcSlideAnimation({super.key,
+  const HcSlideAnimation({
+    super.key,
     required this.position,
     required this.itemCount,
     required this.slideDirection,

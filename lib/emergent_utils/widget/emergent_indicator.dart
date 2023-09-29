@@ -1,6 +1,5 @@
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 /// A Style to customize the [EmergentIndicator]
 ///
 /// the gradient will use [accent] and [variant]
@@ -206,10 +205,10 @@ class _EmergentIndicatorState extends State<EmergentIndicator>
             animation: _animation,
             builder: (_, __) {
               return FractionallySizedBox(
-                heightFactor: widget.orientation ==
-                        EmergentIndicatorOrientation.vertical
-                    ? _animation.value
-                    : 1,
+                heightFactor:
+                    widget.orientation == EmergentIndicatorOrientation.vertical
+                        ? _animation.value
+                        : 1,
                 widthFactor: widget.orientation ==
                         EmergentIndicatorOrientation.horizontal
                     ? _animation.value

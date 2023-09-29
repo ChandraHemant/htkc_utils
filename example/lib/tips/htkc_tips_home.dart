@@ -3,7 +3,6 @@ import 'package:example/tips/htkc_tips.dart';
 import 'package:example/tips/htkc_tips_border.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 class TipsHome extends StatelessWidget {
   Widget _buildButton({String? text, VoidCallback? onClick}) {
     return EmergentButton(

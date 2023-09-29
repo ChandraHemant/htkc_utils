@@ -15,7 +15,8 @@ class HcRelativeDateFormat {
 
   //Time conversion
   static String format(DateTime date) {
-    num delta = DateTime.now().millisecondsSinceEpoch - date.millisecondsSinceEpoch;
+    num delta =
+        DateTime.now().millisecondsSinceEpoch - date.millisecondsSinceEpoch;
     if (delta < 1 * oneMinute) {
       num seconds = toSeconds(delta);
       return (seconds <= 0 ? 1 : seconds).toInt().toString() + oneSecondAgo;
@@ -38,16 +39,16 @@ class HcRelativeDateFormat {
     if (delta < 12 * 4 * oneWeek) {
       num months = toMonths(delta);
       return (months <= 0 ? 1 : months).toInt().toString() + oneMonthAgo;
-    }else if(date.year == DateTime.now().year){
+    } else if (date.year == DateTime.now().year) {
       return DateFormat('dd MMM').format(date);
     } else {
       num years = toYears(delta);
-      
-      return years <= 0 ? "1 $oneYearAgo" : DateFormat("dd/MM/yyyy").format(date);
+
+      return years <= 0
+          ? "1 $oneYearAgo"
+          : DateFormat("dd/MM/yyyy").format(date);
     }
   }
-
-  
 
   static num toSeconds(num date) {
     return date / 1000;
@@ -73,4 +74,3 @@ class HcRelativeDateFormat {
     return toMonths(date) / 365;
   }
 }
-

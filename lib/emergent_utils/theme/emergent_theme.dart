@@ -41,7 +41,8 @@ class EmergentTheme extends StatefulWidget {
   final Widget child;
   final ThemeMode themeMode;
 
-  const EmergentTheme({super.key,
+  const EmergentTheme({
+    super.key,
     required this.child,
     this.theme = emergentDefaultTheme,
     this.darkTheme = emergentDefaultDarkTheme,
@@ -107,9 +108,7 @@ class EmergentTheme extends StatefulWidget {
   static EmergentThemeData currentTheme(BuildContext context) {
     final provider = EmergentTheme.of(context);
     if (provider == null) return emergentDefaultTheme;
-    return provider.current == null
-        ? emergentDefaultTheme
-        : provider.current!;
+    return provider.current == null ? emergentDefaultTheme : provider.current!;
   }
 }
 

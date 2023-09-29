@@ -1,10 +1,10 @@
 import 'dart:ui' show lerpDouble;
-import 'package:flutter/material.dart';
-import 'package:htkc_utils/hc_utils/chart/hc_entry.dart';
+
 import 'package:htkc_utils/hc_utils/chart/hc_segment.dart';
 import 'package:htkc_utils/hc_utils/chart/hc_tween.dart';
+import 'package:htkc_utils/htkc_utils.dart';
 
-const double hcMaxAngle = 360.0;
+const double _hcMaxAngle = 360.0;
 
 class HcCircularChartStack implements HcMergeTweenAble<HcCircularChartStack> {
   HcCircularChartStack(
@@ -41,7 +41,7 @@ class HcCircularChartStack implements HcMergeTweenAble<HcCircularChartStack> {
     List<HcCircularChartSegment> segments =
     List<HcCircularChartSegment>.generate(entries.length, (i) {
       double sweepAngle =
-          (entries[i].value / valueSum * hcMaxAngle) + previousSweepAngle;
+          (entries[i].value / valueSum * _hcMaxAngle) + previousSweepAngle;
       previousSweepAngle = sweepAngle;
       int rank = entryRanks![entries[i].rankKey] ?? i;
       return HcCircularChartSegment(rank, sweepAngle, entries[i].color);
@@ -65,11 +65,11 @@ class HcCircularChartStack implements HcMergeTweenAble<HcCircularChartStack> {
 
   @override
   Tween<HcCircularChartStack> hcTweenTo(HcCircularChartStack other) =>
-      HcCircularChartStackTween(this, other);
+      CircularChartStackTween(this, other);
 }
 
-class HcCircularChartStackTween extends Tween<HcCircularChartStack> {
-  HcCircularChartStackTween(HcCircularChartStack begin, HcCircularChartStack end)
+class CircularChartStackTween extends Tween<HcCircularChartStack> {
+  CircularChartStackTween(HcCircularChartStack begin, HcCircularChartStack end)
       : _circularSegmentsTween =
   HcMergeTween<HcCircularChartSegment>(begin.segments, end.segments),
         super(begin: begin, end: end) {

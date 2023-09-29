@@ -110,7 +110,8 @@ class EmergentSlider extends StatefulWidget {
   final Widget? thumb;
   final double? sliderHeight;
 
-  const EmergentSlider({super.key,
+  const EmergentSlider({
+    super.key,
     this.style = const SliderStyle(),
     this.min = 0,
     this.value = 0,

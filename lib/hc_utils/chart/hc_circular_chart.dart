@@ -1,22 +1,19 @@
-import 'package:flutter/animation.dart';
-import 'package:flutter/material.dart';
-import 'package:htkc_utils/hc_utils/chart/hc_animated_circular_chart.dart';
-import 'package:htkc_utils/hc_utils/chart/hc_entry.dart';
 import 'package:htkc_utils/hc_utils/chart/hc_stack.dart';
 import 'package:htkc_utils/hc_utils/chart/hc_tween.dart';
+import 'package:htkc_utils/htkc_utils.dart';
 
 class HcCircularChart {
-  static const double _kStackWidthFraction = 0.75;
+  static const double _hcStackWidthFraction = 0.75;
 
   HcCircularChart(
       this.stacks,
       this.chartType, {
-        this.edgeStyle = HcSegmentEdgeStyle.flat,
+        this.edgeStyle = SegmentEdgeStyle.flat,
       });
 
   final List<HcCircularChartStack> stacks;
   final HcCircularChartType chartType;
-  final HcSegmentEdgeStyle? edgeStyle;
+  final SegmentEdgeStyle? edgeStyle;
 
   factory HcCircularChart.empty({required HcCircularChartType chartType}) {
     return HcCircularChart(<HcCircularChartStack>[], chartType);
@@ -30,14 +27,14 @@ class HcCircularChart {
     required double startAngle,
     Map<String?, int>? stackRanks,
     Map<String?, int>? entryRanks,
-    double? hcHoleRadius,
-    HcSegmentEdgeStyle? edgeStyle,
+    double? holeRadius,
+    SegmentEdgeStyle? edgeStyle,
   }) {
-    final double holeRadius = hcHoleRadius ?? size.width / (2 + data.length);
+    final double hcHoleRadius = holeRadius ?? size.width / (2 + data.length);
     final double stackDistance =
-        (size.width / 2 - holeRadius) / (2 + data.length);
-    final double stackWidth = stackDistance * _kStackWidthFraction;
-    final double startRadius = stackDistance + holeRadius;
+        (size.width / 2 - hcHoleRadius) / (2 + data.length);
+    final double stackWidth = stackDistance * _hcStackWidthFraction;
+    final double startRadius = stackDistance + hcHoleRadius;
 
     List<HcCircularChartStack> stacks = List<HcCircularChartStack>.generate(
       data.length,

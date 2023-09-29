@@ -193,8 +193,8 @@ Emergent(
                 width: 100,
                 child: Text(
                   widget.title,
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               Emergent(
@@ -223,8 +223,8 @@ Emergent(
                 width: 100,
                 child: Text(
                   "opposite\nchild\nlightsource",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               Emergent(

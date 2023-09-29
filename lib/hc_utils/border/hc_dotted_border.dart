@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:htkc_utils/hc_utils/border/hc_dash_painter.dart';
 import 'package:path_drawing/path_drawing.dart';
 
-
 /// Add a dotted border around any [child] widget. The [strokeWidth] property
 /// defines the width of the dashed border and [color] determines the stroke
 /// paint color. [CircularIntervalList] is populated with the [dashPattern] to
@@ -21,7 +20,8 @@ class HcDottedBorder extends StatelessWidget {
   final StrokeCap strokeCap;
   final HcPathBuilder? customPath;
 
-  HcDottedBorder({super.key,
+  HcDottedBorder({
+    super.key,
     required this.child,
     this.color = Colors.black,
     this.strokeWidth = 1,

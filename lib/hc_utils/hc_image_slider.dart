@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 class HcImageSliderWidget extends StatefulWidget {
   final List imageUrls;
   final BorderRadius imageBorderRadius;
@@ -30,7 +29,6 @@ class HcImageSliderWidget extends StatefulWidget {
 
   @override
   State<HcImageSliderWidget> createState() => _HcImageSliderWidgetState();
-
 }
 
 class _HcImageSliderWidgetState extends State<HcImageSliderWidget> {
@@ -86,7 +84,7 @@ class _HcImageSliderWidgetState extends State<HcImageSliderWidget> {
           ),
           child: SizedBox(
             height: widget.imageHeight,
-            width:  widget.imageWidth,
+            width: widget.imageWidth,
             child: _buildPagerViewSlider(),
           ),
         ),
@@ -121,13 +119,13 @@ class _HcImageSliderWidgetState extends State<HcImageSliderWidget> {
           runSpacing: 4.0,
           children: List.generate(
               _pages.length,
-                  (index) => Icon(
-                page == index
-                    ? Icons.brightness_1
-                    : Icons.radio_button_unchecked,
-                color: widget.bulletColor,
-                size: 11,
-              ))),
+              (index) => Icon(
+                    page == index
+                        ? Icons.brightness_1
+                        : Icons.radio_button_unchecked,
+                    color: widget.bulletColor,
+                    size: 11,
+                  ))),
     );
   }
 
@@ -159,11 +157,20 @@ class _HcImageSliderWidgetState extends State<HcImageSliderWidget> {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          hcSaveNetworkImage(name: '$imageName.jpg', url: widget.baseUrl! + sliderImage, context: context);
+                          hcSaveNetworkImage(
+                              name: '$imageName.jpg',
+                              url: widget.baseUrl! + sliderImage,
+                              context: context);
                         },
                         child: const Padding(
-                          padding: EdgeInsets.only(top: 4.0, bottom: 4,left: 16,right: 16),
-                          child: Text('Save',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                          padding: EdgeInsets.only(
+                              top: 4.0, bottom: 4, left: 16, right: 16),
+                          child: Text(
+                            'Save',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),
@@ -187,14 +194,13 @@ class _HcImageSliderWidgetState extends State<HcImageSliderWidget> {
                   height: 50,
                   decoration: const BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.black,
-                          Colors.black,
-                        ],
-                      )
-                  ),
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black,
+                      Colors.black,
+                    ],
+                  )),
                 ),
               ),
               Positioned(
@@ -203,24 +209,30 @@ class _HcImageSliderWidgetState extends State<HcImageSliderWidget> {
                 child: Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
-                          colors: [Colors.black,Colors.transparent,],
+                          colors: [
+                            Colors.black,
+                            Colors.transparent,
+                          ],
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
                           stops: [0.0, 1.0],
                           tileMode: TileMode.clamp),
                     ),
-                    width:350,
+                    width: 350,
                     height: 40,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0,top: 8,bottom: 4),
-                      child: Text(imageName, style: HcAppTextStyle.boldTextStyle(color: Colors.white, size: 15),),
-                    )
-                ),
+                      padding:
+                          const EdgeInsets.only(left: 8.0, top: 8, bottom: 4),
+                      child: Text(
+                        imageName,
+                        style: HcAppTextStyle.boldTextStyle(
+                            color: Colors.white, size: 15),
+                      ),
+                    )),
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }
 
@@ -237,9 +249,9 @@ class DotsIndicator extends AnimatedWidget {
   final int? itemCount;
   final ValueChanged<int>? onPageSelected;
   final Color color;
-  static const double _kDotSize = 4.0;
-  static const double _kMaxZoom = 2.0;
-  static const double _kDotSpacing = 15.0;
+  static const double _hcDotSize = 4.0;
+  static const double _hcMaxZoom = 2.0;
+  static const double _hcDotSpacing = 15.0;
 
   Widget _buildDot(int index) {
     double selectedNess = Curves.easeOut.transform(
@@ -248,16 +260,16 @@ class DotsIndicator extends AnimatedWidget {
         1.0 - ((controller.page ?? controller.initialPage) - index).abs(),
       ),
     );
-    double zoom = 1.0 + (_kMaxZoom - 1.0) * selectedNess;
+    double zoom = 1.0 + (_hcMaxZoom - 1.0) * selectedNess;
     return SizedBox(
-      width: _kDotSpacing,
+      width: _hcDotSpacing,
       child: Center(
         child: Material(
           color: color,
           type: MaterialType.circle,
           child: SizedBox(
-            width: _kDotSize * zoom,
-            height: _kDotSize * zoom,
+            width: _hcDotSize * zoom,
+            height: _hcDotSize * zoom,
             child: InkWell(
               onTap: () => onPageSelected!(index),
             ),

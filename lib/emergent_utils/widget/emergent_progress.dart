@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 /// A style to customize the [EmergentProgress]
 ///
 /// the gradient will use [accent] and [variant]
@@ -259,8 +258,7 @@ class EmergentProgressIndeterminate extends StatefulWidget {
 }
 
 class _EmergentProgressIndeterminateState
-    extends State<EmergentProgressIndeterminate>
-    with TickerProviderStateMixin {
+    extends State<EmergentProgressIndeterminate> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation _animation;
 
@@ -278,7 +276,7 @@ class _EmergentProgressIndeterminateState
       await _controller
           .repeat(min: 0, max: 1, reverse: widget.reverse)
           .orCancel;
-    } catch (e){
+    } catch (e) {
       if (kDebugMode) {
         print(e);
       }
@@ -353,8 +351,7 @@ class _GradientProgress extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: borderRadius,
-        gradient: LinearGradient(
-            begin: begin, end: end, colors: colors),
+        gradient: LinearGradient(begin: begin, end: end, colors: colors),
       ),
     );
   }

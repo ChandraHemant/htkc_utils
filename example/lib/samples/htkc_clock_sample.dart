@@ -2,7 +2,6 @@ import 'package:example/libraries/htkc_top_bar.dart';
 import 'package:example/samples/htkc_clock_second_sample.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 class ClockSample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -68,8 +67,8 @@ class _ClockFirstPageState extends State<_ClockFirstPage> {
                     style: EmergentStyle(
                       depth: 20,
                       intensity: 0.4,
-                      boxShape: EmergentBoxShape.roundRect(
-                          BorderRadius.circular(8)),
+                      boxShape:
+                          EmergentBoxShape.roundRect(BorderRadius.circular(8)),
                     ),
                     child: EmergentButton(
                       padding: EdgeInsets.all(12.0),

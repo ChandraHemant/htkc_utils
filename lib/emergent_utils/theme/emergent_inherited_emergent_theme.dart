@@ -17,7 +17,8 @@ class EmergentThemeInherited extends InheritedWidget {
       : super(key: key, child: hcChild);
 
   @override
-  bool updateShouldNotify(EmergentThemeInherited oldWidget) => value != oldWidget.value;
+  bool updateShouldNotify(EmergentThemeInherited oldWidget) =>
+      value != oldWidget.value;
 
   EmergentThemeData? get current {
     return value.current;

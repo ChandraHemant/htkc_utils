@@ -14,7 +14,8 @@ HcImageCompressionInterface getCompressor() => HcImageCompressionIO();
 
 class HcImageCompressionIO extends HcImageCompressionInterface {
   @override
-  Future<ic.ImageFile> compressWebpThenJpg(HcImageFileConfiguration param) async {
+  Future<ic.ImageFile> compressWebpThenJpg(
+      HcImageFileConfiguration param) async {
     return await dummyCallNativeCode(
       'compressWebpThenJpg',
       param.toMap(),
@@ -32,7 +33,8 @@ class HcImageCompressionIO extends HcImageCompressionInterface {
   }
 
   @override
-  Future<ic.ImageFile> compressWebpThenPng(HcImageFileConfiguration param) async {
+  Future<ic.ImageFile> compressWebpThenPng(
+      HcImageFileConfiguration param) async {
     return await dummyCallNativeCode(
       'compressWebpThenPng',
       param.toMap(),

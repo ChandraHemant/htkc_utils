@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:htkc_utils/emergent_utils/emergent_box_shape.dart';
 
-
 class EmergentBoxShapeClipper extends StatelessWidget {
   final EmergentBoxShape shape;
   final Widget? child;

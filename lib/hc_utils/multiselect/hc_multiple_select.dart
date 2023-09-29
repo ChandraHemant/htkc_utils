@@ -2,15 +2,16 @@ import 'package:htkc_utils/htkc_utils.dart';
 
 class HcMultipleSelect {
   static Future hcShowMultipleSelector(
-      BuildContext context, {
-        required List<HcMultipleSelectItem> elements,
-        required values,
-        required String title,
-      }) {
+    BuildContext context, {
+    required List<HcMultipleSelectItem> elements,
+    required values,
+    required String title,
+  }) {
     return Navigator.push(
       context,
       HcMultipleSelectRoute<List>(
-        barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
         elements: elements,
         values: values,
         title: title,
@@ -77,7 +78,8 @@ class HcSelectorList<T> extends StatefulWidget {
   final List values;
   final String title;
 
-  const HcSelectorList({super.key,
+  const HcSelectorList({
+    super.key,
     required this.elements,
     this.height = 200,
     required this.values,
@@ -144,8 +146,8 @@ class HcSelectorListState extends State<HcSelectorList> {
                         setState(() {});
                       },
                       child: Padding(
-                        padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
@@ -165,15 +167,15 @@ class HcSelectorListState extends State<HcSelectorList> {
                               flex: 1,
                               child: widget.values.contains(item.value)
                                   ? const Icon(
-                                Icons.check_box,
-                                color: Colors.green,
-                                size: 30,
-                              )
+                                      Icons.check_box,
+                                      color: Colors.green,
+                                      size: 30,
+                                    )
                                   : const Icon(
-                                Icons.check_box_outline_blank,
-                                color: Colors.grey,
-                                size: 30,
-                              ),
+                                      Icons.check_box_outline_blank,
+                                      color: Colors.grey,
+                                      size: 30,
+                                    ),
                             )
                           ],
                         ),
@@ -191,28 +193,28 @@ class HcSelectorListState extends State<HcSelectorList> {
   }
 
   var getToolbar = (context, values) => Positioned(
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 40,
-    child: GestureDetector(
-      onTap: () => Navigator.pop(context, values),
-      child: Container(
-        decoration: BoxDecoration(
-          border:
-          Border(top: BorderSide(width: 2, color: Colors.grey[350]!)),
-          color: Colors.grey[200],
-        ),
+        bottom: 0,
+        left: 0,
+        right: 0,
         height: 40,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: const Icon(
-          Icons.keyboard_arrow_down,
-          size: 35,
-          color: Colors.black54,
+        child: GestureDetector(
+          onTap: () => Navigator.pop(context, values),
+          child: Container(
+            decoration: BoxDecoration(
+              border:
+                  Border(top: BorderSide(width: 2, color: Colors.grey[350]!)),
+              color: Colors.grey[200],
+            ),
+            height: 40,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Icon(
+              Icons.keyboard_arrow_down,
+              size: 35,
+              color: Colors.black54,
+            ),
+          ),
         ),
-      ),
-    ),
-  );
+      );
 }
 
 class HcMultipleSelectItem<V, D, C> {
@@ -229,27 +231,27 @@ class HcMultipleSelectItem<V, D, C> {
   });
 
   HcMultipleSelectItem.fromJson(
-      Map<String, dynamic> json, {
-        displayKey = 'display',
-        valueKey = 'value',
-        contentKey = 'content',
-      })  : value = json[valueKey] ?? '',
+    Map<String, dynamic> json, {
+    displayKey = 'display',
+    valueKey = 'value',
+    contentKey = 'content',
+  })  : value = json[valueKey] ?? '',
         display = json[displayKey] ?? '',
         content = json[contentKey] ?? '';
 
   static List<HcMultipleSelectItem> allFromJson(
-      List jsonList, {
-        displayKey = 'display',
-        valueKey = 'value',
-        contentKey = 'content',
-      }) {
+    List jsonList, {
+    displayKey = 'display',
+    valueKey = 'value',
+    contentKey = 'content',
+  }) {
     return jsonList
         .map((json) => HcMultipleSelectItem.fromJson(
-      json,
-      displayKey: displayKey,
-      valueKey: valueKey,
-      contentKey: contentKey,
-    ))
+              json,
+              displayKey: displayKey,
+              valueKey: valueKey,
+              contentKey: contentKey,
+            ))
         .toList();
   }
 }

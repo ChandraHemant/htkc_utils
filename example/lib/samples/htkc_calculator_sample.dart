@@ -64,9 +64,7 @@ class WidgetCalcButton extends StatelessWidget {
   }
 
   Color? _backgroundColor(BuildContext context) {
-    return button.backgroundAccent
-        ? EmergentTheme.accentColor(context)
-        : null;
+    return button.backgroundAccent ? EmergentTheme.accentColor(context) : null;
   }
 
   @override

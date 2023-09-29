@@ -214,117 +214,120 @@ class _ChatListState extends State<ChatList>
     _controller.dispose();
     super.dispose();
   }
+
   @override
-  Widget build(BuildContext context) => NotificationListener<ScrollNotification>(
-    onNotification: (notification) {
-      if (notification.metrics.pixels > 10.0 && !_indicatorOnScrollStatus) {
-        setState(() {
-          _indicatorOnScrollStatus = !_indicatorOnScrollStatus;
-        });
-      } else if (notification.metrics.pixels == 0.0 &&
-          _indicatorOnScrollStatus) {
-        setState(() {
-          _indicatorOnScrollStatus = !_indicatorOnScrollStatus;
-        });
-      }
+  Widget build(BuildContext context) =>
+      NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          if (notification.metrics.pixels > 10.0 && !_indicatorOnScrollStatus) {
+            setState(() {
+              _indicatorOnScrollStatus = !_indicatorOnScrollStatus;
+            });
+          } else if (notification.metrics.pixels == 0.0 &&
+              _indicatorOnScrollStatus) {
+            setState(() {
+              _indicatorOnScrollStatus = !_indicatorOnScrollStatus;
+            });
+          }
 
-      if (widget.onEndReached == null || widget.isLastPage == true) {
-        return false;
-      }
+          if (widget.onEndReached == null || widget.isLastPage == true) {
+            return false;
+          }
 
-      if (notification.metrics.pixels >=
-          (notification.metrics.maxScrollExtent *
-              (widget.onEndReachedThreshold ?? 0.75))) {
-        if (widget.items.isEmpty || _isNextPageLoading) return false;
+          if (notification.metrics.pixels >=
+              (notification.metrics.maxScrollExtent *
+                  (widget.onEndReachedThreshold ?? 0.75))) {
+            if (widget.items.isEmpty || _isNextPageLoading) return false;
 
-        _controller.duration = Duration.zero;
-        _controller.forward();
+            _controller.duration = Duration.zero;
+            _controller.forward();
 
-        setState(() {
-          _isNextPageLoading = true;
-        });
+            setState(() {
+              _isNextPageLoading = true;
+            });
 
-        widget.onEndReached!().whenComplete(() {
-          _controller.duration = const Duration(milliseconds: 300);
-          _controller.reverse();
+            widget.onEndReached!().whenComplete(() {
+              _controller.duration = const Duration(milliseconds: 300);
+              _controller.reverse();
 
-          setState(() {
-            _isNextPageLoading = false;
-          });
-        });
-      }
+              setState(() {
+                _isNextPageLoading = false;
+              });
+            });
+          }
 
-      return false;
-    },
-    child: CustomScrollView(
-      controller: widget.scrollController,
-      keyboardDismissBehavior: widget.keyboardDismissBehavior,
-      physics: widget.scrollPhysics,
-      reverse: true,
-      slivers: [
-        if (widget.bottomWidget != null)
-          SliverToBoxAdapter(child: widget.bottomWidget),
-        SliverPadding(
-          padding: const EdgeInsets.only(bottom: 4),
-          sliver: SliverToBoxAdapter(
-            child: (widget.typingIndicatorOptions!.typingUsers.isNotEmpty && !_indicatorOnScrollStatus)
-                ? widget.typingIndicatorOptions?.customTypingIndicator ??
-                TypingIndicator(
-                  bubbleAlignment: widget.bubbleRtlAlignment,
-                  options: widget.typingIndicatorOptions!,
-                  showIndicator:
-                  (widget.typingIndicatorOptions!.typingUsers.isNotEmpty && !_indicatorOnScrollStatus),
-                )
-                : const SizedBox.shrink(),
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.only(bottom: 4),
-          sliver: SliverAnimatedList(
-            initialItemCount: widget.items.length,
-            key: _listKey,
-            itemBuilder: (_, index, animation) =>
-                _newMessageBuilder(index, animation),
-          ),
-        ),
-        SliverPadding(
-          padding: EdgeInsets.only(
-            top: 16 +
-                (widget.useTopSafeAreaInset
-                    ? MediaQuery.of(context).padding.top
-                    : 0),
-          ),
-          sliver: SliverToBoxAdapter(
-            child: SizeTransition(
-              axisAlignment: 1,
-              sizeFactor: _animation,
-              child: Center(
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 32,
-                  width: 32,
-                  child: SizedBox(
-                    height: 16,
-                    width: 16,
-                    child: _isNextPageLoading
-                        ? CircularProgressIndicator(
-                      backgroundColor: Colors.transparent,
-                      strokeWidth: 1.5,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        InheritedChatTheme.of(context)
-                            .theme
-                            .primaryColor,
+          return false;
+        },
+        child: CustomScrollView(
+          controller: widget.scrollController,
+          keyboardDismissBehavior: widget.keyboardDismissBehavior,
+          physics: widget.scrollPhysics,
+          reverse: true,
+          slivers: [
+            if (widget.bottomWidget != null)
+              SliverToBoxAdapter(child: widget.bottomWidget),
+            SliverPadding(
+              padding: const EdgeInsets.only(bottom: 4),
+              sliver: SliverToBoxAdapter(
+                child: (widget.typingIndicatorOptions!.typingUsers.isNotEmpty &&
+                        !_indicatorOnScrollStatus)
+                    ? widget.typingIndicatorOptions?.customTypingIndicator ??
+                        TypingIndicator(
+                          bubbleAlignment: widget.bubbleRtlAlignment,
+                          options: widget.typingIndicatorOptions!,
+                          showIndicator: (widget.typingIndicatorOptions!
+                                  .typingUsers.isNotEmpty &&
+                              !_indicatorOnScrollStatus),
+                        )
+                    : const SizedBox.shrink(),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.only(bottom: 4),
+              sliver: SliverAnimatedList(
+                initialItemCount: widget.items.length,
+                key: _listKey,
+                itemBuilder: (_, index, animation) =>
+                    _newMessageBuilder(index, animation),
+              ),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.only(
+                top: 16 +
+                    (widget.useTopSafeAreaInset
+                        ? MediaQuery.of(context).padding.top
+                        : 0),
+              ),
+              sliver: SliverToBoxAdapter(
+                child: SizeTransition(
+                  axisAlignment: 1,
+                  sizeFactor: _animation,
+                  child: Center(
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 32,
+                      width: 32,
+                      child: SizedBox(
+                        height: 16,
+                        width: 16,
+                        child: _isNextPageLoading
+                            ? CircularProgressIndicator(
+                                backgroundColor: Colors.transparent,
+                                strokeWidth: 1.5,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  InheritedChatTheme.of(context)
+                                      .theme
+                                      .primaryColor,
+                                ),
+                              )
+                            : null,
                       ),
-                    )
-                        : null,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
-      ],
-    ),
-  );
-
+      );
 }

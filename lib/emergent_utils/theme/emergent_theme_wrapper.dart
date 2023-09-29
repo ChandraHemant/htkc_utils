@@ -19,7 +19,8 @@ class ThemeWrapper {
       themeMode == ThemeMode.dark ||
       //The setting indicating the current brightness mode of the host platform. If the platform has no preference, platformBrightness defaults to Brightness.light.
       (themeMode == ThemeMode.system &&
-          WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark);
+          WidgetsBinding.instance.platformDispatcher.platformBrightness ==
+              Brightness.dark);
 
   EmergentThemeData? get current {
     if (useDark) {

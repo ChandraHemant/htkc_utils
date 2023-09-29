@@ -36,8 +36,7 @@ export 'package:htkc_utils/image_compression_utils/basic_utils/hc_compress_forma
 /// support rotate
 ///
 class HcImageCompress {
-  static const MethodChannel _channel =
-      MethodChannel('flutter_image_compress');
+  static const MethodChannel _channel = MethodChannel('flutter_image_compress');
 
   static final HcValidator _validator = HcValidator(_channel);
 

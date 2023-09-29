@@ -1,11 +1,11 @@
 import 'package:htkc_utils/htkc_utils.dart';
 
-const BoxConstraints _kSizeConstraints = BoxConstraints.tightFor(
+const BoxConstraints _hcSizeConstraints = BoxConstraints.tightFor(
   width: 56.0,
   height: 56.0,
 );
 
-const BoxConstraints _kMiniSizeConstraints = BoxConstraints.tightFor(
+const BoxConstraints _hcMiniSizeConstraints = BoxConstraints.tightFor(
   width: 40.0,
   height: 40.0,
 );
@@ -29,7 +29,7 @@ class EmergentFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: mini ? _kMiniSizeConstraints : _kSizeConstraints,
+      constraints: mini ? _hcMiniSizeConstraints : _hcSizeConstraints,
       child: EmergentButton(
         padding: const EdgeInsets.all(0),
         onPressed: onPressed,

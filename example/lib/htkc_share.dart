@@ -56,7 +56,8 @@ class _HtkcSharePageState extends State<HtkcSharePage> {
 
   Future<void> _shareText() async {
     try {
-      HcShare.text('my text title', 'This is my text to share with other applications.', 'text/plain');
+      HcShare.text('my text title',
+          'This is my text to share with other applications.', 'text/plain');
     } catch (e) {
       print('error: $e');
     }
@@ -65,7 +66,9 @@ class _HtkcSharePageState extends State<HtkcSharePage> {
   Future<void> _shareImage() async {
     try {
       final ByteData bytes = await rootBundle.load('assets/image1.png');
-      await HcShare.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png', text: 'My optional text.');
+      await HcShare.file(
+          'esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png',
+          text: 'My optional text.');
     } catch (e) {
       print('error: $e');
     }
@@ -91,7 +94,8 @@ class _HtkcSharePageState extends State<HtkcSharePage> {
   Future<void> _shareCSV() async {
     try {
       final ByteData bytes = await rootBundle.load('assets/addresses.csv');
-      await HcShare.file('addresses', 'addresses.csv', bytes.buffer.asUint8List(), 'text/csv');
+      await HcShare.file(
+          'addresses', 'addresses.csv', bytes.buffer.asUint8List(), 'text/csv');
     } catch (e) {
       print('error: $e');
     }
@@ -119,8 +123,8 @@ class _HtkcSharePageState extends State<HtkcSharePage> {
 
   Future<void> _shareImageFromUrl() async {
     try {
-      var request =
-      await HttpClient().getUrl(Uri.parse('https://cdn.shopware.store/r/4/9/Q2AEt/thumbnail/5d/d6/aa/1612969110/leiterplatte_800x800.png'));
+      var request = await HttpClient().getUrl(Uri.parse(
+          'https://cdn.shopware.store/r/4/9/Q2AEt/thumbnail/5d/d6/aa/1612969110/leiterplatte_800x800.png'));
       var response = await request.close();
       Uint8List bytes = await consolidateHttpClientResponseBytes(response);
       await HcShare.file('HTKC LOG', 'amlog.jpg', bytes, 'image/jpg');

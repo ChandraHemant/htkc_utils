@@ -1,4 +1,3 @@
-
 import 'package:htkc_utils/hc_utils/multiselect/hc_multiple_select.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
@@ -16,7 +15,7 @@ class MultipleDropDown extends StatefulWidget {
     required this.elements,
     this.placeholder,
     this.disabled = false,
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => MultipleDropDownState();
@@ -33,22 +32,26 @@ class MultipleDropDownState extends State<MultipleDropDown> {
               opacity: widget.disabled ? 0.4 : 1,
               child: Container(
                 margin: const EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 0.5, color: Colors.grey[350]!))),
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom:
+                            BorderSide(width: 0.5, color: Colors.grey[350]!))),
                 child: Row(
                   children: <Widget>[
                     Expanded(
                       child: _getContent(),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5.5),
-                      child: const Icon(Icons.arrow_drop_down, color: Colors.black54),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 0, horizontal: 5.5),
+                      child: const Icon(Icons.arrow_drop_down,
+                          color: Colors.black54),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-
         ],
       ),
       onTap: () {
@@ -81,24 +84,23 @@ class MultipleDropDownState extends State<MultipleDropDown> {
       );
     } else {
       return Wrap(
-        children: widget
-            .elements
+        children: widget.elements
             .where((element) => widget.values.contains(element.value))
             .map(
               (element) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 1),
-            child: RawChip(
-              isEnabled: !widget.disabled,
-              label: Text(element.display),
-              onDeleted: () {
-                if (!widget.disabled) {
-                  widget.values.remove(element.value);
-                  setState(() {});
-                }
-              },
-            ),
-          ),
-        )
+                padding: const EdgeInsets.symmetric(horizontal: 1),
+                child: RawChip(
+                  isEnabled: !widget.disabled,
+                  label: Text(element.display),
+                  onDeleted: () {
+                    if (!widget.disabled) {
+                      widget.values.remove(element.value);
+                      setState(() {});
+                    }
+                  },
+                ),
+              ),
+            )
             .toList(),
       );
     }

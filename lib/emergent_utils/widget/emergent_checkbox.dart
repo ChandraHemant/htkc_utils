@@ -123,7 +123,8 @@ class EmergentCheckbox extends StatelessWidget {
   final Duration duration;
   final Curve curve;
 
-  const EmergentCheckbox({super.key,
+  const EmergentCheckbox({
+    super.key,
     this.style = const EmergentCheckboxStyle(),
     required this.value,
     required this.onChanged,
@@ -147,14 +148,12 @@ class EmergentCheckbox extends StatelessWidget {
 
     final double selectedDepth =
         -1 * (style.selectedDepth ?? theme.depth).abs();
-    final double unselectedDepth =
-        (style.unselectedDepth ?? theme.depth).abs();
+    final double unselectedDepth = (style.unselectedDepth ?? theme.depth).abs();
     final double selectedIntensity =
         (style.selectedIntensity ?? theme.intensity)
             .abs()
             .clamp(Emergent.minIntensity, Emergent.maxIntensity);
-    final double unselectedIntensity = style
-        .unselectedIntensity
+    final double unselectedIntensity = style.unselectedIntensity
         .clamp(Emergent.minIntensity, Emergent.maxIntensity);
 
     double depth = isSelected ? selectedDepth : unselectedDepth;

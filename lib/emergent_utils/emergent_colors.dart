@@ -26,8 +26,7 @@ class EmergentColors {
   static const Color decorationMaxDarkColor =
       Color(0x8A000000); //for intensity = 1
 
-  static const Color hcMaxWhiteColor =
-      Color(0x99FFFFFF); //for intensity = 1
+  static const Color hcMaxWhiteColor = Color(0x99FFFFFF); //for intensity = 1
   static const Color hcMaxDarkColor = Color(0x73000000); //for intensity = 1
 
   static const Color _gradientShaderDarkColor = Color(0x8A000000);
@@ -72,15 +71,13 @@ class EmergentColors {
   static Color gradientShaderDarkColor({required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: EmergentColors._gradientShaderDarkColor,
-        percent: intensity);
+        maxColor: EmergentColors._gradientShaderDarkColor, percent: intensity);
   }
 
   static Color gradientShaderWhiteColor({required double intensity}) {
     // intensity act on opacity;
     return _applyPercentageOnOpacity(
-        maxColor: EmergentColors._gradientShaderWhiteColor,
-        percent: intensity);
+        maxColor: EmergentColors._gradientShaderWhiteColor, percent: intensity);
   }
 
   static Color _applyPercentageOnOpacity(

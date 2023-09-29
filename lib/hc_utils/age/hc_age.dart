@@ -42,10 +42,11 @@ class HcAge {
   /// dateDifference method
   static AgeDuration dateDifference(
       {required DateTime fromDate,
-        required DateTime toDate,
-        bool includeToDate = false}) {
+      required DateTime toDate,
+      bool includeToDate = false}) {
     // Check if toDate to be included in the calculation
-    DateTime endDate = (includeToDate) ? toDate.add(const Duration(days: 1)) : toDate;
+    DateTime endDate =
+        (includeToDate) ? toDate.add(const Duration(days: 1)) : toDate;
 
     int years = endDate.year - fromDate.year;
     int months = 0;
@@ -58,7 +59,7 @@ class HcAge {
       if (fromDate.day > endDate.day) {
         months--;
         days = daysInMonth(fromDate.year + years,
-            ((fromDate.month + months - 1) % DateTime.monthsPerYear) + 1) +
+                ((fromDate.month + months - 1) % DateTime.monthsPerYear) + 1) +
             endDate.day -
             fromDate.day;
       } else {
@@ -69,7 +70,7 @@ class HcAge {
         years--;
         months = DateTime.monthsPerYear - 1;
         days = daysInMonth(fromDate.year + years,
-            ((fromDate.month + months - 1) % DateTime.monthsPerYear) + 1) +
+                ((fromDate.month + months - 1) % DateTime.monthsPerYear) + 1) +
             endDate.day -
             fromDate.day;
       } else {
@@ -92,8 +93,7 @@ class HcAge {
   }
 
   /// add method
-  static DateTime add(
-      {required DateTime date, required AgeDuration duration}) {
+  static DateTime add({required DateTime date, required AgeDuration duration}) {
     int years = date.year + duration.years;
     years += (date.month + duration.months) ~/ DateTime.monthsPerYear;
 

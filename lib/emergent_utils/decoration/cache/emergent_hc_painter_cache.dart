@@ -1,8 +1,7 @@
 import 'package:htkc_utils/emergent_utils/decoration/cache/emergent_abstract_painter_cache.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-class EmergentHcPainterCache
-    extends AbstractEmergentHcPainterCache {
+class EmergentHcPainterCache extends AbstractEmergentHcPainterCache {
   @override
   Color generateShadowDarkColor(
       {required Color color, required double intensity}) {

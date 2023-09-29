@@ -8,37 +8,37 @@ typedef WidgetPositionBuilder = Widget Function(int index);
 class HcMainGridView extends StatefulWidget {
   const HcMainGridView(
       {super.key,
-        this.header,
-        this.headerItemCount,
-        this.reverse = false,
-        this.headerGridDelegate,
-        required this.itemBuilder,
-        required this.onWillAccept,
-        this.feedback,
-        required this.onReorder,
-        this.childWhenDragging,
-        this.itemBuilderHeader,
-        this.controller,
-        this.isVertical = true,
-        this.padding,
-        this.semanticChildCount,
-        this.physics,
-        this.addAutomaticKeepAlive = true,
-        this.addRepaintBoundaries = true,
-        this.addSemanticIndexes = true,
-        this.headerPadding,
-        this.cacheExtent,
-        this.itemCount,
-        this.allHeaderChildNonDraggable = false,
-        this.primary,
-        this.isStickyHeader = false,
-        this.onReorderHeader,
-        this.onWillAcceptHeader,
-        this.isCustomFeedback = false,
-        this.isCustomChildWhenDragging = false,
-        required this.gridDelegate,
-        this.dragStartBehavior = DragStartBehavior.start,
-        this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual});
+      this.header,
+      this.headerItemCount,
+      this.reverse = false,
+      this.headerGridDelegate,
+      required this.itemBuilder,
+      required this.onWillAccept,
+      this.feedback,
+      required this.onReorder,
+      this.childWhenDragging,
+      this.itemBuilderHeader,
+      this.controller,
+      this.isVertical = true,
+      this.padding,
+      this.semanticChildCount,
+      this.physics,
+      this.addAutomaticKeepAlive = true,
+      this.addRepaintBoundaries = true,
+      this.addSemanticIndexes = true,
+      this.headerPadding,
+      this.cacheExtent,
+      this.itemCount,
+      this.allHeaderChildNonDraggable = false,
+      this.primary,
+      this.isStickyHeader = false,
+      this.onReorderHeader,
+      this.onWillAcceptHeader,
+      this.isCustomFeedback = false,
+      this.isCustomChildWhenDragging = false,
+      required this.gridDelegate,
+      this.dragStartBehavior = DragStartBehavior.start,
+      this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual});
   final bool reverse;
   final Widget? header;
   final ScrollController? controller;
@@ -143,7 +143,7 @@ class HcMainGridViewState extends State<HcMainGridView> {
       reverse: widget.reverse,
       shrinkWrap: true,
       controller:
-      widget.header == null ? _scrollController : _scrollController2,
+          widget.header == null ? _scrollController : _scrollController2,
       padding: widget.padding,
       scrollDirection: widget.isVertical ? Axis.vertical : Axis.horizontal,
       semanticChildCount: widget.semanticChildCount,
@@ -176,11 +176,9 @@ class HcMainGridViewState extends State<HcMainGridView> {
   Widget _gridChild(Widget mainWidget, int pos,
       {bool isFromArrangeP = false, bool isNonDraggable = false}) {
     return DragTarget(
-      builder: (_, __, ___) =>
-      isNonDraggable
+      builder: (_, __, ___) => isNonDraggable
           ? mainWidget
-          : _dragItemBuilder(mainWidget, pos,
-          isFromArrange: isFromArrangeP),
+          : _dragItemBuilder(mainWidget, pos, isFromArrange: isFromArrangeP),
       onWillAccept: (String? data) {
         if (data != null) {
           final onWillAcceptHeader = widget.onWillAcceptHeader;
@@ -188,7 +186,8 @@ class HcMainGridViewState extends State<HcMainGridView> {
             return widget.onWillAccept(int.parse(data), pos);
           }
           return data.toString().contains("h") && onWillAcceptHeader != null
-              ? onWillAcceptHeader(int.parse(data.toString().replaceAll("h", "")), pos)
+              ? onWillAcceptHeader(
+                  int.parse(data.toString().replaceAll("h", "")), pos)
               : false;
         }
 
@@ -214,12 +213,17 @@ class HcMainGridViewState extends State<HcMainGridView> {
 
     return LongPressDraggable(
       data: isFromArrange ? "h$pos" : "$pos",
-      feedback: widget.isCustomFeedback && feedback != null ? feedback(pos) : mainWidget,
-      childWhenDragging: widget.isCustomChildWhenDragging && childWhenDragging != null
-          ? childWhenDragging(pos)
+      feedback: widget.isCustomFeedback && feedback != null
+          ? feedback(pos)
           : mainWidget,
+      childWhenDragging:
+          widget.isCustomChildWhenDragging && childWhenDragging != null
+              ? childWhenDragging(pos)
+              : mainWidget,
       axis: isFromArrange
-          ? widget.isVertical ? Axis.horizontal : Axis.vertical
+          ? widget.isVertical
+              ? Axis.horizontal
+              : Axis.vertical
           : null,
       onDragStarted: () {
         setState(() {
@@ -324,57 +328,61 @@ class HcMainGridViewState extends State<HcMainGridView> {
           _gridViewHeight = constraints.maxHeight;
           _gridViewWidth = constraints.maxWidth;
           return widget.isStickyHeader
-              ? widget.isVertical ? _tableBuilder() : _tableBuilderHorizontal()
-              : header == null ? _dragAndDropGrid() : _headerChild(header);
+              ? widget.isVertical
+                  ? _tableBuilder()
+                  : _tableBuilderHorizontal()
+              : header == null
+                  ? _dragAndDropGrid()
+                  : _headerChild(header);
         }),
         !_isDragStart
             ? const SizedBox()
             : Align(
-          alignment: widget.isVertical
-              ? Alignment.topCenter
-              : Alignment.centerRight,
-          child: DragTarget(
-            builder:
-                (context, List<String?> candidateData, rejectedData) =>
-                Container(
-                  height: widget.isVertical ? 20 : double.infinity,
-                  width: widget.isVertical ? double.infinity : 20,
-                  color: Colors.transparent,
+                alignment: widget.isVertical
+                    ? Alignment.topCenter
+                    : Alignment.centerRight,
+                child: DragTarget(
+                  builder:
+                      (context, List<String?> candidateData, rejectedData) =>
+                          Container(
+                    height: widget.isVertical ? 20 : double.infinity,
+                    width: widget.isVertical ? double.infinity : 20,
+                    color: Colors.transparent,
+                  ),
+                  onWillAccept: (_) {
+                    if (!widget.isVertical) {
+                      _moveRight();
+                      return false;
+                    }
+                    _moveUp();
+                    return false;
+                  },
                 ),
-            onWillAccept: (_) {
-              if (!widget.isVertical) {
-                _moveRight();
-                return false;
-              }
-              _moveUp();
-              return false;
-            },
-          ),
-        ),
+              ),
         !_isDragStart
             ? const SizedBox()
             : Align(
-          alignment: widget.isVertical
-              ? Alignment.bottomCenter
-              : Alignment.centerLeft,
-          child: DragTarget(
-            builder:
-                (context, List<String?> candidateData, rejectedData) =>
-                Container(
-                  height: widget.isVertical ? 20 : double.infinity,
-                  width: widget.isVertical ? double.infinity : 20,
-                  color: Colors.transparent,
+                alignment: widget.isVertical
+                    ? Alignment.bottomCenter
+                    : Alignment.centerLeft,
+                child: DragTarget(
+                  builder:
+                      (context, List<String?> candidateData, rejectedData) =>
+                          Container(
+                    height: widget.isVertical ? 20 : double.infinity,
+                    width: widget.isVertical ? double.infinity : 20,
+                    color: Colors.transparent,
+                  ),
+                  onWillAccept: (_) {
+                    if (!widget.isVertical) {
+                      _moveLeft();
+                      return false;
+                    }
+                    _moveDown();
+                    return false;
+                  },
                 ),
-            onWillAccept: (_) {
-              if (!widget.isVertical) {
-                _moveLeft();
-                return false;
-              }
-              _moveDown();
-              return false;
-            },
-          ),
-        ),
+              ),
       ],
     );
   }

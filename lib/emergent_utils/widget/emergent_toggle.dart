@@ -189,9 +189,8 @@ class EmergentToggle extends StatelessWidget {
             heightFactor: 1,
             child: Emergent(
               style: EmergentStyle(
-                boxShape: EmergentBoxShape.roundRect(
-                    style?.borderRadius ??
-                        const BorderRadius.all(Radius.circular(12))),
+                boxShape: EmergentBoxShape.roundRect(style?.borderRadius ??
+                    const BorderRadius.all(Radius.circular(12))),
               ),
               margin: padding,
               child: thumb,
@@ -235,8 +234,7 @@ class EmergentToggle extends StatelessWidget {
 
   Widget _foregroundAtIndex(int index) {
     Widget? child = (!displayForegroundOnlyIfSelected) ||
-            (displayForegroundOnlyIfSelected &&
-                selectedIndex == index)
+            (displayForegroundOnlyIfSelected && selectedIndex == index)
         ? children[index].foreground
         : const SizedBox.expand();
     //wrap with opacity animation

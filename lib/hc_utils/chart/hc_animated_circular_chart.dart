@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:htkc_utils/hc_utils/chart/hc_circular_chart.dart';
-import 'package:htkc_utils/hc_utils/chart/hc_entry.dart';
 import 'package:htkc_utils/hc_utils/chart/hc_painter.dart';
+import 'package:htkc_utils/htkc_utils.dart';
 
 // The default chart tween animation duration.
-const Duration hcDuration = Duration(milliseconds: 300);
+const Duration _hcDuration = Duration(milliseconds: 300);
 // The default angle the chart is oriented at.
-const double hcStartAngle = -90.0;
+const double _hcStartAngle = -90.0;
 
 enum HcCircularChartType {
   pie,
@@ -14,7 +12,7 @@ enum HcCircularChartType {
 }
 
 /// Determines how the ends of a chart's segments should be drawn.
-enum HcSegmentEdgeStyle {
+enum SegmentEdgeStyle {
   /// Segments begin and end with a flat edge.
   flat,
 
@@ -28,14 +26,15 @@ class HcAnimatedCircularChart extends StatefulWidget {
     required this.size,
     required this.initialChartData,
     this.chartType = HcCircularChartType.radial,
-    this.duration = hcDuration,
+    this.duration = _hcDuration,
     this.percentageValues = false,
     this.holeRadius,
-    this.startAngle = hcStartAngle,
+    this.startAngle = _hcStartAngle,
     this.holeLabel,
     this.labelStyle,
-    this.edgeStyle = HcSegmentEdgeStyle.flat,
-  })  : super(key: key);
+    this.edgeStyle = SegmentEdgeStyle.flat,
+  })  : assert(size != null),
+        super(key: key);
 
   /// The size of the bounding box this chart will be constrained to.
   final Size size;
@@ -69,11 +68,11 @@ class HcAnimatedCircularChart extends StatefulWidget {
   /// defaults to false.
   final bool percentageValues;
 
-  /// For [HcCircularChartType.radial] charts this defines the circle in the center
+  /// For [HcCircularChartType.Radial] charts this defines the circle in the center
   /// of the canvas, around which the chart is drawn. If not provided then it will
   /// be automatically calculated to accommodate all the data.
   ///
-  /// Has no effect in [HcCircularChartType.pie] charts.
+  /// Has no effect in [HcCircularChartType.Pie] charts.
   final double? holeRadius;
 
   /// The chart gets drawn and animates clockwise from [startAngle], defaulting to the
@@ -100,12 +99,12 @@ class HcAnimatedCircularChart extends StatefulWidget {
 
   /// The type of segment edges to be drawn.
   ///
-  /// Defaults to [HcSegmentEdgeStyle.flat].
-  final HcSegmentEdgeStyle edgeStyle;
+  /// Defaults to [SegmentEdgeStyle.flat].
+  final SegmentEdgeStyle edgeStyle;
 
   /// The state from the closest instance of this class that encloses the given context.
   ///
-  /// This method is typically used by [HcAnimatedCircularChart] item widgets that insert or
+  /// This method is typically used by [AnimatedCircularChart] item widgets that insert or
   /// remove items in response to user input.
   ///
   /// ```dart
@@ -113,6 +112,8 @@ class HcAnimatedCircularChart extends StatefulWidget {
   /// ```
   static HcAnimatedCircularChartState? of(BuildContext context,
       {bool nullOk = false}) {
+    assert(context != null);
+    assert(nullOk != null);
 
     final HcAnimatedCircularChartState? result = context
         .findAncestorStateOfType<HcAnimatedCircularChartState>();
@@ -173,7 +174,7 @@ class HcAnimatedCircularChartState extends State<HcAnimatedCircularChart>
         stackRanks: _stackRanks,
         entryRanks: _entryRanks,
         percentageValues: widget.percentageValues,
-        hcHoleRadius: widget.holeRadius,
+        holeRadius: widget.holeRadius,
         startAngle: widget.startAngle,
         edgeStyle: widget.edgeStyle,
       ),
@@ -240,7 +241,7 @@ class HcAnimatedCircularChartState extends State<HcAnimatedCircularChart>
           stackRanks: _stackRanks,
           entryRanks: _entryRanks,
           percentageValues: widget.percentageValues,
-          hcHoleRadius: widget.holeRadius,
+          holeRadius: widget.holeRadius,
           startAngle: widget.startAngle,
           edgeStyle: widget.edgeStyle,
         ),

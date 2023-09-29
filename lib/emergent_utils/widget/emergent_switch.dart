@@ -162,7 +162,8 @@ class EmergentSwitch extends StatelessWidget {
             ),
             child: animation_scale.AnimatedScale(
               scale: isEnabled ? 1 : 0,
-              alignment: value ? const Alignment(0.5, 0) : const Alignment(-0.5, 0),
+              alignment:
+                  value ? const Alignment(0.5, 0) : const Alignment(-0.5, 0),
               child: AnimatedThumb(
                 curve: curve,
                 disableDepth: style.disableDepth,
@@ -219,9 +220,8 @@ class EmergentSwitch extends StatelessWidget {
   }
 
   Color _getThumbColor(EmergentThemeData theme) {
-    Color? color = value == true
-        ? style.activeThumbColor
-        : style.inactiveThumbColor;
+    Color? color =
+        value == true ? style.activeThumbColor : style.inactiveThumbColor;
     return color ?? theme.baseColor;
   }
 }

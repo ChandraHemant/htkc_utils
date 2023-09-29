@@ -80,7 +80,7 @@ class HcOTPTextField extends StatefulWidget {
     this.onChanged,
     this.inputFormatter,
     this.contentPadding =
-    const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+        const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
     this.isDense = false,
     this.onCompleted,
   })  : assert(length > 1),
@@ -165,13 +165,13 @@ class HcOTPTextFieldState extends State<HcOTPTextField> {
 
     InputBorder getBorder(Color color) {
       final colorOrError =
-      widget.hasError ? _otpFieldStyle.errorBorderColor : color;
+          widget.hasError ? _otpFieldStyle.errorBorderColor : color;
 
       return widget.fieldStyle == FieldStyle.box
           ? OutlineInputBorder(
-        borderSide: BorderSide(color: colorOrError),
-        borderRadius: BorderRadius.circular(widget.outlineBorderRadius),
-      )
+              borderSide: BorderSide(color: colorOrError),
+              borderRadius: BorderRadius.circular(widget.outlineBorderRadius),
+            )
           : UnderlineInputBorder(borderSide: BorderSide(color: colorOrError));
     }
 

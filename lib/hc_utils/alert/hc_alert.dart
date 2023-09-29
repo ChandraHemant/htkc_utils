@@ -1,6 +1,5 @@
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 class HcAlert {
   final BuildContext context;
   final HcAlertType type;
@@ -27,7 +26,8 @@ class HcAlert {
   void show() {
     showGeneralDialog(
       context: context,
-      pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext buildContext, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
         return _buildDialog();
       },
       barrierDismissible: style.isOverlayTapDismiss,
@@ -35,11 +35,11 @@ class HcAlert {
       barrierColor: style.overlayColor,
       transitionDuration: style.animationDuration,
       transitionBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-          ) =>
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        Widget child,
+      ) =>
           _showAnimation(animation, secondaryAnimation, child),
     );
   }
@@ -48,7 +48,8 @@ class HcAlert {
   void previewImage() {
     showGeneralDialog(
       context: context,
-      pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext buildContext, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
         return _buildImagePreviewDialog();
       },
       barrierDismissible: style.isOverlayTapDismiss,
@@ -56,11 +57,11 @@ class HcAlert {
       barrierColor: style.overlayColor,
       transitionDuration: style.animationDuration,
       transitionBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-          ) =>
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        Widget child,
+      ) =>
           _showAnimation(animation, secondaryAnimation, child),
     );
   }
@@ -76,7 +77,8 @@ class HcAlert {
           children: <Widget>[
             _getCloseButton(),
             Padding(
-              padding: EdgeInsets.fromLTRB(20, (style.isCloseButton ? 0 : 20), 20, 0),
+              padding: EdgeInsets.fromLTRB(
+                  20, (style.isCloseButton ? 0 : 20), 20, 0),
               child: Column(
                 children: <Widget>[
                   _getImage(),
@@ -94,10 +96,10 @@ class HcAlert {
                   desc == null
                       ? Container()
                       : Text(
-                    desc!,
-                    style: style.descStyle,
-                    textAlign: TextAlign.center,
-                  ),
+                          desc!,
+                          style: style.descStyle,
+                          textAlign: TextAlign.center,
+                        ),
                   content == null ? Container() : content!,
                 ],
               ),
@@ -139,29 +141,31 @@ class HcAlert {
   Widget _getCloseButton() {
     return style.isCloseButton
         ? Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-      child: Container(
-        alignment: FractionalOffset.topRight,
-        child: SizedBox(
-          width: 20,
-          height: 20,
-          // decoration: BoxDecoration(
-          //   image: DecorationImage(
-          //     image: CachedNetworkImageProvider(
-          //       ImagesRes.exit,
-          //       //  package: 'flutter_alert',
-          //     ),
-          //   ),
-          // ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(onTap: () => Navigator.of(context, rootNavigator: true).pop('dialog')
-              //Navigator.pop(context),
+            padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+            child: Container(
+              alignment: FractionalOffset.topRight,
+              child: SizedBox(
+                width: 20,
+                height: 20,
+                // decoration: BoxDecoration(
+                //   image: DecorationImage(
+                //     image: CachedNetworkImageProvider(
+                //       ImagesRes.exit,
+                //       //  package: 'flutter_alert',
+                //     ),
+                //   ),
+                // ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                      onTap: () => Navigator.of(context, rootNavigator: true)
+                          .pop('dialog')
+                      //Navigator.pop(context),
+                      ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    )
+          )
         : Container();
   }
 
@@ -170,7 +174,7 @@ class HcAlert {
     List<Widget> expandedButtons = [];
     if (buttons != null) {
       buttons?.forEach(
-            (button) {
+        (button) {
           var buttonWidget = Padding(
             padding: const EdgeInsets.only(left: 2, right: 2),
             child: button,
@@ -192,10 +196,11 @@ class HcAlert {
                 "CANCEL",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
-              onPressed: () => Navigator.of(context, rootNavigator: true).pop('dialog')
-            //  Navigator.of(context).pop()
-            //Navigator.pop(context),
-          ),
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop('dialog')
+              //  Navigator.of(context).pop()
+              //Navigator.pop(context),
+              ),
         ),
       );
     }
@@ -229,11 +234,13 @@ class HcAlert {
 // Shows alert with selected animation
   _showAnimation(animation, secondaryAnimation, child) {
     if (style.animationType == HcAnimationType.fromRight) {
-      return AnimationTransition.fromRight(animation, secondaryAnimation, child);
+      return AnimationTransition.fromRight(
+          animation, secondaryAnimation, child);
     } else if (style.animationType == HcAnimationType.fromLeft) {
       return AnimationTransition.fromLeft(animation, secondaryAnimation, child);
     } else if (style.animationType == HcAnimationType.fromBottom) {
-      return AnimationTransition.fromBottom(animation, secondaryAnimation, child);
+      return AnimationTransition.fromBottom(
+          animation, secondaryAnimation, child);
     } else if (style.animationType == HcAnimationType.grow) {
       return AnimationTransition.grow(animation, secondaryAnimation, child);
     } else if (style.animationType == HcAnimationType.shrink) {
@@ -245,7 +252,6 @@ class HcAlert {
 }
 
 class AnimationTransition {
-
   /// Slide animation, from right to left (SlideTransition)
   static fromRight(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
@@ -295,8 +301,8 @@ class AnimationTransition {
   }
 
   /// Scale animation, from in to out (ScaleTransition)
-  static grow(Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
+  static grow(Animation<double> animation, Animation<double> secondaryAnimation,
+      Widget child) {
     return ScaleTransition(
       scale: Tween<double>(
         begin: 0.0,

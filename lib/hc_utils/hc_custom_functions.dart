@@ -40,11 +40,14 @@ Duration hcPageRouteTransitionDurationGlobal = 400.milliseconds;
 // String Extensions
 extension HcStringCasingExtension on String {
   /// Word Capitalized
-  String hcToCapitalized() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
+  String hcToCapitalized() =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
 
   /// Title Capitalized
-  String hcToTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.hcToCapitalized()).join(' ');
-
+  String hcToTitleCase() => replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => str.hcToCapitalized())
+      .join(' ');
 }
 
 // Indexed Map Extensions
@@ -58,129 +61,116 @@ extension HcIndexedIterable<E> on Iterable<E> {
 
 // File Extensions
 extension HcFileSaveUtils on void {
-
   /// Save PDF Documents
   hcSavePdfDocuments(
-      {
-        required String name,
-        required Uint8List fileBytes,
-        String customDirectoryName = "Documents",
-        BuildContext? context
-      }
-      ) async {
+      {required String name,
+      required Uint8List fileBytes,
+      String customDirectoryName = "Documents",
+      BuildContext? context}) async {
     Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String path = Platform.isAndroid?hcDirPath:"${appDocDirectory.path}/$customDirectoryName";
+    String path = Platform.isAndroid
+        ? hcDirPath
+        : "${appDocDirectory.path}/$customDirectoryName";
     try {
       bool checkPermission = await Permission.accessMediaLocation.isGranted;
       if (checkPermission) {
-        File pdfDoc = File("$path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name");
+        File pdfDoc = File(
+            "$path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name");
         await pdfDoc.writeAsBytes(fileBytes);
-        ScaffoldMessenger.of(context!).showSnackBar(
-            SnackBar(
-              content: Text("File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name""File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"),
-            )
-        );
+        ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
+          content: Text(
+              "File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"
+              "File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"),
+        ));
       } else {
-        ScaffoldMessenger.of(context!).showSnackBar(
-            const SnackBar(
-              content: Text("Storage permission denied !, please try again!"),
-            )
-        );
+        ScaffoldMessenger.of(context!).showSnackBar(const SnackBar(
+          content: Text("Storage permission denied !, please try again!"),
+        ));
         var status = await Permission.accessMediaLocation.status;
-        if(!status.isGranted){
+        if (!status.isGranted) {
           await Permission.accessMediaLocation.request();
         }
       }
     } on FileSystemException catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-          SnackBar(
-            content: Text("ERROR: ${e.message} $path/$name"),
-          )
-      );
+      ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
+        content: Text("ERROR: ${e.message} $path/$name"),
+      ));
     } catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-          SnackBar(
-            content: Text("ERROR: $e"),
-          )
-      );
+      ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
+        content: Text("ERROR: $e"),
+      ));
     }
   }
 
   /// Save Network Image
   hcSaveNetworkImage(
-      {
-        required String name,
-        required String url,
-        String customDirectoryName = "Documents",
-        BuildContext? context
-      }
-      ) async {
+      {required String name,
+      required String url,
+      String customDirectoryName = "Documents",
+      BuildContext? context}) async {
     Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String path = Platform.isAndroid?hcDirPath:"${appDocDirectory.path}/$customDirectoryName";
+    String path = Platform.isAndroid
+        ? hcDirPath
+        : "${appDocDirectory.path}/$customDirectoryName";
 
     try {
       var response = await http.get(Uri.parse(url));
       final bytes = response.bodyBytes;
       bool checkPermission = await Permission.mediaLibrary.isGranted;
       if (checkPermission) {
-        File file = File("$path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name");
+        File file = File(
+            "$path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name");
         await file.writeAsBytes(bytes);
-        ScaffoldMessenger.of(context!).showSnackBar(
-            SnackBar(
-              content: Text("File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"),
-            )
-        );
+        ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
+          content: Text(
+              "File saved successfully to $path/${DateFormat('yy-HH-mm-ss').format(DateTime.now())}-$name"),
+        ));
       } else {
-        ScaffoldMessenger.of(context!).showSnackBar(
-            const SnackBar(
-              content: Text("Storage permission denied !, please try again!"),
-            )
-        );
+        ScaffoldMessenger.of(context!).showSnackBar(const SnackBar(
+          content: Text("Storage permission denied !, please try again!"),
+        ));
         var status = await Permission.mediaLibrary.status;
-        if(!status.isGranted){
+        if (!status.isGranted) {
           await Permission.mediaLibrary.request();
         }
       }
     } on FileSystemException catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-          SnackBar(
-            content: Text("ERROR: ${e.message} $path/$name"),
-          )
-      );
+      ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
+        content: Text("ERROR: ${e.message} $path/$name"),
+      ));
     } catch (e) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-          SnackBar(
-            content: Text("ERROR: $e"),
-          )
-      );
+      ScaffoldMessenger.of(context!).showSnackBar(SnackBar(
+        content: Text("ERROR: $e"),
+      ));
     }
   }
 }
 
 // Widget Extensions
 extension HcWidgetExtension on Widget? {
-
   /// Launch a new screen
   Future<T?> hcNavigate<T>(BuildContext context,
       {bool isNewTask = false,
-        HcPageRouteAnimation? hcPageRouteAnimation,
-        Duration? duration}) async {
+      HcPageRouteAnimation? hcPageRouteAnimation,
+      Duration? duration}) async {
     if (isNewTask) {
       return await Navigator.of(context).pushAndRemoveUntil(
-        hcBuildPageRoute(
-            this!, hcPageRouteAnimation ?? hcPageRouteAnimationGlobal, duration),
-            (route) => false,
+        hcBuildPageRoute(this!,
+            hcPageRouteAnimation ?? hcPageRouteAnimationGlobal, duration),
+        (route) => false,
       );
     } else {
       return await Navigator.of(context).push(
-        hcBuildPageRoute(
-            this!, hcPageRouteAnimation ?? hcPageRouteAnimationGlobal, duration),
+        hcBuildPageRoute(this!,
+            hcPageRouteAnimation ?? hcPageRouteAnimationGlobal, duration),
       );
     }
   }
 
   /// Circular Progressbar
-  Widget hcProgress({Color color = Colors.blue, }) {
+  Widget hcProgress({
+    Color color = Colors.blue,
+  }) {
     return Container(
       alignment: Alignment.center,
       child: Card(
@@ -194,7 +184,9 @@ extension HcWidgetExtension on Widget? {
           height: 45,
           padding: const EdgeInsets.all(8.0),
           child: Theme(
-            data: ThemeData(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: color)),
+            data: ThemeData(
+                colorScheme:
+                    ColorScheme.fromSwatch().copyWith(secondary: color)),
             child: const CircularProgressIndicator(
               strokeWidth: 3,
             ),
@@ -203,7 +195,6 @@ extension HcWidgetExtension on Widget? {
       ),
     );
   }
-
 
   /// set parent widget in center
   Widget hcCenter({double? heightFactor, double? widthFactor}) {
@@ -218,7 +209,6 @@ extension HcWidgetExtension on Widget? {
   Widget hcVisible(bool visible, {Widget? defaultWidget}) {
     return visible ? this! : (defaultWidget ?? const SizedBox());
   }
-
 }
 
 // Boolean Extensions
@@ -227,12 +217,11 @@ extension HcBooleanExtensions on bool? {
   bool hcValidate({bool value = false}) => this ?? value;
 }
 
-
 Route<T> hcBuildPageRoute<T>(
-    Widget child,
-    HcPageRouteAnimation? pageRouteAnimation,
-    Duration? duration,
-    ) {
+  Widget child,
+  HcPageRouteAnimation? pageRouteAnimation,
+  Duration? duration,
+) {
   if (pageRouteAnimation != null) {
     if (pageRouteAnimation == HcPageRouteAnimation.fade) {
       return PageRouteBuilder(
@@ -247,8 +236,7 @@ Route<T> hcBuildPageRoute<T>(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return RotationTransition(
-              turns: ReverseAnimation(anim),
-              child: child);
+              turns: ReverseAnimation(anim), child: child);
         },
         transitionDuration: duration ?? hcPageRouteTransitionDurationGlobal,
       );
@@ -294,7 +282,8 @@ Route<T> hcBuildPageRoute<T>(
 }
 
 /// Convert Time Format
-String hcFormatTime(int timeNum) => timeNum < 10 ? "0$timeNum" : timeNum.toString();
+String hcFormatTime(int timeNum) =>
+    timeNum < 10 ? "0$timeNum" : timeNum.toString();
 
 /// Calculate Age
 String hcCalculateAge(String birthDateString) {
@@ -307,32 +296,31 @@ String hcCalculateAge(String birthDateString) {
 }
 
 /// Validate Text Input Field
-bool hcValidateTextInputField(BuildContext context, TextEditingController controller, String fieldName, {FocusNode? focusNode}) {
+bool hcValidateTextInputField(
+    BuildContext context, TextEditingController controller, String fieldName,
+    {FocusNode? focusNode}) {
   if (controller.text.isEmpty) {
     if (focusNode != null) {
       focusNode.requestFocus();
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('$fieldName can\'t be empty'),
-        )
-    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('$fieldName can\'t be empty'),
+    ));
     return false;
   }
   return true;
 }
 
 /// Validate Text Field or Dropdown Value
-bool hcValidateTextField(BuildContext context, var controller, String fieldName, {FocusNode? focusNode}) {
+bool hcValidateTextField(BuildContext context, var controller, String fieldName,
+    {FocusNode? focusNode}) {
   if (controller.isEmpty) {
     if (focusNode != null) {
       focusNode.requestFocus();
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('$fieldName can\'t be empty'),
-        )
-    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('$fieldName can\'t be empty'),
+    ));
     return false;
   }
   return true;
@@ -344,8 +332,10 @@ bool hcLiesBetweenTimes(String sTime, String eTime) {
   var format = DateFormat("HH:mm");
   var startTime = format.parse(sTime);
   var endTime = format.parse(eTime);
-  startTime = DateTime(now.year, now.month, now.day, startTime.hour, startTime.minute);
-  endTime = DateTime(now.year, now.month, now.day, endTime.hour, endTime.minute);
+  startTime =
+      DateTime(now.year, now.month, now.day, startTime.hour, startTime.minute);
+  endTime =
+      DateTime(now.year, now.month, now.day, endTime.hour, endTime.minute);
   if (now.isAfter(startTime) && now.isBefore(endTime)) {
     return true;
   }
@@ -375,17 +365,18 @@ String hcTimeDifference(String startTime, String endTime) {
   sTime = DateTime(now.year, now.month, now.day, sTime.hour, sTime.minute);
   eTime = DateTime(now.year, now.month, now.day, eTime.hour, eTime.minute);
   if (sTime.isAfter(eTime)) {
-    return "${sTime
-        .difference(eTime)
-        .inMinutes}";
+    return "${sTime.difference(eTime).inMinutes}";
   } else {
-    return "${eTime
-        .difference(sTime)
-        .inMinutes}";
+    return "${eTime.difference(sTime).inMinutes}";
   }
 }
+
 /// returns gradient
-Gradient hcGradient([Color secondGradientColor = hcSecondColor, Color firstGradientColor = hcPrimaryColor, AlignmentGeometry begin = Alignment.topCenter, AlignmentGeometry end = Alignment.bottomCenter]) {
+Gradient hcGradient(
+    [Color secondGradientColor = hcSecondColor,
+    Color firstGradientColor = hcPrimaryColor,
+    AlignmentGeometry begin = Alignment.topCenter,
+    AlignmentGeometry end = Alignment.bottomCenter]) {
   return LinearGradient(
     colors: [
       secondGradientColor,
@@ -397,21 +388,22 @@ Gradient hcGradient([Color secondGradientColor = hcSecondColor, Color firstGradi
   );
 }
 
-
 hcOnBackPressed(BuildContext context) {
   /// Cancel Button
-  Widget cancelButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
-      onPressed: () {
-        Navigator.pop(context, true);
-      },
-      child: Text('Cancel', style: HcAppTextStyle.boldTextStyle()));
+  Widget cancelButton(BuildContext context, {Color color = hcPrimaryColor}) =>
+      TextButton(
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+          child: Text('Cancel', style: HcAppTextStyle.boldTextStyle()));
 
   /// Continue Button
-  Widget continueButton(BuildContext context, {Color color = hcPrimaryColor}) => TextButton(
-      onPressed: () {
-        Navigator.pop(context, false);
-      },
-      child: Text('Ok', style: HcAppTextStyle.boldTextStyle(color: color)));
+  Widget continueButton(BuildContext context, {Color color = hcPrimaryColor}) =>
+      TextButton(
+          onPressed: () {
+            Navigator.pop(context, false);
+          },
+          child: Text('Ok', style: HcAppTextStyle.boldTextStyle(color: color)));
 
   // show the dialog
   return showDialog(
@@ -426,7 +418,8 @@ hcOnBackPressed(BuildContext context) {
           style: HcAppTextStyle.boldTextStyle(size: 18),
         ),
         content: Text('Are you sure! you want to close this?',
-            style: TextStyle(fontSize: 13, color: Colors.black.withOpacity(0.7))),
+            style:
+                TextStyle(fontSize: 13, color: Colors.black.withOpacity(0.7))),
         actions: [
           cancelButton(context),
           continueButton(context),
@@ -450,7 +443,6 @@ Radius hcRadiusCircular([double? radius]) {
   return Radius.circular(radius ?? hcDefaultRadius);
 }
 
-
 Future<T?> hcShowDialog<T>({
   required BuildContext context,
   bool barrierDismissible = true,
@@ -465,7 +457,8 @@ Future<T?> hcShowDialog<T>({
   );
   return showGeneralDialog(
     context: context,
-    pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) {
+    pageBuilder: (BuildContext buildContext, Animation<double> animation,
+        Animation<double> secondaryAnimation) {
       final Widget pageChild = child ?? Builder(builder: builder!);
       return Builder(builder: (BuildContext context) {
         return Theme(data: theme, child: pageChild);
@@ -480,11 +473,11 @@ Future<T?> hcShowDialog<T>({
 }
 
 Widget _hcBuildTransition(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-    Widget child,
-    ) {
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
   return ScaleTransition(
     scale: CurvedAnimation(
       parent: animation,

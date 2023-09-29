@@ -8,7 +8,6 @@ import 'package:example/tips/htkc_tips_home.dart';
 import 'package:example/widgets/htkc_widgets_home.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,7 +24,6 @@ class MyApp extends StatelessWidget {
 }
 
 class FullSampleHomePage extends StatelessWidget {
-
   Widget _buildButton({String? text, VoidCallback? onClick}) {
     return EmergentButton(
       margin: EdgeInsets.only(bottom: 12),

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:htkc_utils/htkc_utils.dart';
 import 'package:htkc_utils/emergent_utils/decoration/emergent_text_decoration_painter.dart';
 
-
 @immutable
 class EmergentTextDecoration extends Decoration {
   final EmergentStyle style;
@@ -95,7 +94,8 @@ class EmergentTextDecoration extends Decoration {
         isForeground: a.isForeground,
         text: a.text,
         textAlign: a.textAlign,
-        textStyle: TextStyle.lerp(a.textStyle, b.textStyle, t) ?? const TextStyle(),
+        textStyle:
+            TextStyle.lerp(a.textStyle, b.textStyle, t) ?? const TextStyle(),
         renderingByPath: a.renderingByPath,
         style: a.style.copyWith(
           border: EmergentBorder.hclErp(aStyle.border, bStyle.border, t),

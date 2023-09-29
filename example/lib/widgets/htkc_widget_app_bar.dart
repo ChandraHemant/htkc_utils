@@ -71,8 +71,7 @@ class _ThirdThemeWidgetPage extends StatelessWidget {
         appBarTheme: EmergentAppBarThemeData(
           buttonStyle: EmergentStyle(
               color: Colors.black54,
-              boxShape:
-                  EmergentBoxShape.roundRect(BorderRadius.circular(12))),
+              boxShape: EmergentBoxShape.roundRect(BorderRadius.circular(12))),
           textStyle: TextStyle(color: Colors.black54, fontSize: 20),
           iconTheme: IconThemeData(color: Colors.white, size: 20),
         ),
@@ -160,12 +159,11 @@ class _MyDrawer extends StatelessWidget {
         child: Column(
           children: [
             ConstrainedBox(
-              constraints: BoxConstraints.tightFor(
-                  height: EmergentAppBar.toolbarHeight),
+              constraints:
+                  BoxConstraints.tightFor(height: EmergentAppBar.toolbarHeight),
               child: EmergentAppBar(
                 title: Text('Menu'),
-                leading:
-                    isLead ? EmergentBackButton() : EmergentCloseButton(),
+                leading: isLead ? EmergentBackButton() : EmergentCloseButton(),
                 actions: <Widget>[
                   EmergentButton(
                     child: Icon(Icons.style),

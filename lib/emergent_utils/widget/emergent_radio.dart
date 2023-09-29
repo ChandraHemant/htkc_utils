@@ -1,6 +1,5 @@
 import 'package:htkc_utils/htkc_utils.dart';
 
-
 typedef EmergentRadioListener<T> = void Function(T value);
 
 /// A Style used to customize a [EmergentRadio]
@@ -160,7 +159,8 @@ class EmergentRadio<T> extends StatelessWidget {
   final Duration duration;
   final Curve curve;
 
-  const EmergentRadio({super.key,
+  const EmergentRadio({
+    super.key,
     this.child,
     this.style = const EmergentRadioStyle(),
     this.value,

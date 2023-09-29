@@ -171,8 +171,8 @@ EmergentSwitch(
                 width: 100,
                 child: Text(
                   "Flat",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
@@ -194,14 +194,13 @@ EmergentSwitch(
                 width: 100,
                 child: Text(
                   "Concave",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               EmergentSwitch(
-                style:
-                    EmergentSwitchStyle(thumbShape: EmergentShape.concave),
+                style: EmergentSwitchStyle(thumbShape: EmergentShape.concave),
                 value: isChecked,
                 onChanged: (value) {
                   setState(() {
@@ -218,14 +217,13 @@ EmergentSwitch(
                 width: 100,
                 child: Text(
                   "Convex",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               EmergentSwitch(
-                style:
-                    EmergentSwitchStyle(thumbShape: EmergentShape.convex),
+                style: EmergentSwitchStyle(thumbShape: EmergentShape.convex),
                 value: isChecked,
                 onChanged: (value) {
                   setState(() {
@@ -447,14 +445,13 @@ EmergentSwitch(
                 width: 100,
                 child: Text(
                   "Enabled",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               EmergentSwitch(
-                style:
-                    EmergentSwitchStyle(thumbShape: EmergentShape.concave),
+                style: EmergentSwitchStyle(thumbShape: EmergentShape.concave),
                 value: isChecked1,
                 onChanged: (value) {
                   setState(() {
@@ -471,15 +468,14 @@ EmergentSwitch(
                 width: 100,
                 child: Text(
                   "Disabled",
-                  style: TextStyle(
-                      color: EmergentTheme.defaultTextColor(context)),
+                  style:
+                      TextStyle(color: EmergentTheme.defaultTextColor(context)),
                 ),
               ),
               SizedBox(width: 12),
               EmergentSwitch(
                 isEnabled: false,
-                style:
-                    EmergentSwitchStyle(thumbShape: EmergentShape.convex),
+                style: EmergentSwitchStyle(thumbShape: EmergentShape.convex),
                 value: isChecked2,
                 onChanged: (value) {
                   setState(() {

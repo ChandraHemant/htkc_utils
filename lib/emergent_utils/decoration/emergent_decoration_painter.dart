@@ -54,8 +54,8 @@ class EmergentDecorationPainter extends BoxPainter {
   void _updateCache(Offset offset, ImageConfiguration configuration) {
     bool invalidateSize = false;
     if (configuration.size != null) {
-      invalidateSize = _cache
-          .updateSize(newOffset: offset, newSize: configuration.size!);
+      invalidateSize =
+          _cache.updateSize(newOffset: offset, newSize: configuration.size!);
       if (invalidateSize) {
         _cache.updatePath(
             newPath:
@@ -91,10 +91,10 @@ class EmergentDecorationPainter extends BoxPainter {
         style.shadowDarkColor != null &&
         style.intensity != null) {
       invalidateShadowColors = _cache.updateShadowColor(
-            newShadowLightColorHc: style.shadowLightColor!,
-            newShadowDarkColorHc: style.shadowDarkColor!,
-            newIntensity: style.intensity!,
-          );
+        newShadowLightColorHc: style.shadowLightColor!,
+        newShadowDarkColorHc: style.shadowDarkColor!,
+        newIntensity: style.intensity!,
+      );
       if (invalidateShadowColors) {
         if (_cache.shadowLightColor != null) {
           _whiteShadowPaint.color = _cache.shadowLightColor!;
@@ -199,14 +199,13 @@ class EmergentDecorationPainter extends BoxPainter {
         style.shape == EmergentShape.convex) {
       final pathRect = path.getBounds();
 
-      _gradientPaint
-        .shader = getGradientShader(
-          gradientRect: pathRect,
-          intensity: style.surfaceIntensity,
-          source: style.shape == EmergentShape.concave
-              ? style.lightSource
-              : style.lightSource.invert(),
-        );
+      _gradientPaint.shader = getGradientShader(
+        gradientRect: pathRect,
+        intensity: style.surfaceIntensity,
+        source: style.shape == EmergentShape.concave
+            ? style.lightSource
+            : style.lightSource.invert(),
+      );
 
       canvas
         ..saveLayer(

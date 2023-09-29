@@ -1,4 +1,3 @@
-
 // Context Extensions
 import 'package:htkc_utils/htkc_utils.dart';
 
@@ -74,9 +73,10 @@ extension HcContextExtensions on BuildContext {
 
   bool hcIsTablet() =>
       MediaQuery.of(this).size.width < hcDesktopBreakpointGlobal &&
-          MediaQuery.of(this).size.width >= hcTabletBreakpointGlobal;
+      MediaQuery.of(this).size.width >= hcTabletBreakpointGlobal;
 
-  bool hcIsDesktop() => MediaQuery.of(this).size.width >= hcDesktopBreakpointGlobal;
+  bool hcIsDesktop() =>
+      MediaQuery.of(this).size.width >= hcDesktopBreakpointGlobal;
 
   Orientation get hcOrientation => MediaQuery.of(this).orientation;
 

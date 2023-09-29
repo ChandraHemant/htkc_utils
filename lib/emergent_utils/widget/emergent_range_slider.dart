@@ -120,7 +120,8 @@ class EmergentRangeSlider extends StatefulWidget {
   final Function(ActiveThumb)? onPanEnded;
   final Widget? thumb;
 
-  const EmergentRangeSlider({super.key,
+  const EmergentRangeSlider({
+    super.key,
     this.style = const RangeSliderStyle(),
     this.min = 0,
     this.max = 10,

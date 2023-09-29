@@ -17,8 +17,8 @@ class _AudioPlayerSampleState extends State<AudioPlayerSample> {
           lightSource: LightSource.topLeft,
           depth: 10,
         ),
-        darkTheme: emergentDefaultDarkTheme.copyWith(
-            defaultTextColor: Colors.white70),
+        darkTheme:
+            emergentDefaultDarkTheme.copyWith(defaultTextColor: Colors.white70),
         child: _Page());
   }
 }
@@ -82,8 +82,7 @@ class __PageState extends State<_Page> {
             alignment: Alignment.center,
             child: Text(
               "Now Playing",
-              style:
-                  TextStyle(color: EmergentTheme.defaultTextColor(context)),
+              style: TextStyle(color: EmergentTheme.defaultTextColor(context)),
             ),
           ),
           Align(

@@ -6,7 +6,12 @@ class HcDashedRect extends StatelessWidget {
   final double strokeWidth;
   final double gap;
 
-  const HcDashedRect({Key? key, this.color = Colors.black, this.strokeWidth = 1.0, this.gap = 5.0}) : super(key: key);
+  const HcDashedRect(
+      {Key? key,
+      this.color = Colors.black,
+      this.strokeWidth = 1.0,
+      this.gap = 5.0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,7 @@ class HcDashedRect extends StatelessWidget {
       padding: EdgeInsets.all(strokeWidth / 2),
       child: CustomPaint(
         painter:
-        DashRectPainter(color: color, strokeWidth: strokeWidth, gap: gap),
+            DashRectPainter(color: color, strokeWidth: strokeWidth, gap: gap),
       ),
     );
   }
@@ -25,7 +30,8 @@ class DashRectPainter extends CustomPainter {
   Color color;
   double gap;
 
-  DashRectPainter({this.strokeWidth = 5.0, this.color = Colors.red, this.gap = 5.0});
+  DashRectPainter(
+      {this.strokeWidth = 5.0, this.color = Colors.red, this.gap = 5.0});
 
   @override
   void paint(Canvas canvas, Size size) {

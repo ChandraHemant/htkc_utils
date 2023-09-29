@@ -212,10 +212,8 @@ class EmergentThemeData {
       disableDepth: disableDepth ?? this.disableDepth,
       shadowDarkColor: shadowDarkColor ?? this.shadowDarkColor,
       shadowLightColor: shadowLightColor ?? this.shadowLightColor,
-      shadowDarkColorHc:
-          shadowDarkColorHc ?? this.shadowDarkColorHc,
-      shadowLightColorHc:
-          shadowLightColorHc ?? this.shadowLightColorHc,
+      shadowDarkColorHc: shadowDarkColorHc ?? this.shadowDarkColorHc,
+      shadowLightColorHc: shadowLightColorHc ?? this.shadowLightColorHc,
       depth: depth ?? _depth,
       borderWidth: borderSize ?? borderWidth,
       borderColor: borderColor ?? this.borderColor,
@@ -387,14 +385,13 @@ class EmergentStyle {
         _intensity = intensity,
         _surfaceIntensity = surfaceIntensity;
 
-  double? get depth =>
-      _depth?.clamp(Emergent.minDepth, Emergent.maxDepth);
+  double? get depth => _depth?.clamp(Emergent.minDepth, Emergent.maxDepth);
 
   double? get intensity =>
       _intensity?.clamp(Emergent.minIntensity, Emergent.maxIntensity);
 
-  double get surfaceIntensity => _surfaceIntensity.clamp(
-      Emergent.minIntensity, Emergent.maxIntensity);
+  double get surfaceIntensity =>
+      _surfaceIntensity.clamp(Emergent.minIntensity, Emergent.maxIntensity);
 
   EmergentStyle copyWithThemeIfNull(EmergentThemeData theme) {
     return EmergentStyle._withTheme(
@@ -406,10 +403,8 @@ class EmergentStyle {
             color: theme.borderColor, width: theme.borderWidth),
         shadowDarkColor: shadowDarkColor ?? theme.shadowDarkColor,
         shadowLightColor: shadowLightColor ?? theme.shadowLightColor,
-        shadowDarkColorHc:
-            shadowDarkColorHc ?? theme.shadowDarkColorHc,
-        shadowLightColorHc:
-            shadowLightColorHc ?? theme.shadowLightColorHc,
+        shadowDarkColorHc: shadowDarkColorHc ?? theme.shadowDarkColorHc,
+        shadowLightColorHc: shadowLightColorHc ?? theme.shadowLightColorHc,
         depth: depth ?? theme.depth,
         intensity: intensity ?? theme.intensity,
         disableDepth: disableDepth ?? theme.disableDepth,
@@ -480,10 +475,8 @@ class EmergentStyle {
       boxShape: boxShape ?? this.boxShape,
       shadowDarkColor: shadowDarkColor ?? this.shadowDarkColor,
       shadowLightColor: shadowLightColor ?? this.shadowLightColor,
-      shadowDarkColorHc:
-          shadowDarkColorHc ?? this.shadowDarkColorHc,
-      shadowLightColorHc:
-          shadowLightColorHc ?? this.shadowLightColorHc,
+      shadowDarkColorHc: shadowDarkColorHc ?? this.shadowDarkColorHc,
+      shadowLightColorHc: shadowLightColorHc ?? this.shadowLightColorHc,
       depth: depth ?? this.depth,
       theme: theme,
       intensity: intensity ?? this.intensity,

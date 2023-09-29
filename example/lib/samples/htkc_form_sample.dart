@@ -56,8 +56,7 @@ class __PageState extends State<_Page> {
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               style: EmergentStyle(
-                boxShape:
-                    EmergentBoxShape.roundRect(BorderRadius.circular(12)),
+                boxShape: EmergentBoxShape.roundRect(BorderRadius.circular(12)),
               ),
               child: Column(
                 children: <Widget>[

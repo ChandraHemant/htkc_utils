@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const MaterialApp(
-    home: ChatPage(),
-  );
+        home: ChatPage(),
+      );
 }
 
 class ChatPage extends StatefulWidget {
@@ -148,9 +148,9 @@ class _ChatPageState extends State<ChatPage> {
       if (message.uri.startsWith('http')) {
         try {
           final index =
-          _messages.indexWhere((element) => element.id == message.id);
+              _messages.indexWhere((element) => element.id == message.id);
           final updatedMessage =
-          (_messages[index] as types.FileMessage).copyWith(
+              (_messages[index] as types.FileMessage).copyWith(
             isLoading: true,
           );
 
@@ -170,9 +170,9 @@ class _ChatPageState extends State<ChatPage> {
           }
         } finally {
           final index =
-          _messages.indexWhere((element) => element.id == message.id);
+              _messages.indexWhere((element) => element.id == message.id);
           final updatedMessage =
-          (_messages[index] as types.FileMessage).copyWith(
+              (_messages[index] as types.FileMessage).copyWith(
             isLoading: null,
           );
 
@@ -187,9 +187,9 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _handlePreviewDataFetched(
-      types.TextMessage message,
-      types.PreviewData previewData,
-      ) {
+    types.TextMessage message,
+    types.PreviewData previewData,
+  ) {
     final index = _messages.indexWhere((element) => element.id == message.id);
     final updatedMessage = (_messages[index] as types.TextMessage).copyWith(
       previewData: previewData,
@@ -224,15 +224,15 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: Chat(
-      messages: _messages,
-      onAttachmentPressed: _handleAttachmentPressed,
-      onMessageTap: _handleMessageTap,
-      onPreviewDataFetched: _handlePreviewDataFetched,
-      onSendPressed: _handleSendPressed,
-      showUserAvatars: true,
-      showUserNames: true,
-      user: _user,
-    ),
-  );
+        body: Chat(
+          messages: _messages,
+          onAttachmentPressed: _handleAttachmentPressed,
+          onMessageTap: _handleMessageTap,
+          onPreviewDataFetched: _handlePreviewDataFetched,
+          onSendPressed: _handleSendPressed,
+          showUserAvatars: true,
+          showUserNames: true,
+          user: _user,
+        ),
+      );
 }

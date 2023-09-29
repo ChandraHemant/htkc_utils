@@ -5,7 +5,8 @@ class HcDragItem extends StatefulWidget {
   final bool isDroppable;
   final Widget child;
 
-  const HcDragItem({super.key,
+  const HcDragItem({
+    super.key,
     this.isDraggable = true,
     this.isDroppable = true,
     required this.child,

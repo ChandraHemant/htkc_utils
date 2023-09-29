@@ -80,12 +80,12 @@ class EmergentDecorationTextPainter extends BoxPainter {
   void _updateCache(Offset offset, ImageConfiguration configuration) {
     bool invalidateSize = false;
     if (configuration.size != null) {
-      invalidateSize = _cache
-          .updateSize(newOffset: offset, newSize: configuration.size!);
+      invalidateSize =
+          _cache.updateSize(newOffset: offset, newSize: configuration.size!);
     }
 
-    final bool invalidateLightSource = _cache
-        .updateLightSource(style.lightSource, style.oppositeShadowLightSource);
+    final bool invalidateLightSource = _cache.updateLightSource(
+        style.lightSource, style.oppositeShadowLightSource);
 
     bool invalidateColor = false;
     if (style.color != null) {
@@ -109,10 +109,10 @@ class EmergentDecorationTextPainter extends BoxPainter {
         style.shadowDarkColor != null &&
         style.intensity != null) {
       invalidateShadowColors = _cache.updateShadowColor(
-            newShadowLightColorHc: style.shadowLightColor!,
-            newShadowDarkColorHc: style.shadowDarkColor!,
-            newIntensity: style.intensity ?? emergentDefaultTheme.intensity,
-          );
+        newShadowLightColorHc: style.shadowLightColor!,
+        newShadowDarkColorHc: style.shadowDarkColor!,
+        newIntensity: style.intensity ?? emergentDefaultTheme.intensity,
+      );
       if (invalidateShadowColors) {
         if (_cache.shadowLightColor != null) {
           _whiteShadowPaint.color = _cache.shadowLightColor!;

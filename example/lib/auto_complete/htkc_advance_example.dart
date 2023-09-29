@@ -35,8 +35,8 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
       } else {
         wordPair += word;
         if (items.indexWhere((item) {
-          return (item.value == wordPair);
-        }) ==
+              return (item.value == wordPair);
+            }) ==
             -1) {
           items.add(DropdownMenuItem(
             child: Text(wordPair),
@@ -78,7 +78,8 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
             selectedValue = value;
           });
         },
-        isExpanded: true, menuBackgroundColor: null,
+        isExpanded: true,
+        menuBackgroundColor: null,
       ),
       "Multi dialog": HcSearchableDropdown.multiple(
         items: items,
@@ -115,13 +116,13 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
           return (Row(children: [
             selected
                 ? Icon(
-              Icons.radio_button_checked,
-              color: Colors.grey,
-            )
+                    Icons.radio_button_checked,
+                    color: Colors.grey,
+                  )
                 : Icon(
-              Icons.radio_button_unchecked,
-              color: Colors.grey,
-            ),
+                    Icons.radio_button_unchecked,
+                    color: Colors.grey,
+                  ),
             SizedBox(width: 7),
             Expanded(
               child: item,
@@ -147,13 +148,13 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
           return (Row(children: [
             selected
                 ? Icon(
-              Icons.check,
-              color: Colors.green,
-            )
+                    Icons.check,
+                    color: Colors.green,
+                  )
                 : Icon(
-              Icons.check_box_outline_blank,
-              color: Colors.grey,
-            ),
+                    Icons.check_box_outline_blank,
+                    color: Colors.grey,
+                  ),
             SizedBox(width: 7),
             Expanded(
               child: item,
@@ -215,7 +216,7 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
           height: 1.0,
           decoration: BoxDecoration(
               border:
-              Border(bottom: BorderSide(color: Colors.teal, width: 3.0))),
+                  Border(bottom: BorderSide(color: Colors.teal, width: 3.0))),
         ),
         iconDisabledColor: Colors.brown,
         iconEnabledColor: Colors.indigo,
@@ -242,9 +243,9 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
               onPressed: selectedItemsDone.length != 3
                   ? null
                   : () {
-                Navigator.pop(doneContext);
-                setState(() {});
-              },
+                      Navigator.pop(doneContext);
+                      setState(() {});
+                    },
               child: Text("Save")));
         },
         closeButton: (selectedItems) {
@@ -319,7 +320,8 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
         isExpanded: true,
         menuConstraints: BoxConstraints.tight(Size.fromHeight(350)),
       ),
-      "Multi dialog select all/none without clear": HcSearchableDropdown.multiple(
+      "Multi dialog select all/none without clear":
+          HcSearchableDropdown.multiple(
         items: items,
         selectedItems: selectedItems,
         hint: "Select any",
@@ -397,7 +399,7 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
             child: Text(
                 "way too long text for a smartphone at least one that goes in a normal sized pair of trousers but maybe not for a gigantic screen like there is one at my cousin's home in a very remote country where I wouldn't want to go right now"),
             value:
-            "way too long text for a smartphone at least one that goes in a normal sized pair of trousers but maybe not for a gigantic screen like there is one at my cousin's home in a very remote country where I wouldn't want to go right now",
+                "way too long text for a smartphone at least one that goes in a normal sized pair of trousers but maybe not for a gigantic screen like there is one at my cousin's home in a very remote country where I wouldn't want to go right now",
           )
         ],
         value: "",
@@ -493,83 +495,83 @@ class _HcAdvanceExampleState extends State<HcAdvanceExample> {
     return MaterialApp(
       home: asTabs
           ? DefaultTabController(
-        length: widgets.length,
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text(appTitle),
-            actions: appBarActions,
-            bottom: TabBar(
-              isScrollable: true,
-              tabs: Iterable<int>.generate(widgets.length)
-                  .toList()
-                  .map((i) {
-                return (Tab(
-                  text: (i + 1).toString(),
-                ));
-              }).toList(), //widgets.keys.toList().map((k){return(Tab(text: k));}).toList(),
-            ),
-          ),
-          body: Container(
-            padding: EdgeInsets.all(20),
-            child: TabBarView(
-              children: widgets
-                  .map((k, v) {
-                return (MapEntry(
-                    k,
-                    SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(children: [
-                        Text(k),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        v,
-                      ]),
-                    )));
-              })
-                  .values
-                  .toList(),
-            ),
-          ),
-        ),
-      )
+              length: widgets.length,
+              child: Scaffold(
+                appBar: AppBar(
+                  title: const Text(appTitle),
+                  actions: appBarActions,
+                  bottom: TabBar(
+                    isScrollable: true,
+                    tabs: Iterable<int>.generate(widgets.length)
+                        .toList()
+                        .map((i) {
+                      return (Tab(
+                        text: (i + 1).toString(),
+                      ));
+                    }).toList(), //widgets.keys.toList().map((k){return(Tab(text: k));}).toList(),
+                  ),
+                ),
+                body: Container(
+                  padding: EdgeInsets.all(20),
+                  child: TabBarView(
+                    children: widgets
+                        .map((k, v) {
+                          return (MapEntry(
+                              k,
+                              SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Column(children: [
+                                  Text(k),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  v,
+                                ]),
+                              )));
+                        })
+                        .values
+                        .toList(),
+                  ),
+                ),
+              ),
+            )
           : Scaffold(
-        appBar: AppBar(
-          title: const Text(appTitle),
-          actions: appBarActions,
-        ),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: widgets
-                .map((k, v) {
-              return (MapEntry(
-                  k,
-                  Center(
-                      child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(
-                              color: Colors.grey,
-                              width: 1.0,
-                            ),
-                          ),
-                          margin: EdgeInsets.all(20),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              children: <Widget>[
-                                Text("$k:"),
-                                v,
-                              ],
-                            ),
-                          )))));
-            })
-                .values
-                .toList(),
-          ),
-        ),
-      ),
+              appBar: AppBar(
+                title: const Text(appTitle),
+                actions: appBarActions,
+              ),
+              body: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: widgets
+                      .map((k, v) {
+                        return (MapEntry(
+                            k,
+                            Center(
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      side: BorderSide(
+                                        color: Colors.grey,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    margin: EdgeInsets.all(20),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Column(
+                                        children: <Widget>[
+                                          Text("$k:"),
+                                          v,
+                                        ],
+                                      ),
+                                    )))));
+                      })
+                      .values
+                      .toList(),
+                ),
+              ),
+            ),
     );
   }
 }

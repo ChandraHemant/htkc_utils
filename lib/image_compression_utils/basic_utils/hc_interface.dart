@@ -7,8 +7,7 @@ import 'package:htkc_utils/image_compression_utils/basic_utils/hc_extension.dart
 
 /// Image compression engine
 abstract class HcImageCompressionInterface {
-  static const MethodChannel _channel =
-      MethodChannel('hc_image_compression');
+  static const MethodChannel _channel = MethodChannel('hc_image_compression');
 
   @protected
   Future dummyCallNativeCode(

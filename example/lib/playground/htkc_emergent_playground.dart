@@ -62,9 +62,12 @@ class __PageState extends State<_Page> {
     return Scaffold(
         backgroundColor: EmergentTheme.baseColor(context),
         appBar: EmergentAppBar(
-         title: Text('Playground'),
+          title: Text('Playground'),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios), onPressed: () { hcFinish(context); },
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              hcFinish(context);
+            },
           ),
         ),
         body: Column(
@@ -670,8 +673,9 @@ class __PageState extends State<_Page> {
                       BorderRadius.circular(this.cornerRadius));
                 });
               },
-              color:
-                  boxShape!.isBeveled ? buttonActiveColor : buttonInnactiveColor,
+              color: boxShape!.isBeveled
+                  ? buttonActiveColor
+                  : buttonInnactiveColor,
               child: Text(
                 "Beveled",
                 style: TextStyle(
@@ -716,8 +720,9 @@ class __PageState extends State<_Page> {
                   boxShape = EmergentBoxShape.stadium();
                 });
               },
-              color:
-                  boxShape!.isStadium ? buttonActiveColor : buttonInnactiveColor,
+              color: boxShape!.isStadium
+                  ? buttonActiveColor
+                  : buttonInnactiveColor,
               child: Text(
                 "Stadium",
                 style: TextStyle(
@@ -736,8 +741,7 @@ class __PageState extends State<_Page> {
                   borderRadius: BorderRadius.circular(12)),
               onPressed: () {
                 setState(() {
-                  boxShape = EmergentBoxShape.path(
-                      EmergentLogoPathProvider());
+                  boxShape = EmergentBoxShape.path(EmergentLogoPathProvider());
                 });
               },
               color: boxShape!.isCustomPath

@@ -119,7 +119,8 @@ class EmergentAppBar extends StatefulWidget implements PreferredSizeWidget {
 class EmergentAppBarTheme extends InheritedWidget {
   final Widget hcChild;
 
-  const EmergentAppBarTheme({super.key, required this.hcChild}) : super(child: hcChild);
+  const EmergentAppBarTheme({super.key, required this.hcChild})
+      : super(child: hcChild);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
