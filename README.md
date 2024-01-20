@@ -91,72 +91,34 @@ class _HTKCExampleState extends State<HTKCExample> {
 ## New Version Upgrade Dialog
 
 ```dart
+import 'package:htkc_utils/htkc_utils.dart';
 
-class MyApp extends StatefulWidget {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Only call clearSavedSettings() during testing to reset internal values.
+  await HcUpgradeNewVersion.clearSavedSettings(); // REMOVE this for release builds
+
+  // On Android, the default behavior will be to use the Google Play Store
+  // version of the app.
+  // On iOS, the default behavior will be to use the App Store version of
+  // the app, so update the Bundle Identifier in example/ios/Runner with a
+  // valid identifier already in the App Store.
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-
-    // Instantiate NewVersion manager object (Using GCP Console app as example)
-    final newVersion = HcUpgradeVersion(
-      iOSId: 'com.google.Vespa',
-      androidId: 'com.google.android.apps.cloudconsole',
-    );
-
-    // You can let the plugin handle fetching the status and showing a dialog,
-    // or you can fetch the status and display your own dialog, or no dialog.
-    const simpleBehavior = true;
-
-    if (simpleBehavior) {
-      basicStatusCheck(newVersion);
-    }
-  }
-
-  basicStatusCheck(HcUpgradeVersion newVersion) {
-    newVersion.showAlertIfNecessary(context: context);
-  }
-
-  advancedStatusCheck(HcUpgradeVersion newVersion) async {
-    final status = await newVersion.getHcNewVersionStatus();
-    if (status != null) {
-      debugPrint(status.releaseNotes);
-      debugPrint(status.appStoreLink);
-      debugPrint(status.localVersion);
-      debugPrint(status.storeVersion);
-      debugPrint(status.canUpdate.toString());
-      newVersion.showUpdateDialog(
-        context: context,
-        versionStatus: status,
-        dialogTitle: 'Custom Title',
-        dialogText: 'Custom Text',
-      );
-    }
-  }
-  // This widget is the root of your application.
-  @override
   Widget build(BuildContext context) {
-    return EmergentApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      themeMode: ThemeMode.light,
-      theme: EmergentThemeData(
-        baseColor: Color(0xFFFFFFFF),
-        lightSource: LightSource.topLeft,
-        depth: 10,
-      ),
-      darkTheme: EmergentThemeData(
-        baseColor: Color(0xFF3E3E3E),
-        lightSource: LightSource.topLeft,
-        depth: 6,
-      ),
-      home: MyHomePage(),
+    return MaterialApp(
+      title: 'Upgrader Example',
+      home: HcUpgradeAlert(
+          child: Scaffold(
+            appBar: AppBar(title: Text('Upgrader Example')),
+            body: Center(child: Text('Checking...')),
+          )),
     );
   }
 }

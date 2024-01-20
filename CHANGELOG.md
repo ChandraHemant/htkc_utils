@@ -1,3 +1,7 @@
+## 1.5.2
+
+* Update new version upgrade package
+
 ## 1.5.1
 
 * Remove Chart Package 

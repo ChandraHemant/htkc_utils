@@ -129,5 +129,16 @@ export 'package:htkc_utils/dropdown_search/properties/modal_bottom_sheet_props.d
 export 'package:htkc_utils/dropdown_search/properties/popup_props.dart';
 export 'package:htkc_utils/dropdown_search/properties/text_field_props.dart';
 
+export 'package:htkc_utils/upgrade/hc_alert_style_widget.dart';
+export 'package:htkc_utils/upgrade/hc_app_cast.dart';
+export 'package:htkc_utils/upgrade/hc_itunes_search_api.dart';
+export 'package:htkc_utils/upgrade/hc_play_store_search_api.dart';
+export 'package:htkc_utils/upgrade/hc_upgrade_new_version_alert.dart';
+export 'package:htkc_utils/upgrade/hc_upgrade_new_version_card.dart';
+export 'package:htkc_utils/upgrade/hc_upgrade_new_version_device.dart';
+export 'package:htkc_utils/upgrade/hc_upgrade_new_version_messages.dart';
+export 'package:htkc_utils/upgrade/hc_upgrade_new_version_os.dart';
+export 'package:htkc_utils/upgrade/hc_upgrade_new_version.dart';
+
 /// Global singleton instance for image compressor
 final HcImageCompressionInterface compressor = getCompressor();
