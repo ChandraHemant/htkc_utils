@@ -1,10 +1,57 @@
 import 'package:example/htkc_main_home.dart';
 import 'package:example/htkc_sample_drag_and_drop.dart';
 import 'package:htkc_utils/htkc_utils.dart';
+import 'package:htkc_utils/upgrader/hc_upgrade_new_version.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Instantiate NewVersion manager object (Using GCP Console app as example)
+    final newVersion = HcUpgradeVersion(
+      iOSId: 'com.google.Vespa',
+      androidId: 'com.google.android.apps.cloudconsole',
+    );
+
+    // You can let the plugin handle fetching the status and showing a dialog,
+    // or you can fetch the status and display your own dialog, or no dialog.
+    const simpleBehavior = true;
+
+    if (simpleBehavior) {
+      basicStatusCheck(newVersion);
+    }
+  }
+
+  basicStatusCheck(HcUpgradeVersion newVersion) {
+    newVersion.showAlertIfNecessary(context: context);
+  }
+
+  advancedStatusCheck(HcUpgradeVersion newVersion) async {
+    final status = await newVersion.getHcNewVersionStatus();
+    if (status != null) {
+      debugPrint(status.releaseNotes);
+      debugPrint(status.appStoreLink);
+      debugPrint(status.localVersion);
+      debugPrint(status.storeVersion);
+      debugPrint(status.canUpdate.toString());
+      newVersion.showUpdateDialog(
+        context: context,
+        versionStatus: status,
+        dialogTitle: 'Custom Title',
+        dialogText: 'Custom Text',
+      );
+    }
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

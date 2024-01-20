@@ -1,6 +1,6 @@
 name: htkc_utils
 description: HTKC Utils is a reusable Flutter package that provides a collection of utility functions, classes, and widgets that can be used in any Flutter project.
-version: 1.5.0
+version: 1.5.1
 homepage: https://github.com/ChandraHemant/htkc_utils
 
 environment:
@@ -13,7 +13,6 @@ dependencies:
 
   cross_file: ^0.3.3+4
   cached_network_image: ^3.2.3
-  flutter_image_compress: ^2.0.4
   image_compression: ^1.0.4
   intl: ^0.18.1
   get: ^4.6.5
@@ -21,6 +20,10 @@ dependencies:
   path_provider: ^2.0.15
   permission_handler: ^10.4.2
   path_drawing: ^1.0.1
+
+  package_info_plus: ^4.2.0
+  collection: ^1.17.2
+  html: ^0.15.4
 
   diffutil_dart: ^3.0.0
   equatable: ^2.0.5

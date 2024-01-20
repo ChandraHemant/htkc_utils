@@ -39,8 +39,6 @@ export 'package:htkc_utils/chat_ui/widgets/message/user_name.dart';
 export 'package:htkc_utils/chat_ui/widgets/typing_indicator.dart';
 export 'package:htkc_utils/chat_ui/widgets/unread_header.dart';
 
-export 'package:htkc_utils/hc_utils/dropdown/hc_auto_complete_search.dart';
-
 export 'package:htkc_utils/hc_utils/multiselect/hc_multiselect_dropdown.dart';
 
 export 'package:htkc_utils/hc_utils/system/hc_system_utility.dart';
@@ -116,6 +114,20 @@ export 'package:image_compression/image_compression.dart' show ImageFile;
 export 'package:htkc_utils/image_compression_utils/basic_utils/hc_configurations.dart';
 export 'package:htkc_utils/image_compression_utils/basic_utils/hc_extension.dart'
     show HcXFileExtension;
+
+
+export 'package:htkc_utils/dropdown_search/properties/bottom_sheet_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/clear_button_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/dialog_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/dropdown_button_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/dropdown_decorator_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/favorite_item_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/icon_button_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/list_view_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/menu_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/modal_bottom_sheet_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/popup_props.dart';
+export 'package:htkc_utils/dropdown_search/properties/text_field_props.dart';
 
 /// Global singleton instance for image compressor
 final HcImageCompressionInterface compressor = getCompressor();

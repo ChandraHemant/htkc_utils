@@ -1,3 +1,8 @@
+## 1.5.1
+
+* Remove Chart Package 
+* Update dropdown package and add custom search option
+
 ## 1.5.0
 
 * Remove Chart Package
