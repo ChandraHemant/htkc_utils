@@ -73,8 +73,8 @@ class MyApp extends StatelessWidget {
 
 class DemoApp extends StatelessWidget {
   static const appcastURL =
-      'https://raw.githubusercontent.com/larryaasen/upgrader/master/test/testappcast.xml';
-  final upgrader = HcUpgradeNewVersion(
+      'https://raw.githubusercontent.com/larryaasen/upgrade/master/test/testappcast.xml';
+  final upgrade = HcUpgradeNewVersion(
     appCastConfig:
         HcAppCastConfiguration(url: appcastURL, supportedOS: ['android']),
     debugLogging: true,
@@ -86,7 +86,7 @@ class DemoApp extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text(DemoLocalizations.of(context).title)),
         body: HcUpgradeAlert(
-          hcUpgrade: upgrader,
+          hcUpgrade: upgrade,
           child: Center(child: Text(DemoLocalizations.of(context).checking)),
         ));
   }

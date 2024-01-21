@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 /// with `!` and `?` to support older versions of the API as well.
 T? ambiguate<T>(T? value) => value;
 
-/// The message identifiers used in upgrader.
+/// The message identifiers used in upgrade.
 enum HcUpgradeMessage {
   /// Body of the upgrade message
   body,
@@ -32,7 +32,7 @@ enum HcUpgradeMessage {
   title,
 }
 
-/// The default localized messages used for display in upgrader. Extend this
+/// The default localized messages used for display in upgrade. Extend this
 /// class to provide custom values and new localizations for languages.
 /// An example to replace the Ignore button with a custom value would be:
 ///

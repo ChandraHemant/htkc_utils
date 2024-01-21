@@ -1,3 +1,4 @@
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:htkc_utils/upgrade/hc_alert_style_widget.dart';
@@ -23,10 +24,10 @@ class HcUpgradeNewVersionCard extends StatefulWidget {
     this.showIgnore = true,
     this.showLater = true,
     this.showReleaseNotes = true,
-  }) : upgrader = hcUpgrade ?? HcUpgradeNewVersion.sharedInstance;
+  }) : upgrade = hcUpgrade ?? HcUpgradeNewVersion.sharedInstance;
 
-  /// The upgraders used to configure the upgrade dialog.
-  final HcUpgradeNewVersion upgrader;
+  /// The upgrade used to configure the upgrade dialog.
+  final HcUpgradeNewVersion upgrade;
 
   /// The empty space that surrounds the card.
   ///
@@ -68,32 +69,32 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
   @override
   void initState() {
     super.initState();
-    widget.upgrader.initialize();
+    widget.upgrade.initialize();
   }
 
   /// Describes the part of the user interface represented by this widget.
   @override
   Widget build(BuildContext context) {
-    if (widget.upgrader.debugLogging) {
+    if (widget.upgrade.debugLogging) {
       if (kDebugMode) {
         print('hcUpgrade: build UpgradeCard');
       }
     }
 
     return StreamBuilder(
-        initialData: widget.upgrader.evaluationReady,
-        stream: widget.upgrader.evaluationStream,
+        initialData: widget.upgrade.evaluationReady,
+        stream: widget.upgrade.evaluationStream,
         builder: (BuildContext context,
             AsyncSnapshot<HcUpgradeEvaluateNeed> snapshot) {
           if ((snapshot.connectionState == ConnectionState.waiting ||
                   snapshot.connectionState == ConnectionState.active) &&
               snapshot.data != null &&
               snapshot.data!) {
-            if (widget.upgrader.shouldDisplayUpgrade()) {
+            if (widget.upgrade.shouldDisplayUpgrade()) {
               return buildUpgradeCard(
-                  context, const Key('upgrader_alert_card'));
+                  context, const Key('upgrade_alert_card'));
             } else {
-              if (widget.upgrader.debugLogging) {
+              if (widget.upgrade.debugLogging) {
                 if (kDebugMode) {
                   print('hcUpgrade: UpgradeCard will not display');
                 }
@@ -106,12 +107,12 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
 
   /// Build the UpgradeCard widget.
   Widget buildUpgradeCard(BuildContext context, Key? key) {
-    final appMessages = widget.upgrader.determineMessages(context);
+    final appMessages = widget.upgrade.determineMessages(context);
     final title = appMessages.message(HcUpgradeMessage.title);
-    final message = widget.upgrader.body(appMessages);
-    final releaseNotes = widget.upgrader.releaseNotes;
+    final message = widget.upgrade.body(appMessages);
+    final releaseNotes = widget.upgrade.releaseNotes;
 
-    if (widget.upgrader.debugLogging) {
+    if (widget.upgrade.debugLogging) {
       if (kDebugMode) {
         print('hcUpgrade: UpgradeCard: will display');
         print('hcUpgrade: UpgradeCard: showDialog title: $title');
@@ -167,7 +168,7 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
   void forceRebuild() => setState(() {});
 
   List<Widget> actions(HcUpgradeMessages appMessages) {
-    final isBlocked = widget.upgrader.blocked();
+    final isBlocked = widget.upgrade.blocked();
     final showIgnore = isBlocked ? false : widget.showIgnore;
     final showLater = isBlocked ? false : widget.showLater;
     return <Widget>[
@@ -177,7 +178,7 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
                 appMessages.message(HcUpgradeMessage.buttonTitleIgnore) ?? ''),
             onPressed: () {
               // Save the date/time as the last time alerted.
-              widget.upgrader.saveLastAlerted();
+              widget.upgrade.saveLastAlerted();
 
               onUserIgnored();
               forceRebuild();
@@ -188,7 +189,7 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
                 appMessages.message(HcUpgradeMessage.buttonTitleLater) ?? ''),
             onPressed: () {
               // Save the date/time as the last time alerted.
-              widget.upgrader.saveLastAlerted();
+              widget.upgrade.saveLastAlerted();
 
               onUserLater();
               forceRebuild();
@@ -198,7 +199,7 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
               appMessages.message(HcUpgradeMessage.buttonTitleUpdate) ?? ''),
           onPressed: () {
             // Save the date/time as the last time alerted.
-            widget.upgrader.saveLastAlerted();
+            widget.upgrade.saveLastAlerted();
 
             onUserUpdated();
           }),
@@ -207,10 +208,10 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
 
   bool get shouldDisplayReleaseNotes =>
       widget.showReleaseNotes &&
-      (widget.upgrader.releaseNotes?.isNotEmpty ?? false);
+      (widget.upgrade.releaseNotes?.isNotEmpty ?? false);
 
   void onUserIgnored() {
-    if (widget.upgrader.debugLogging) {
+    if (widget.upgrade.debugLogging) {
       if (kDebugMode) {
         print('hcUpgrade: button tapped: ignore');
       }
@@ -220,14 +221,14 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
     final doProcess = widget.onIgnore?.call() ?? true;
 
     if (doProcess) {
-      widget.upgrader.saveIgnored();
+      widget.upgrade.saveIgnored();
     }
 
     forceRebuild();
   }
 
   void onUserLater() {
-    if (widget.upgrader.debugLogging) {
+    if (widget.upgrade.debugLogging) {
       if (kDebugMode) {
         print('hcUpgrade: button tapped: later');
       }
@@ -240,7 +241,7 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
   }
 
   void onUserUpdated() {
-    if (widget.upgrader.debugLogging) {
+    if (widget.upgrade.debugLogging) {
       if (kDebugMode) {
         print('hcUpgrade: button tapped: update now');
       }
@@ -250,7 +251,7 @@ class HcUpgradeNewVersionCardState extends State<HcUpgradeNewVersionCard> {
     final doProcess = widget.onUpdate?.call() ?? true;
 
     if (doProcess) {
-      widget.upgrader.sendUserToAppStore();
+      widget.upgrade.sendUserToAppStore();
     }
 
     forceRebuild();

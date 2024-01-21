@@ -99,7 +99,7 @@ class HcUpgradeNewVersion with WidgetsBindingObserver {
   /// Duration until alerting user again
   final Duration durationUntilAlertAgain;
 
-  /// The localized messages used for display in upgrader.
+  /// The localized messages used for display in upgrade.
   HcUpgradeMessages? messages;
 
   /// The minimum app version supported by this app. Earlier versions of this app

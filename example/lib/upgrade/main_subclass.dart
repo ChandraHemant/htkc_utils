@@ -18,7 +18,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  final upgrader = MyUpgrader();
+  final upgrade = MyUpgrader();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           appBar: AppBar(title: Text('Upgrader Subclass Example')),
           body: HcUpgradeAlert(
-            hcUpgrade: upgrader,
+            hcUpgrade: upgrade,
             child: Center(child: Text('Checking...')),
           )),
     );

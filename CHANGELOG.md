@@ -1,3 +1,19 @@
+## 1.5.6
+
+* Update new version dialog alert
+
+## 1.5.5
+
+* Fix some issue
+ 
+## 1.5.4
+
+* Fix some issue
+ 
+## 1.5.3
+
+* Update new version alert dialog
+
 ## 1.5.2
 
 * Update new version upgrade package

@@ -158,7 +158,7 @@ extension PlayStoreResults on HcPlayStoreSearchAPI {
     } on Exception catch (e) {
       if (debugLogging) {
         if (kDebugMode) {
-          print('upgrader.PlayStoreResults.minAppVersion : $e');
+          print('upgrade.PlayStoreResults.minAppVersion : $e');
         }
       }
     }

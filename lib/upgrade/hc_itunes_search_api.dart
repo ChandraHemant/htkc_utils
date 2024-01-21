@@ -146,7 +146,7 @@ class ITunesSearchAPI {
           if (debugLogging) {
             if (kDebugMode) {
               print(
-                'upgrader.ITunesSearchAPI: results are empty: $decodedResults');
+                'upgrade.ITunesSearchAPI: results are empty: $decodedResults');
             }
           }
         }
@@ -166,7 +166,7 @@ extension ITunesResults on ITunesSearchAPI {
     } catch (e) {
       if (debugLogging) {
         if (kDebugMode) {
-          print('upgrader.ITunesResults.bundleId: $e');
+          print('upgrade.ITunesResults.bundleId: $e');
         }
       }
     }
@@ -181,7 +181,7 @@ extension ITunesResults on ITunesSearchAPI {
     } catch (e) {
       if (debugLogging) {
         if (kDebugMode) {
-          print('upgrader.ITunesResults.currency: $e');
+          print('upgrade.ITunesResults.currency: $e');
         }
       }
     }
@@ -196,7 +196,7 @@ extension ITunesResults on ITunesSearchAPI {
     } catch (e) {
       if (debugLogging) {
         if (kDebugMode) {
-          print('upgrader.ITunesResults.description: $e');
+          print('upgrade.ITunesResults.description: $e');
         }
       }
     }
@@ -234,7 +234,7 @@ extension ITunesResults on ITunesSearchAPI {
     } on Exception catch (e) {
       if (debugLogging) {
         if (kDebugMode) {
-          print('upgrader.ITunesResults.minAppVersion : $e');
+          print('upgrade.ITunesResults.minAppVersion : $e');
         }
       }
     }
@@ -249,7 +249,7 @@ extension ITunesResults on ITunesSearchAPI {
     } catch (e) {
       if (debugLogging) {
         if (kDebugMode) {
-          print('upgrader.ITunesResults.releaseNotes: $e');
+          print('upgrade.ITunesResults.releaseNotes: $e');
         }
       }
     }
@@ -264,7 +264,7 @@ extension ITunesResults on ITunesSearchAPI {
     } catch (e) {
       if (debugLogging) {
         if (kDebugMode) {
-          print('upgrader.ITunesResults.trackViewUrl: $e');
+          print('upgrade.ITunesResults.trackViewUrl: $e');
         }
       }
     }
@@ -279,7 +279,7 @@ extension ITunesResults on ITunesSearchAPI {
     } catch (e) {
       if (debugLogging) {
         if (kDebugMode) {
-          print('upgrader.ITunesResults.version: $e');
+          print('upgrade.ITunesResults.version: $e');
         }
       }
     }

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:htkc_utils/dropdown_search/hc_dropdown_search_form_field.dart';
-import 'package:htkc_utils/dropdown_search/widgets/checkbox_widget.dart';
+import 'package:htkc_utils/dropdown_search/widgets/hc_checkbox_widget.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 

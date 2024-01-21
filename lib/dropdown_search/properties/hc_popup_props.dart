@@ -1,5 +1,5 @@
 import 'package:htkc_utils/dropdown_search/hc_dropdown_search_form_field.dart';
-import 'package:htkc_utils/dropdown_search/properties/scrollbar_props.dart';
+import 'package:htkc_utils/dropdown_search/properties/hc_scrollbar_props.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 class PopupProps<T> {

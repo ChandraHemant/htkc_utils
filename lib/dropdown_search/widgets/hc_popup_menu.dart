@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../properties/menu_props.dart';
+import 'package:htkc_utils/dropdown_search/properties/hc_menu_props.dart';
 
 Future<T?> showCustomMenu<T>({
   required BuildContext context,

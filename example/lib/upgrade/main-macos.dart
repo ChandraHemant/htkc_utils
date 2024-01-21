@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
   static const appcastURL =
-      'https://raw.githubusercontent.com/larryaasen/upgrader/master/test/testappcast_macos.xml';
-  final upgrader = HcUpgradeNewVersion(
+      'https://raw.githubusercontent.com/larryaasen/upgrade/master/test/testappcast_macos.xml';
+  final upgrade = HcUpgradeNewVersion(
     appCastConfig:
         HcAppCastConfiguration(url: appcastURL, supportedOS: ['macos']),
     debugLogging: true,
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Upgrader Example',
       home: HcUpgradeAlert(
-          hcUpgrade: upgrader,
+          hcUpgrade: upgrade,
           child: Scaffold(
             appBar: AppBar(title: Text('Upgrader Example')),
             body: Center(child: Text('Checking...')),

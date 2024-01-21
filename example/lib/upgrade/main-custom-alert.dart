@@ -13,14 +13,14 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final upgrader = MyUpgrader(debugLogging: true);
+  final upgrade = MyUpgrader(debugLogging: true);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Upgrader Example',
       home: MyUpgradeAlert(
-          hcUpgrade: upgrader,
+          hcUpgrade: upgrade,
           child: Scaffold(
             appBar: AppBar(title: Text('Upgrader Custom Alert Example')),
             body: Center(child: Text('Checking...')),
@@ -90,7 +90,7 @@ class MyUpgradeAlertState extends HcUpgradeAlertState {
               TextButton(
                 child: const Text('Yes'),
                 onPressed: () {
-                  onUserUpdated(context, !widget.upgrader.blocked());
+                  onUserUpdated(context, !widget.upgrade.blocked());
                 },
               ),
             ],

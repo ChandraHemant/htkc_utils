@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:htkc_utils/htkc_utils.dart';
 
-final dialogKey = GlobalKey(debugLabel: 'gloabl_upgrader_alert_dialog');
+final dialogKey = GlobalKey(debugLabel: 'gloabl_upgrade_alert_dialog');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

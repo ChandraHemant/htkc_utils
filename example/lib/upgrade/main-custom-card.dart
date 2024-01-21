@@ -62,7 +62,7 @@ class MyUpgradeCard extends HcUpgradeNewVersionCard {
 class MyUpgradeCardState extends HcUpgradeNewVersionCardState {
   @override
   Widget buildUpgradeCard(BuildContext context, Key? key) {
-    final appMessages = widget.upgrader.determineMessages(context);
+    final appMessages = widget.upgrade.determineMessages(context);
     final title = appMessages.message(HcUpgradeMessage.title);
     return Card(
       color: Colors.greenAccent,
@@ -72,7 +72,7 @@ class MyUpgradeCardState extends HcUpgradeNewVersionCardState {
             child: Text(
                 appMessages.message(HcUpgradeMessage.buttonTitleUpdate) ?? ''),
             onPressed: () {
-              widget.upgrader.saveLastAlerted();
+              widget.upgrade.saveLastAlerted();
               onUserUpdated();
             },
           ),

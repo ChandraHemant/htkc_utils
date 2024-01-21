@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:htkc_utils/htkc_utils.dart';
 import 'package:flutter/foundation.dart';
-import 'package:htkc_utils/dropdown_search/widgets/popup_menu.dart';
-import 'package:htkc_utils/dropdown_search/widgets/selection_widget.dart';
+import 'package:htkc_utils/dropdown_search/widgets/hc_popup_menu.dart';
+import 'package:htkc_utils/dropdown_search/widgets/hc_selection_widget.dart';
 
 typedef HcDropdownSearchOnFind<T> = Future<List<T>> Function(String text);
 typedef HcDropdownSearchItemAsString<T> = String Function(T item);
