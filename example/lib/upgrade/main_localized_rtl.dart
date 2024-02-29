@@ -1,5 +1,3 @@
-
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 void main() async {
@@ -16,11 +14,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       locale: Locale('ar'), // Arabic language shows right to left.
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
       supportedLocales: [
         const Locale('ar', ''), // Arabic, no country code
         const Locale('he', ''), // Hebrew, no country code

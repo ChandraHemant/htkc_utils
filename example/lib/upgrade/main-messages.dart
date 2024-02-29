@@ -1,6 +1,5 @@
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:htkc_utils/htkc_utils.dart';
 
 void main() async {
@@ -25,12 +24,7 @@ class MyApp extends StatelessWidget {
       onGenerateTitle: (BuildContext context) =>
           DemoLocalizations.of(context).title,
       home: DemoApp(),
-      localizationsDelegates: [
-        const DemoLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
+
       supportedLocales: [
         const Locale('en', ''), // English, no country code
         const Locale('ar', ''), // Arabic, no country code

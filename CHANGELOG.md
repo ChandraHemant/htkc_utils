@@ -1,3 +1,7 @@
+## 1.5.7
+
+* Upgrade Flutter version
+
 ## 1.5.6
 
 * Update new version dialog alert
