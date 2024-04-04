@@ -1,3 +1,11 @@
+## 1.5.9
+
+* device_info_plus package downgrade.
+
+## 1.5.8
+
+* This version fix some issues like onBackPress() and HcAppBar.
+
 ## 1.5.7
 
 * Upgrade Flutter version

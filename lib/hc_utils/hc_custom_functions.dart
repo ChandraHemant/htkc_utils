@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:htkc_utils/htkc_utils.dart';
@@ -389,40 +390,38 @@ Gradient hcGradient(
 }
 
 hcOnBackPressed(BuildContext context) {
-  /// Cancel Button
-  Widget cancelButton(BuildContext context, {Color color = hcPrimaryColor}) =>
-      TextButton(
-          onPressed: () {
-            Navigator.pop(context, true);
-          },
-          child: Text('Cancel', style: HcAppTextStyle.boldTextStyle()));
-
-  /// Continue Button
-  Widget continueButton(BuildContext context, {Color color = hcPrimaryColor}) =>
-      TextButton(
-          onPressed: () {
-            Navigator.pop(context, false);
-          },
-          child: Text('Ok', style: HcAppTextStyle.boldTextStyle(color: color)));
-
-  // show the dialog
-  return showDialog(
+  return showDialog<bool>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        title: Text(
-          'Warning!!!',
-          style: HcAppTextStyle.boldTextStyle(size: 18),
+        title: const Text(
+          "Warning",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        content: Text('Are you sure! you want to close this?',
-            style:
-                TextStyle(fontSize: 13, color: Colors.black.withOpacity(0.7))),
+        content: const Text(
+          "Are you sure you want to exit the app?",
+          style: TextStyle(fontSize: 13),
+        ),
         actions: [
-          cancelButton(context),
-          continueButton(context),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(false); // Continue
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              if (Platform.isAndroid) {
+                SystemNavigator.pop();
+              } else if (Platform.isIOS) {
+                exit(0);
+              }
+            },
+            child: const Text('Exit'),
+          ),
         ],
       );
     },

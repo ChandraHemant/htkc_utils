@@ -1,6 +1,6 @@
 name: htkc_utils
 description: HTKC Utils is a reusable Flutter package that provides a collection of utility functions, classes, and widgets that can be used in any Flutter project.
-version: 1.5.7
+version: 1.5.9
 homepage: https://github.com/ChandraHemant/htkc_utils
 
 environment:
@@ -21,7 +21,7 @@ dependencies:
   permission_handler: ^11.3.0
   path_drawing: ^1.0.1
 
-  package_info_plus: ^5.0.1
+  package_info_plus: ^6.0.0
   collection: ^1.17.2
   html: ^0.15.4
 
@@ -37,7 +37,7 @@ dependencies:
   visibility_detector: ^0.4.0+2
 
   # From fluttercommunity.dev: Get current device information from within the Flutter application.
-  device_info_plus: ^9.1.2
+  device_info_plus: ^9.0.2
 
   # From dart.dev: Platform independent access to information about the current operating system.
   os_detect: ^2.0.1
